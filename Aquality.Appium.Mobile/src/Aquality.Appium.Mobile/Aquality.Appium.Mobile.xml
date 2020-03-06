@@ -4,5 +4,136 @@
         <name>Aquality.Appium.Mobile</name>
     </assembly>
     <members>
+        <member name="T:Aquality.Appium.Mobile.Applications.AqualityServices">
+            <summary>
+            Controls application and Aquality services
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.ApplicationProfile">
+            <summary>
+            Gets registered instance of localized logger
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.IsApplicationStarted">
+            <summary>
+            Check if application already started.
+            </summary>
+            <value>true if application started and false otherwise.</value>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.LocalizedLogger">
+            <summary>
+            Gets registered instance of localized logger
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.Logger">
+            <summary>
+            Gets registered instance of Logger
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.ConditionalWait">
+            <summary>
+            Gets ConditionalWait object
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.AqualityServices.Get``1">
+            <summary>
+            Resolves required service from <see cref="P:Aquality.Appium.Mobile.Applications.AqualityServices.ServiceProvider"/>
+            </summary>
+            <typeparam name="T">type of required service</typeparam>
+            <exception cref="T:System.InvalidOperationException">Thrown if there is no service of the required type.</exception> 
+            <returns></returns>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.Application">
+            <summary>
+            Provides current instance of application
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.AqualityServices.SetStartup(Aquality.Appium.Mobile.Applications.MobileStartup)">
+            <summary>
+            Method which allow user to override or add custom services.
+            </summary>
+            <param name="startup"><see cref="T:Aquality.Appium.Mobile.Applications.MobileStartup"/>> object with custom or overriden services.</param>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.ApplicationFactory">
+            <summary>
+            Factory for application creation.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.AqualityServices.SetDefaultFactory">
+            <summary>
+            Sets default factory responsible for application creation.
+            RemoteApplicationFactory if value set in configuration and LocalApplicationFactory otherwise.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Applications.IMobileApplication">
+            <summary>
+            Provides functionality to work with mobile application via Appium driver.  
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.Driver">
+            <summary>
+            Provides instance of Appium Driver for current application.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Quit">
+            <summary>
+            Closes application and disposes <see cref="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService"/> if it not null.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService">
+            <summary>
+            Provides current AppiumDriver service instance (would be null if driver is not local).
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.PlatformName">
+            <summary>
+            Provides name of current platform.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Applications.MobileStartup">
+            <summary>
+            Provides functionality to  register services
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.IApplicationProfile">
+            <summary>
+            Describes application settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.DriverSettings">
+            <summary>
+            Gets Appium driver settings for application.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.IsRemote">
+            <summary>
+            Is remote Appium service or not: true to use <see cref="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.RemoteConnectionUrl"/> and false to create default <see cref="T:OpenQA.Selenium.Appium.Service.AppiumLocalService"/>.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.PlatformName">
+            <summary>
+            Gets name of current application platform.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.RemoteConnectionUrl">
+            <summary>
+            Gets remote connection URI is case of remote browser.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.IDriverSettings">
+            <summary>
+            Describes Appium driver settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IDriverSettings.AppiumOptions">
+            <summary>
+            Gets desired Appium driver options.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IDriverSettings.ApplicationPath">
+            <summary>
+            Provides a path to the application.
+            </summary>
+        </member>
     </members>
 </doc>
