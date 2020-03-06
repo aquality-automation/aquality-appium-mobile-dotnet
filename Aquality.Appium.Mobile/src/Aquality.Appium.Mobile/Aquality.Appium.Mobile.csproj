@@ -7,8 +7,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>aquality automation committers</Authors>
     <Company>aquality automation</Company>
-    <Description>Wrapper over Appium for .NET</Description>
-    <PackageDescription>Wrapper over Appium for .NET</PackageDescription>
+    <Description>Wrapper over Appium to automate mobile applications for .NET</Description>
+    <PackageDescription>Wrapper over Appium to automate mobile applications for .NET</PackageDescription>
     <PackageLicenseExpression></PackageLicenseExpression>
     <RepositoryUrl>https://github.com/aquality-automation/aquality-appium-mobile-dotnet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
