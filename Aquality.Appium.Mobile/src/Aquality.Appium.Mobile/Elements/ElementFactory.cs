@@ -41,9 +41,9 @@ namespace Aquality.Appium.Mobile.Elements
             return GetCustomElement(ResolveSupplier<T>(null), locator, name, state);
         }
 
-        public ILink GetButton(By locator, string name, ElementState state = ElementState.Displayed)
+        public IButton GetButton(By locator, string name, ElementState state = ElementState.Displayed)
         {
-            return Get<ILink>(locator, name, state);
+            return Get<IButton>(locator, name, state);
         }
 
         public ICheckBox GetCheckBox(By locator, string name, ElementState state = ElementState.Displayed)

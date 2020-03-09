@@ -23,7 +23,7 @@ namespace Aquality.Appium.Mobile.Elements.Interfaces
         /// <param name="name">Element name.</param>
         /// <param name="state">Element state.</param>
         /// <returns> Instance of element that implements IButton interface.</returns>
-        ILink GetButton(By locator, string name, ElementState state = ElementState.Displayed);
+        IButton GetButton(By locator, string name, ElementState state = ElementState.Displayed);
 
         /// <summary>
         /// Creates element that implements ICheckBox interface.

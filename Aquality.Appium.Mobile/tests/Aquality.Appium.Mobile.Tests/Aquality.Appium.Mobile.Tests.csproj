@@ -20,6 +20,9 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Update="Resources\Apps\ApiDemos-debug.apk">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\settings.androidwebsession.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
