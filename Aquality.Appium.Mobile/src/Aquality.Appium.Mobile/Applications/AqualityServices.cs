@@ -1,4 +1,5 @@
 ﻿using Aquality.Appium.Mobile.Configurations;
+using Aquality.Appium.Mobile.Elements.Interfaces;
 using Aquality.Selenium.Core.Applications;
 using Aquality.Selenium.Core.Localization;
 using Aquality.Selenium.Core.Logging;
@@ -42,6 +43,11 @@ namespace Aquality.Appium.Mobile.Applications
         /// Gets ConditionalWait object
         /// </summary>
         public static IConditionalWait ConditionalWait => Get<IConditionalWait>();
+
+        /// <summary>
+        /// Gets factory to create elements.
+        /// </summary>
+        public static IElementFactory ElementFactory => Get<IElementFactory>();
 
         /// <summary>
         /// Resolves required service from <see cref="ServiceProvider"/>

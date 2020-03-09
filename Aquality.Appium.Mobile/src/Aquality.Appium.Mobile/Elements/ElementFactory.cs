@@ -25,15 +25,13 @@ namespace Aquality.Appium.Mobile.Elements
             {
                 return new Dictionary<Type, Type>
                 {
-                    /* TODO implement elements
                     { typeof(IButton), typeof(Button) },
                     { typeof(ICheckBox), typeof(CheckBox) },
                     { typeof(IComboBox), typeof(ComboBox) },
                     { typeof(ILabel), typeof(Label) },
                     { typeof(ILink), typeof(Link) },
                     { typeof(ITextBox), typeof(TextBox) },
-                    { typeof(IRadioButton), typeof(RadioButton) }
-                    */
+                    { typeof(IRadioButton), typeof(RadioButton) }                    
                 };
             }
         }
@@ -43,9 +41,9 @@ namespace Aquality.Appium.Mobile.Elements
             return GetCustomElement(ResolveSupplier<T>(null), locator, name, state);
         }
 
-        public IButton GetButton(By locator, string name, ElementState state = ElementState.Displayed)
+        public ILink GetButton(By locator, string name, ElementState state = ElementState.Displayed)
         {
-            return Get<IButton>(locator, name, state);
+            return Get<ILink>(locator, name, state);
         }
 
         public ICheckBox GetCheckBox(By locator, string name, ElementState state = ElementState.Displayed)
