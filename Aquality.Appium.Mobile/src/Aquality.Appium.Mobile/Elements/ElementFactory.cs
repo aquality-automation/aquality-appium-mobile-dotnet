@@ -5,6 +5,10 @@ using CoreFactory = Aquality.Selenium.Core.Elements.ElementFactory;
 using IElementFactory = Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory;
 using System;
 using System.Collections.Generic;
+using Aquality.Appium.Mobile.Elements.Interfaces;
+using OpenQA.Selenium;
+using Aquality.Selenium.Core.Elements;
+using IElement = Aquality.Appium.Mobile.Elements.Interfaces.IElement;
 
 namespace Aquality.Appium.Mobile.Elements
 {
@@ -14,8 +18,6 @@ namespace Aquality.Appium.Mobile.Elements
             : base(conditionalWait, elementFinder, localizationManager)
         {
         }
-
-        //TODO implement element getters
 
         protected override IDictionary<Type, Type> ElementTypesMap
         {
@@ -34,6 +36,46 @@ namespace Aquality.Appium.Mobile.Elements
                     */
                 };
             }
+        }
+
+        public T Get<T>(By locator, string name, ElementState state = ElementState.Displayed) where T : IElement
+        {
+            return GetCustomElement(ResolveSupplier<T>(null), locator, name, state);
+        }
+
+        public IButton GetButton(By locator, string name, ElementState state = ElementState.Displayed)
+        {
+            return Get<IButton>(locator, name, state);
+        }
+
+        public ICheckBox GetCheckBox(By locator, string name, ElementState state = ElementState.Displayed)
+        {
+            return Get<ICheckBox>(locator, name, state);
+        }
+
+        public IComboBox GetComboBox(By locator, string name, ElementState state = ElementState.Displayed)
+        {
+            return Get<IComboBox>(locator, name, state);
+        }
+
+        public ILabel GetLabel(By locator, string name, ElementState state = ElementState.Displayed)
+        {
+            return Get<ILabel>(locator, name, state);
+        }
+
+        public ILink GetLink(By locator, string name, ElementState state = ElementState.Displayed)
+        {
+            return Get<ILink>(locator, name, state);
+        }
+
+        public IRadioButton GetRadioButton(By locator, string name, ElementState state = ElementState.Displayed)
+        {
+            return Get<IRadioButton>(locator, name, state);
+        }
+
+        public ITextBox GetTextBox(By locator, string name, ElementState state = ElementState.Displayed)
+        {
+            return Get<ITextBox>(locator, name, state);
         }
     }
 }

@@ -6,6 +6,7 @@ using System;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android
 {
+    [NonParallelizable]
     public class AndroidWebSessionTest
     {
         private AndroidDriver<AppiumWebElement> driver;
