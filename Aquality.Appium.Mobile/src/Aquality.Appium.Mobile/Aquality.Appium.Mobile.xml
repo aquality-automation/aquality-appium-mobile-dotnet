@@ -95,6 +95,11 @@
             Provides functionality to  register services
             </summary>
         </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.DriverSettings.HasApplicationPath">
+            <summary>
+            Defines does the current settings have the application path defined
+            </summary>
+        </member>
         <member name="T:Aquality.Appium.Mobile.Configurations.IApplicationProfile">
             <summary>
             Describes application settings.
