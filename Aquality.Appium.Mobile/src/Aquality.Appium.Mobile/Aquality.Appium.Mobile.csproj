@@ -22,6 +22,20 @@
     <DocumentationFile>Aquality.Appium.Mobile.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Resources\Localization\be.json" />
+    <None Remove="Resources\Localization\en.json" />
+    <None Remove="Resources\Localization\ru.json" />
+    <None Remove="Resources\settings.json" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Localization\be.json" />
+    <EmbeddedResource Include="Resources\Localization\en.json" />
+    <EmbeddedResource Include="Resources\Localization\ru.json" />
+    <EmbeddedResource Include="Resources\settings.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\..\LICENSE">

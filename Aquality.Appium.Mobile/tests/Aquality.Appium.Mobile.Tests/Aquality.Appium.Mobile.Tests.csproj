@@ -12,11 +12,20 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
   </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\..\src\Aquality.Appium.Mobile\Aquality.Appium.Mobile.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="Resources\settings.androidwebsession.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

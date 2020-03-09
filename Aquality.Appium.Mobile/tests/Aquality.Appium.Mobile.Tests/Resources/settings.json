@@ -1,0 +1,40 @@
+{
+  "platformName" : "android",
+  "isRemote": false,
+  "remoteConnectionUrl": "http://127.0.0.1:4723/wd/hub",
+  "isElementHighlightEnabled" : true,
+
+  "driverSettings": {
+    "android": {
+      "applicationPath": "./src/test/resources/apps/ApiDemos-debug.apk",
+      "capabilities": {
+        "deviceName": "Android Emulator"
+      }
+    },
+    "ios": {
+      "applicationPath": "./src/test/resources/apps/TestApp.app.zip",
+      "capabilities": {
+        "deviceName": "iOS Simulator",
+        "automationName": "XCUITest",
+        "platformName": "iOS",
+        "udid": "<SIMULATOR_ID/DEVICE_ID>"
+      }
+    }
+  },
+  "timeouts": {
+    "timeoutImplicit" : 0,
+    "timeoutCondition" : 15,
+    "timeoutPollingInterval": 300,
+    "timeoutCommand":120
+  },
+  "retry": {
+    "number": 2,
+    "pollingInterval": 300
+  },
+  "logger": {
+    "language": "en"
+  },
+  "elementCache": {
+    "isEnabled": false
+  }
+}
