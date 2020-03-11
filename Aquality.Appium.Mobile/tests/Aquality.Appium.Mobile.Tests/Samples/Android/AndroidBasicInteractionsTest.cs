@@ -9,7 +9,10 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android
         [TearDown]
         public void TearDown()
         {
-            AqualityServices.Application.Quit();
+            if (AqualityServices.IsApplicationStarted)
+            {
+                AqualityServices.Application.Quit();
+            }            
         }
 
         [Test]

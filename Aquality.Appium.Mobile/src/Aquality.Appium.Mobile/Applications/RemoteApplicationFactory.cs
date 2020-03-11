@@ -9,7 +9,6 @@ namespace Aquality.Appium.Mobile.Applications
             get
             {
                 var serverUrl = AqualityServices.ApplicationProfile.RemoteConnectionUrl;
-                AqualityServices.LocalizedLogger.Info("loc.application.driver.remote", serverUrl);
                 var driver = GetDriver(serverUrl);
                 driver.FileDetector = new LocalFileDetector();
                 LogApplicationIsReady();

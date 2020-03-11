@@ -23,7 +23,10 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android
         [TearDown]
         public void CleanUp()
         {
-            AqualityServices.Application.Quit();
+            if (AqualityServices.IsApplicationStarted)
+            {
+                AqualityServices.Application.Quit();
+            }
         }
 
         [Test]

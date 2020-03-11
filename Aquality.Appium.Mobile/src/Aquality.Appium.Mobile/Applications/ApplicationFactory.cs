@@ -1,5 +1,7 @@
 ﻿using Aquality.Selenium.Core.Configurations;
 using Aquality.Selenium.Core.Localization;
+using Aquality.Selenium.Core.Utilities;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.iOS;
@@ -16,6 +18,13 @@ namespace Aquality.Appium.Mobile.Applications
             var platformName = AqualityServices.ApplicationProfile.PlatformName;
             var driverOptions = AqualityServices.ApplicationProfile.DriverSettings.AppiumOptions;
             var commandTimeout = AqualityServices.Get<ITimeoutConfiguration>().Command;
+            return new CustomActionRetrier().DoWithRetry(
+                () => CreateSession(platformName, serviceUrl, driverOptions, commandTimeout));
+        }
+
+        protected virtual AppiumDriver<AppiumWebElement> CreateSession(PlatformName platformName, Uri serviceUrl, AppiumOptions driverOptions, TimeSpan commandTimeout)
+        {
+            AqualityServices.LocalizedLogger.Info("loc.application.driver.remote", serviceUrl);
             AppiumDriver<AppiumWebElement> driver;
             switch (platformName)
             {
@@ -32,7 +41,20 @@ namespace Aquality.Appium.Mobile.Applications
             return driver;
         }
 
-        private PlatformNotSupportedException GetLoggedWrongPlatformNameException(string actualPlatform)
+        protected class CustomActionRetrier : ElementActionRetrier
+        {
+            public CustomActionRetrier() 
+                : base(AqualityServices.Get<IRetryConfiguration>(), new[] { typeof(WebDriverException) })
+            {
+            }
+
+            protected override bool IsExceptionHandled(Exception exception)
+            {
+                return base.IsExceptionHandled(exception) && exception.Message.ToLower().Contains("session not created");
+            }
+        }
+
+        protected PlatformNotSupportedException GetLoggedWrongPlatformNameException(string actualPlatform)
         {
             var message = AqualityServices.Get<ILocalizationManager>()
                 .GetLocalizedMessage("loc.platform.name.wrong", actualPlatform);
