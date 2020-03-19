@@ -80,6 +80,10 @@ namespace Aquality.Appium.Mobile.Applications
                 ApplicationStartupContainer.Value = startup;
                 SetServiceProvider(ConfigureServices().BuildServiceProvider());
             }
+            else
+            {
+                throw new ArgumentNullException(nameof(startup));
+            }
         }
 
         /// <summary>

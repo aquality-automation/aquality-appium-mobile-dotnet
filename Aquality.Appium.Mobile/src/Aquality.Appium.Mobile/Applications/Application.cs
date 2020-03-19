@@ -44,7 +44,7 @@ namespace Aquality.Appium.Mobile.Applications
         {
             if (timeout != timeoutImplicit)
             {
-                localizedLogger.Debug("loc.application.implicit.timeout", null, timeout.TotalSeconds);
+                localizedLogger.Debug("loc.application.implicit.timeout", args: timeout.TotalSeconds);
                 SetImplicitlyWaitToDriver(timeoutImplicit);
             }
         }
