@@ -25,6 +25,11 @@
             Gets registered instance of localized logger
             </summary>
         </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.LocalServiceSettings">
+            <summary>
+            Gets registered instance of Appium local service settings.
+            </summary>
+        </member>
         <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.Logger">
             <summary>
             Gets registered instance of Logger
@@ -143,6 +148,16 @@
         <member name="P:Aquality.Appium.Mobile.Configurations.IDriverSettings.ApplicationPath">
             <summary>
             Provides a path to the application.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.ILocalServiceSettings">
+            <summary>
+            Describes Appium local service settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.ILocalServiceSettings.ServerOptions">
+            <summary>
+            Gets desired Appium local service server options.
             </summary>
         </member>
         <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ICheckBox.Check">

@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium.Appium.Service;
-using OpenQA.Selenium.Appium.Service.Options;
-using System.Collections.Generic;
 
 namespace Aquality.Appium.Mobile.Applications
 {
@@ -10,8 +8,7 @@ namespace Aquality.Appium.Mobile.Applications
         {
             get
             {
-                var optionsCollector = new OptionCollector().AddArguments(new KeyValuePair<string, string>("--allow-insecure", "chromedriver_autodownload"));
-                var service = new AppiumServiceBuilder().WithArguments(optionsCollector).Build();
+                var service = new AppiumServiceBuilder().WithArguments(AqualityServices.LocalServiceSettings.ServerOptions).Build();
                 service.Start();
                 var driver = GetDriver(service.ServiceUrl);
                 LogApplicationIsReady();

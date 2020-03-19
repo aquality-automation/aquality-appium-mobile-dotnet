@@ -35,6 +35,11 @@ namespace Aquality.Appium.Mobile.Applications
         public static ILocalizedLogger LocalizedLogger => Get<ILocalizedLogger>();
 
         /// <summary>
+        /// Gets registered instance of Appium local service settings.
+        /// </summary>
+        public static ILocalServiceSettings LocalServiceSettings => Get<ILocalServiceSettings>();
+
+        /// <summary>
         /// Gets registered instance of Logger
         /// </summary>
         public static Logger Logger => Get<Logger>();
