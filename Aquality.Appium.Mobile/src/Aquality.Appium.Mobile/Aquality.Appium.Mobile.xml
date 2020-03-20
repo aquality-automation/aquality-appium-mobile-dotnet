@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aquality.Appium.Mobile</name>
+    </assembly>
+    <members>
+        <member name="T:Aquality.Appium.Mobile.Applications.AqualityServices">
+            <summary>
+            Controls application and Aquality services
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.ApplicationProfile">
+            <summary>
+            Gets registered instance of localized logger
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.IsApplicationStarted">
+            <summary>
+            Check if application already started.
+            </summary>
+            <value>true if application started and false otherwise.</value>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.LocalizedLogger">
+            <summary>
+            Gets registered instance of localized logger
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.LocalServiceSettings">
+            <summary>
+            Gets registered instance of Appium local service settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.Logger">
+            <summary>
+            Gets registered instance of Logger
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.ConditionalWait">
+            <summary>
+            Gets ConditionalWait object
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.ElementFactory">
+            <summary>
+            Gets factory to create elements.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.AqualityServices.Get``1">
+            <summary>
+            Resolves required service from <see cref="P:Aquality.Appium.Mobile.Applications.AqualityServices.ServiceProvider"/>
+            </summary>
+            <typeparam name="T">type of required service</typeparam>
+            <exception cref="T:System.InvalidOperationException">Thrown if there is no service of the required type.</exception> 
+            <returns></returns>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.Application">
+            <summary>
+            Provides current instance of application
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.AqualityServices.SetStartup(Aquality.Appium.Mobile.Applications.MobileStartup)">
+            <summary>
+            Method which allow user to override or add custom services.
+            </summary>
+            <param name="startup"><see cref="T:Aquality.Appium.Mobile.Applications.MobileStartup"/>> object with custom or overriden services.</param>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.ApplicationFactory">
+            <summary>
+            Factory for application creation.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.AqualityServices.SetDefaultFactory">
+            <summary>
+            Sets default factory responsible for application creation.
+            RemoteApplicationFactory if value set in configuration and LocalApplicationFactory otherwise.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Applications.IMobileApplication">
+            <summary>
+            Provides functionality to work with mobile application via Appium driver.  
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.Driver">
+            <summary>
+            Provides instance of Appium Driver for current application.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Quit">
+            <summary>
+            Closes application and disposes <see cref="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService"/> if it not null.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService">
+            <summary>
+            Provides current AppiumDriver service instance (would be null if driver is not local).
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.PlatformName">
+            <summary>
+            Provides name of current platform.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Applications.MobileStartup">
+            <summary>
+            Provides functionality to  register services
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.DriverSettings.HasApplicationPath">
+            <summary>
+            Defines does the current settings have the application path defined
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.IApplicationProfile">
+            <summary>
+            Describes application settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.DriverSettings">
+            <summary>
+            Gets Appium driver settings for application.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.IsRemote">
+            <summary>
+            Is remote Appium service or not: true to use <see cref="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.RemoteConnectionUrl"/> and false to create default <see cref="T:OpenQA.Selenium.Appium.Service.AppiumLocalService"/>.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.PlatformName">
+            <summary>
+            Gets name of current application platform.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.RemoteConnectionUrl">
+            <summary>
+            Gets remote connection URI is case of remote browser.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.IDriverSettings">
+            <summary>
+            Describes Appium driver settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IDriverSettings.AppiumOptions">
+            <summary>
+            Gets desired Appium driver options.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IDriverSettings.ApplicationPath">
+            <summary>
+            Provides a path to the application.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.ILocalServiceSettings">
+            <summary>
+            Describes Appium local service settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.ILocalServiceSettings.ServerOptions">
+            <summary>
+            Gets desired Appium local service server options.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ICheckBox.Check">
+            <summary>
+            Set true.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.ICheckBox.IsChecked">
+            <summary>
+            Get the value of the checkbox: true if is checked, false otherwise.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ICheckBox.Toggle">
+            <summary>
+            Reverse state.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ICheckBox.Uncheck">
+            <summary>
+            Set the checkbox to false.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.SelectedText">
+            <summary>
+            Gets text of selected option.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.SelectedValue">
+            <summary>
+            Gets value of selected option.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.Texts">
+            <summary>
+            Gets options' texts list.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.Values">
+            <summary>
+            Gets values list.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.SelectByIndex(System.Int32)">
+            <summary>
+            Select by index.
+            </summary>
+            <param name="index">Number of selected option.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.SelectByText(System.String)">
+            <summary>
+            Select by visible text.
+            </summary>
+            <param name="text">Text to be selected.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.ClickAndSelectByText(System.String)">
+            <summary>
+            Open Dropdown and select by visible text.
+            </summary>
+            <param name="text">Text to be selected.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.SelectByContainingText(System.String)">
+            <summary>
+            Select by containing visible text.
+            </summary>
+            <param name="text">Visible text.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.SelectByContainingValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.SelectByValue(System.String)">
+            <summary>
+            Select by value.
+            </summary>
+            <param name="value">Argument value.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IComboBox.ClickAndSelectByValue(System.String)">
+            <summary>
+            Open Dropdown and select by value.
+            </summary>
+            <param name="value">Argument value.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElement.GetElement(System.Nullable{System.TimeSpan})">
+            <summary>
+            Gets current mobile element by specified <see cref="P:Aquality.Selenium.Core.Elements.Interfaces.IElement.Locator"/>
+            </summary>
+            <param name="timeout">Timeout for waiting (would use default timeout from settings by default).</param>
+            <returns></returns>
+            <exception cref="T:OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.Get``1(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
+            <summary>
+            Creates element according to passed parameters.
+            </summary>
+            <typeparam name="T">Type of the element to be obtained.</typeparam>
+            <param name="locator">Locator of the target element.</param>
+            <param name="name">Name of the target element.</param>
+            <param name="state">Visibility state of the target element.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.GetButton(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
+            <summary>
+            Creates element that implements IButton interface.
+            </summary>
+            <param name="locator">Element locator.</param>
+            <param name="name">Element name.</param>
+            <param name="state">Element state.</param>
+            <returns> Instance of element that implements IButton interface.</returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.GetCheckBox(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
+            <summary>
+            Creates element that implements ICheckBox interface.
+            </summary>
+            <param name="locator">Element locator.</param>
+            <param name="name">Element name.</param>
+            <param name="state">Element state.</param>
+            <returns> Instance of element that implements ICheckBox interface.</returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.GetComboBox(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
+            <summary>
+            Creates element that implements IComboBox interface.
+            </summary>
+            <param name="locator">Element locator.</param>
+            <param name="name">Element name.</param>
+            <param name="state">Element state.</param>
+            <returns> Instance of element that implements IComboBox interface.</returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.GetLabel(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
+            <summary>
+            Creates element that implements ILabel interface.
+            </summary>
+            <param name="locator">Element locator.</param>
+            <param name="name">Element name.</param>
+            <param name="state">Element state.</param>
+            <returns> Instance of element that implements ILabel interface.</returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.GetLink(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
+            <summary>
+            Creates element that implements ILink interface.
+            </summary>
+            <param name="locator">Element locator.</param>
+            <param name="name">Element name.</param>
+            <param name="state">Element state.</param>
+            <returns> Instance of element that implements ILink interface.</returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.GetRadioButton(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
+            <summary>
+            Creates element that implements IRadioButton interface.
+            </summary>
+            <param name="locator">Element locator.</param>
+            <param name="name">Element name.</param>
+            <param name="state">Element state.</param>
+            <returns> Instance of element that implements IRadioButton interface.</returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.GetTextBox(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
+            <summary>
+            Creates element that implements ITextBox interface.
+            </summary>
+            <param name="locator">Element locator.</param>
+            <param name="name">Element name.</param>
+            <param name="state">Element state.</param>
+            <returns> Instance of element that implements ITextBox interface.</returns>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.ILink.Href">
+            <summary>
+            Get value of attribute href of link element.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.IRadioButton.IsChecked">
+            <summary>
+            Gets RadioButton state: true if is checked, false otherwise.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ITextBox.Type(System.String)">
+            <summary>
+            Enter the text in the box.
+            </summary>
+            <param name="value">Text.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ITextBox.TypeSecret(System.String)">
+            <summary>
+            Enter the text in the box, inputted value isn't logged.
+            </summary>
+            <param name="value">Text.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ITextBox.Clear">
+            <summary>
+            Clears input.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ITextBox.ClearAndType(System.String)">
+            <summary>
+            Clears input and enters text in the box.
+            </summary>
+            <param name="value">Text.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ITextBox.ClearAndTypeSecret(System.String)">
+            <summary>
+            Clears input and enters text in the box, inputted value isn't logged.
+            </summary>
+            <param name="value">Text.</param>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.ITextBox.Value">
+            <summary>
+            Gets value of field.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ITextBox.Focus">
+            <summary>
+            Focuses on the element using send keys.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ITextBox.Unfocus">
+            <summary>
+            Removes focus from the element using send keys.
+            </summary>
+        </member>
+    </members>
+</doc>
