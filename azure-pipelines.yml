@@ -106,13 +106,25 @@ steps:
     
 
 - task: DotNetCoreCLI@2
-  displayName: 'Run tests'
+  displayName: 'Run tests using appium local service'
   inputs:
     command: 'test'
     projects: '**/*Tests*/*.csproj'
     arguments: -c $(buildConfiguration) --no-build
     publishTestResults: true
 
+- script: |
+    export isRemote=true
+    appium --allow-insecure chromedriver_autodownload &
+    echo "Appium server started"
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run tests using manually started (remote) server'
+  inputs:
+    command: 'test'
+    projects: '**/*Tests*/*.csproj'
+    arguments: -c $(buildConfiguration) --no-build
+    publishTestResults: true
 
 - task: CopyFiles@2
   displayName: 'Copy failure screenshots and test logs'
