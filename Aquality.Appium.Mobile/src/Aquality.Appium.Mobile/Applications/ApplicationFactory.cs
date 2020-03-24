@@ -47,7 +47,8 @@ namespace Aquality.Appium.Mobile.Applications
             private static readonly string[] handledErrorMessages = new string[]
             {
                 "timed out",
-                "session not created"
+                "session not created",
+                "Appium Settings app is not running"
             };
 
             public CustomActionRetrier() 
