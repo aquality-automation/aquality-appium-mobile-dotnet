@@ -37,8 +37,9 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android
 
             LogStep("Check that the dialog is there");
             var alertDialog = new TwoButtonsAlert();
-            Assert.AreEqual("Lorem ipsum dolor sit aie consectetur adipiscing\r\nPlloaso mako nuto siwuf cakso dodtos anr koop.",
-                alertDialog.AlertText, "Alert text should match to expected");
+            const string expectedText = "Lorem ipsum dolor sit aie consectetur adipiscingPlloaso mako nuto siwuf cakso dodtos anr koop.";
+            Assert.AreEqual(expectedText,
+                alertDialog.AlertText.Replace("\r", string.Empty).Replace("\n", string.Empty), "Alert text should match to expected");
 
             LogStep("Close the dialog");
             alertDialog.Close();
