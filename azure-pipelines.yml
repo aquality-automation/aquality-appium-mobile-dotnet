@@ -112,3 +112,22 @@ steps:
     projects: '**/*Tests*/*.csproj'
     arguments: -c $(buildConfiguration) --no-build
     publishTestResults: true
+
+
+- task: CopyFiles@2
+  displayName: 'Copy failure screenshots and test logs'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/target'
+    Contents: |
+        **/*Tests*/Screenshots/*.png
+        **/*Tests*/Log/*.log
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  condition: succeededOrFailed()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish copied artifacts'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  condition: succeededOrFailed()
