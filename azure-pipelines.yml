@@ -106,9 +106,40 @@ steps:
     
 
 - task: DotNetCoreCLI@2
-  displayName: 'Run tests'
+  displayName: 'Run tests using appium local service'
   inputs:
     command: 'test'
     projects: '**/*Tests*/*.csproj'
     arguments: -c $(buildConfiguration) --no-build
     publishTestResults: true
+
+- script: |
+    echo "##vso[task.setvariable variable=isRemote;]true"
+    appium --allow-insecure chromedriver_autodownload &
+    echo "Appium server started"
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run tests using manually started (remote) server'
+  inputs:
+    command: 'test'
+    projects: '**/*Tests*/*.csproj'
+    arguments: -c $(buildConfiguration) --no-build
+    publishTestResults: true
+
+- task: CopyFiles@2
+  displayName: 'Copy failure screenshots and test logs'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: |
+        **/*Tests*/Screenshots/*.png
+        **/*Tests*/Log/*.log
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  condition: succeededOrFailed()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish copied artifacts'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  condition: succeededOrFailed()
