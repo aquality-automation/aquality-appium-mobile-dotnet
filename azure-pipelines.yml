@@ -114,7 +114,7 @@ steps:
     publishTestResults: true
 
 - script: |
-    export isRemote=true
+    echo "##vso[task.setvariable variable=isRemote;]true"
     appium --allow-insecure chromedriver_autodownload &
     echo "Appium server started"
 
