@@ -48,7 +48,7 @@ namespace Aquality.Appium.Mobile.Applications
             {
                 "timed out",
                 "session not created",
-                "Appium Settings app is not running"
+                "appium settings app is not running"
             };
 
             public CustomActionRetrier() 
