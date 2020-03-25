@@ -4,26 +4,27 @@ using OpenQA.Selenium;
 
 namespace Aquality.Appium.Mobile.Elements
 {
-    public class CheckBox : Element, ICheckBox
+    public class CheckBox : CheckableElement, ICheckBox
     {
         protected internal CheckBox(By locator, string name, ElementState state) : base(locator, name, state)
         {
         }
 
-        public bool IsChecked
+        public override bool IsChecked
         {
             get
             {
                 LogElementAction("loc.checkbox.get.state");
-                return GetElement().Selected;
+                return base.IsChecked;
             }
-            private set
+        }
+
+        private void SetState(bool value)
+        {
+            LogElementAction("loc.setting.value", value);
+            if (value != base.IsChecked)
             {
-                LogElementAction("loc.setting.value", value);
-                if (value != IsChecked)
-                {
-                    Click();
-                }
+                Click();
             }
         }
 
@@ -31,17 +32,17 @@ namespace Aquality.Appium.Mobile.Elements
 
         public void Check()
         {
-            IsChecked = true;
+            SetState(true);
         }
 
         public void Toggle()
         {
-            IsChecked = !IsChecked;
+            SetState(!base.IsChecked);
         }
 
         public void Uncheck()
         {
-            IsChecked = false;
+            SetState(false);
         }
     }
 }

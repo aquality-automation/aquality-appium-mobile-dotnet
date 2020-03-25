@@ -4,13 +4,11 @@ using OpenQA.Selenium;
 
 namespace Aquality.Appium.Mobile.Elements
 {
-    public class RadioButton : Element, IRadioButton
+    public class RadioButton : CheckableElement, IRadioButton
     {
         protected internal RadioButton(By locator, string name, ElementState state) : base(locator, name, state)
         {
         }
-
-        public bool IsChecked => DoWithRetry(() => GetElement().Selected);
 
         protected override string ElementType => LocalizationManager.GetLocalizedMessage("loc.radio");
     }
