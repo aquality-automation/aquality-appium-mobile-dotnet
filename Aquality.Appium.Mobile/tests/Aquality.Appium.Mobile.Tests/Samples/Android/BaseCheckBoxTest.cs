@@ -3,11 +3,11 @@ using NUnit.Framework;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android
 {
-    public interface ITestCheckBox
+    public abstract class BaseCheckBoxTest
     {
-        void OpenCheckBoxesScreen();
+        protected abstract void OpenCheckBoxesScreen();
 
-        ICheckBox GetCheckBox(int number);
+        protected abstract ICheckBox GetCheckBox(int number);
 
         public void TestCheckBox()
         {
