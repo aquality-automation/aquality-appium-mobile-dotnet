@@ -5,7 +5,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using System;
 
-namespace Aquality.Appium.Mobile.Tests.Samples.Android
+namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
 {
     [NonParallelizable]
     public class AndroidWebSessionTest

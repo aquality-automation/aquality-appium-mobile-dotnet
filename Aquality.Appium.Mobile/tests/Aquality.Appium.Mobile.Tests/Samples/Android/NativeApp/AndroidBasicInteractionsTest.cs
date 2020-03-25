@@ -1,8 +1,8 @@
 ﻿using Aquality.Appium.Mobile.Applications;
-using Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens;
+using Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens;
 using NUnit.Framework;
 
-namespace Aquality.Appium.Mobile.Tests.Samples.Android
+namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
 {
     public class AndroidBasicInteractionsTest
     {

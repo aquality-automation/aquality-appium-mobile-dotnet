@@ -2,7 +2,7 @@
 using Aquality.Appium.Mobile.Screens;
 using OpenQA.Selenium;
 
-namespace Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens
+namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens
 {
     public class AlertsMenuScreen : AndroidScreen
     {
