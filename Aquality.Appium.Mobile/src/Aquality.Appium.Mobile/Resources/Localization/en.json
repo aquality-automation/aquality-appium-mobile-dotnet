@@ -15,6 +15,7 @@
   "loc.platform.name.wrong": "Platform '{0}' is not supported.",
   "loc.application.ready": "Application on platform '{0}' is ready...",
   "loc.application.implicit.timeout": "Set implicit timeout '{0}' in seconds",
+  "loc.application.android.activity.start": "Starting the '{0}' activity of the Android app at package '{1}'",
   "loc.button": "Button",
   "loc.checkbox": "CheckBox",
   "loc.checkbox.get.state": "Getting state",
