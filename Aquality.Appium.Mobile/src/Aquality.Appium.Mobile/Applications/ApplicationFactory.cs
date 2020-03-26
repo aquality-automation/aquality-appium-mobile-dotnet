@@ -6,6 +6,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.iOS;
 using System;
+using System.Linq;
 
 namespace Aquality.Appium.Mobile.Applications
 {
@@ -43,6 +44,14 @@ namespace Aquality.Appium.Mobile.Applications
 
         protected class CustomActionRetrier : ElementActionRetrier
         {
+            private static readonly string[] handledErrorMessages = new string[]
+            {
+                "timed out",
+                "session not created",
+                "appium settings app is not running",
+                "socket hang up",
+            };
+
             public CustomActionRetrier() 
                 : base(AqualityServices.Get<IRetryConfiguration>(), new[] { typeof(WebDriverException) })
             {
@@ -50,7 +59,7 @@ namespace Aquality.Appium.Mobile.Applications
 
             protected override bool IsExceptionHandled(Exception exception)
             {
-                return base.IsExceptionHandled(exception) && exception.Message.ToLower().Contains("session not created");
+                return base.IsExceptionHandled(exception) && handledErrorMessages.Any(message => exception.Message.ToLower().Contains(message));
             }
         }
 
