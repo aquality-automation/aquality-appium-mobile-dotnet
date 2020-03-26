@@ -50,6 +50,8 @@ namespace Aquality.Appium.Mobile.Applications
                 "session not created",
                 "appium settings app is not running",
                 "socket hang up",
+                "stream was destroyed",
+                "invalid or unrecognized response"
             };
 
             public CustomActionRetrier() 
