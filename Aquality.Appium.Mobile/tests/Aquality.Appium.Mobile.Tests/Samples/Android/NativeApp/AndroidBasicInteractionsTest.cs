@@ -5,15 +5,12 @@ using NUnit.Framework;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
 {
-    public class AndroidBasicInteractionsTest : ICheckBoxTest, IRadioButtonTest
+    public class AndroidBasicInteractionsTest : UITest, ICheckBoxTest, IRadioButtonTest
     {
         [OneTimeTearDown]
         public void TearDown()
         {
-            if (AqualityServices.IsApplicationStarted)
-            {
-                AqualityServices.Application.Quit();
-            }            
+            QuitApp();
         }
 
         [Test]

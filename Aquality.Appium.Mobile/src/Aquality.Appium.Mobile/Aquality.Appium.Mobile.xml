@@ -377,5 +377,13 @@
             Removes focus from the element using send keys.
             </summary>
         </member>
+        <member name="M:Aquality.Appium.Mobile.Screens.AndroidScreen.StartActivity(System.String,System.String,System.Boolean)">
+            <summary>
+            Starts application activity.
+            </summary>
+            <param name="appPackage">Package of the target application.</param>
+            <param name="appActivity">Target activity.</param>
+            <param name="stopApp">True if need to stop currently running application, false otherwise. True by default.</param>
+        </member>
     </members>
 </doc>
