@@ -1,25 +1,23 @@
 ﻿using Aquality.Appium.Mobile.Applications;
-using Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens;
+using Aquality.Appium.Mobile.Elements.Interfaces;
+using Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens;
 using NUnit.Framework;
 
-namespace Aquality.Appium.Mobile.Tests.Samples.Android
+namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
 {
-    public class AndroidBasicInteractionsTest
+    public class AndroidBasicInteractionsTest : UITest, ICheckBoxTest, IRadioButtonTest
     {
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
-            if (AqualityServices.IsApplicationStarted)
-            {
-                AqualityServices.Application.Quit();
-            }            
+            QuitApp();
         }
 
         [Test]
         public void SendKeys()
         {
-            new MainMenuScreen().StartSearch();
             var searchScreen = new InvokeSearchScreen();
+            searchScreen.Open();
             Assume.That(searchScreen.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
             const string query = "Hello world!";
             searchScreen.SubmitSearch(query);
@@ -30,10 +28,11 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android
         public void AlertInteraction()
         {
             LogStep("Open the 'Alert Dialog' activity of the android app");
-            new MainMenuScreen().OpenAlerts();
+            var alertsMenu = new AlertsMenuScreen();
+            alertsMenu.Open();
 
             LogStep("Click button that opens a dialog");
-            new AlertsMenuScreen().OpenTwoButtonsDialog();
+            alertsMenu.OpenTwoButtonsDialog();
 
             LogStep("Check that the dialog is there");
             var alertDialog = new TwoButtonsAlert();
@@ -45,9 +44,23 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android
             alertDialog.Close();
         }
 
+        [Test]
+        public void TestCheckBox() => this.InvokeCheckBoxTest();
+
+        [Test]
+        public void TestRadioButton() => this.InvokeRadioButtonTest();
+
         private void LogStep(string step)
         {
             AqualityServices.Logger.Info(step);
         }
+
+        public void OpenRadioButtonsScreen() => new ViewControlsScreen().Open();
+
+        public IRadioButton GetRadioButton(int number) => new ViewControlsScreen().GetRadioButton(number);
+
+        public void OpenCheckBoxesScreen() => new ViewControlsScreen().Open();
+
+        public ICheckBox GetCheckBox(int number) => new ViewControlsScreen().GetCheckBox(number);
     }
 }

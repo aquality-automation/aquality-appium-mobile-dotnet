@@ -1,12 +1,10 @@
 ﻿using Aquality.Appium.Mobile.Elements.Interfaces;
-using Aquality.Appium.Mobile.Screens;
 using OpenQA.Selenium;
 
-namespace Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens
+namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens
 {
-    public class InvokeSearchScreen : AndroidScreen
+    public class InvokeSearchScreen : ApplicationActivityScreen
     {
-
         private readonly ITextBox searchTextBox;
         private readonly IButton startSearchButton;
         private readonly ILabel searchResultLabel;
@@ -18,12 +16,14 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens
             searchResultLabel = ElementFactory.GetLabel(By.Id("android:id/search_src_text"), "Search results");
         }
 
+        protected override string Activity => ".app.SearchInvoke";
+
+        public string SearchResult => searchResultLabel.Text;
+
         public void SubmitSearch(string query)
         {
             searchTextBox.ClearAndType(query);
             startSearchButton.Click();
         }
-
-        public string SearchResult => searchResultLabel.Text;
     }
 }
