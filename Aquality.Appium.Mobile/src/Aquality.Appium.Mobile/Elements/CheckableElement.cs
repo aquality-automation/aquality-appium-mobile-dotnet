@@ -9,19 +9,25 @@ namespace Aquality.Appium.Mobile.Elements
         {
         }
 
-        public virtual bool IsChecked
+        public bool IsChecked
         {
             get
             {
-                return DoWithRetry(() =>
-                {
-                    var checkedAttribute = GetElement().GetAttribute(Attributes.Checked);
-                    return string.IsNullOrEmpty(checkedAttribute)
-                        ? GetElement().Selected
-                        : checkedAttribute == "true";
-                    
-                });
+                LogElementAction("loc.checkable.is.checked");
+                return GetState();
             }
+        }
+
+        protected virtual bool GetState()
+        {
+            return DoWithRetry(() =>
+            {
+                var checkedAttribute = GetElement().GetAttribute(Attributes.Checked);
+                return string.IsNullOrEmpty(checkedAttribute)
+                    ? GetElement().Selected
+                    : checkedAttribute == "true";
+
+            });
         }
     }
 }

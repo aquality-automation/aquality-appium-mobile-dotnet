@@ -18,7 +18,7 @@
   "loc.application.android.activity.start": "Starting the '{0}' activity of the Android app at package '{1}'",
   "loc.button": "Button",
   "loc.checkbox": "CheckBox",
-  "loc.checkbox.get.state": "Getting state",
+  "loc.checkable.is.checked": "Getting state",
   "loc.combobox": "ComboBox",
   "loc.combobox.select.by.text": "Selecting value by text '{0}'",
   "loc.combobox.select.by.value": "Selecting value '{0}'",

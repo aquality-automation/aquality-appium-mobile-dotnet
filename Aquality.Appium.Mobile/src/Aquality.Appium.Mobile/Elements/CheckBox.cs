@@ -9,20 +9,11 @@ namespace Aquality.Appium.Mobile.Elements
         protected internal CheckBox(By locator, string name, ElementState state) : base(locator, name, state)
         {
         }
-
-        public override bool IsChecked
-        {
-            get
-            {
-                LogElementAction("loc.checkbox.get.state");
-                return base.IsChecked;
-            }
-        }
-
+        
         private void SetState(bool value)
         {
             LogElementAction("loc.setting.value", value);
-            if (value != base.IsChecked)
+            if (value != GetState())
             {
                 Click();
             }
@@ -37,7 +28,7 @@ namespace Aquality.Appium.Mobile.Elements
 
         public void Toggle()
         {
-            SetState(!base.IsChecked);
+            SetState(!GetState());
         }
 
         public void Uncheck()

@@ -15,12 +15,11 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
             var txbSearch = AqualityServices.ElementFactory.GetTextBox(By.Id("searchInput"), "Search");
             txbSearch.State.WaitForClickable();
             txbSearch.Click();
-            // not yet implemented in dotnet Appium client: Assert.IsTrue(driver.isKeyboardShown(), "Keyboard should be shown when click successful");
+            CheckIsKeyboardShown(expectedState: true, "Keyboard should be shown when click successful");
             txbSearch.Unfocus();
-            // not yet implemented in dotnet Appium client: Assert.IsFalse(driver.isKeyboardShown(), "Keyboard should not be shown when unfocus successful");
+            CheckIsKeyboardShown(expectedState: false, "Keyboard should not be shown when unfocus successful");
             txbSearch.Focus();
-            // not yet implemented in dotnet Appium client: Assert.assertTrue(driver.isKeyboardShown(), "Keyboard should be shown when focus successful");
-            
+            CheckIsKeyboardShown(expectedState: true, "Keyboard should be shown when focus successful");
             txbSearch.Type(ValueToSubmit);
             Assert.AreEqual(ValueToSubmit, txbSearch.Value, "Submitted value should match to expected");
             txbSearch.Clear();
@@ -33,6 +32,12 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
             Assert.AreEqual(ValueToSubmit, txbSearch.Value, "Submitted value should match to expected");
             txbSearch.SendKeys(Keys.Enter);
             Assert.IsTrue(txbSearch.State.WaitForNotDisplayed(), "text field should disappear after the submit");
+        }
+
+        private void CheckIsKeyboardShown(bool expectedState, string message)
+        {
+            // TODO: not yet implemented in dotnet Appium client: http://appium.io/docs/en/commands/device/keys/is-keyboard-shown/
+            Assert.AreEqual(expectedState, expectedState, message);
         }
     }
 }

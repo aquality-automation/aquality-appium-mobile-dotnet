@@ -18,7 +18,7 @@
   "loc.application.android.activity.start": "Стартуем '{0}' актыўнасць Android праграмы ў пакеце '{1}'",
   "loc.button": "Кнопка",
   "loc.checkbox": "Чэкбокс",
-  "loc.checkbox.get.state": "Атрымліваем стан",
+  "loc.checkable.is.checked": "Атрымліваем стан",
   "loc.combobox": "Камбабокс",
   "loc.combobox.select.by.text": "Выбіраем значэнне з тэкстам '{0}'",
   "loc.combobox.select.by.value": "Выбіраем значэнне '{0}'",

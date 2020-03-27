@@ -18,7 +18,7 @@
   "loc.application.android.activity.start": "Стартуем '{0}' активность Android приложения в пакете '{1}'",
   "loc.button": "Кнопка",
   "loc.checkbox": "Чекбокс",
-  "loc.checkbox.get.state": "Получение состояния",
+  "loc.checkable.is.checked": "Получение состояния",
   "loc.combobox": "Комбобокс",
   "loc.combobox.select.by.text": "Выбор значения с текстом '{0}'",
   "loc.combobox.select.by.value": "Выбор значения '{0}'",
