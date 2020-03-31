@@ -37,7 +37,7 @@ namespace Aquality.Appium.Mobile.Elements
 
         protected virtual ILocalizationManager LocalizationManager => AqualityServices.Get<ILocalizationManager>();
 
-        public new AppiumWebElement GetElement(TimeSpan? timeout)
+        public new AppiumWebElement GetElement(TimeSpan? timeout = null)
         {
             return (AppiumWebElement) base.GetElement(timeout);
         }
