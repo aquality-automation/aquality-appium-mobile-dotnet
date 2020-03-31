@@ -149,7 +149,7 @@ steps:
   inputs:
     runtime: 'core'
     
-- script: dotnet pack Aquality.Appium.Mobile\src\Aquality.Appium.Mobile\Aquality.Appium.Mobile.csproj -c $(buildConfiguration) --no-build -p:Version=$(GitVersion.NuGetVersion) -o $(Build.ArtifactStagingDirectory)
+- script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) --no-build -p:Version=$(GitVersion.NuGetVersion) -o $(Build.ArtifactStagingDirectory)
   displayName: 'Create NuGet package'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
