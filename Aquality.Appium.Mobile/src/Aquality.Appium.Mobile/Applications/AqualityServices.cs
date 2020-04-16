@@ -21,7 +21,13 @@ namespace Aquality.Appium.Mobile.Applications
         /// <summary>
         /// Gets registered instance of localized logger
         /// </summary>
-        public static IApplicationProfile ApplicationProfile => Get<IApplicationProfile>();
+        public static IApplicationProfile ApplicationProfile
+        {
+            get
+            {
+                return Get<IApplicationProfile>();
+            }
+        }
 
         /// <summary>
         /// Check if application already started.
