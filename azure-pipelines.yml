@@ -17,8 +17,12 @@ variables:
   IOS_PLATFORM_VERSION: 12.2
   IOS_DEVICE_NAME: iPhone X
 
-
 steps:
+- task: GitVersion@5
+  displayName: 'Run GitVersion'
+  inputs:
+    runtime: 'core'
+
 - task: UseDotNet@2
   inputs:
     version: '2.1.x'
@@ -50,7 +54,6 @@ steps:
 - task: SonarCloudPublish@1
   displayName: 'Publish SonarCloud quality gate results'
   continueOnError: true
-
 
 - task: NodeTool@0
   displayName: 'Install Node.js tool to setup Appium and emulators'
@@ -103,7 +106,6 @@ steps:
 
     appium --version
     appium-doctor
-    
 
 - task: DotNetCoreCLI@2
   displayName: 'Run tests using appium local service'
@@ -143,11 +145,6 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
   condition: succeededOrFailed()
-  
-- task: GitVersion@5
-  displayName: 'Run GitVersion'
-  inputs:
-    runtime: 'core'
     
 - script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) --no-build -p:Version=$(GitVersion.NuGetVersion) -o $(Build.ArtifactStagingDirectory)
   displayName: 'Create NuGet package'
@@ -172,5 +169,3 @@ steps:
     tagSource: 'manual'
     isPreRelease: contains(variables['GitVersion.NuGetVersion'], '-')
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-
-  

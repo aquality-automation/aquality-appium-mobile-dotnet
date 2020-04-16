@@ -5,11 +5,11 @@ using OpenQA.Selenium.Appium.iOS;
 
 namespace Aquality.Appium.Mobile.Screens
 {
-    public class IOSScreen : Screen<IOSDriver<AppiumWebElement>>
+    public abstract class IOSScreen : Screen<IOSDriver<AppiumWebElement>>
     {
         protected override PlatformName PlatformName => PlatformName.IOS;
 
-        public IOSScreen(By locator, string name) : base(locator, name)
+        protected IOSScreen(By locator, string name) : base(locator, name)
         {
         }
     }
