@@ -5,7 +5,7 @@ using OpenQA.Selenium.Appium.Android;
 
 namespace Aquality.Appium.Mobile.Screens
 {
-    public class AndroidScreen : Screen<AndroidDriver<AppiumWebElement>>
+    public abstract class AndroidScreen : Screen<AndroidDriver<AppiumWebElement>>
     {
         protected override PlatformName PlatformName => PlatformName.Android;
 

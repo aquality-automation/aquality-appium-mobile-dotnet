@@ -36,7 +36,6 @@ namespace Aquality.Appium.Mobile.Screens
                 return (T) AqualityServices.Application.Driver;
             }
         }
-        
 
         public By Locator { get; }
 
