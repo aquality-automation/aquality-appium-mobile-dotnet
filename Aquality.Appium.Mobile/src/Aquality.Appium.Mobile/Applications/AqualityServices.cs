@@ -118,13 +118,7 @@ namespace Aquality.Appium.Mobile.Applications
 
         private static IServiceProvider ServiceProvider => GetServiceProvider(services => Application, ConfigureServices);
 
-        private static Func<IServiceProvider, IMobileApplication> StartApplicationFunction
-        {
-            get
-            {
-                return (services) => ApplicationFactory.Application;
-            }
-        }
+        private static Func<IServiceProvider, IMobileApplication> StartApplicationFunction => services => ApplicationFactory.Application;
 
         private static IServiceCollection ConfigureServices()
         {
