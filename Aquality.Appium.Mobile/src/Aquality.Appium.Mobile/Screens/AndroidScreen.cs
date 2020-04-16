@@ -9,7 +9,7 @@ namespace Aquality.Appium.Mobile.Screens
     {
         protected override PlatformName PlatformName => PlatformName.Android;
 
-        public AndroidScreen(By locator, string name) : base(locator, name)
+        protected AndroidScreen(By locator, string name) : base(locator, name)
         {
         }        
 
