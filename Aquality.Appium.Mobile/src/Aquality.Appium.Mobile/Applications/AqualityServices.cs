@@ -27,7 +27,13 @@ namespace Aquality.Appium.Mobile.Applications
         /// Check if application already started.
         /// </summary>
         /// <value>true if application started and false otherwise.</value>
-        public new static bool IsApplicationStarted => IsApplicationStarted();
+        public new static bool IsApplicationStarted
+        {
+            get
+            {
+                return IsApplicationStarted();
+            }
+        }
 
         /// <summary>
         /// Gets registered instance of localized logger
