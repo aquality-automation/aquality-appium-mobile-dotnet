@@ -147,7 +147,8 @@ steps:
 
 - script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) --no-build -p:Version=$(GitVersion.NuGetVersion) -o $(Build.ArtifactStagingDirectory)
   displayName: 'Create NuGet package'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  condition: succeededOrFailed()
+  #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - task: GitHubRelease@0
   displayName: 'Create tag on GitHub'
@@ -164,4 +165,5 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifactName: '_aquality-automation.aquality-appium-mobile-dotnet'
+   condition: succeededOrFailed()
   #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
