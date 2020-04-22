@@ -16,6 +16,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         [Test]
         public void SendKeys()
         {
+            Assert.Fail("Test fail"); // TODO: remove it after test
+
             var searchScreen = new InvokeSearchScreen();
             searchScreen.Open();
             Assume.That(searchScreen.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");

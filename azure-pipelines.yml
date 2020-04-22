@@ -138,6 +138,13 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
   condition: succeededOrFailed()
     
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish copied artifacts'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'
+  condition: succeededOrFailed()
+
 - script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) --no-build -p:Version=$(GitVersion.NuGetVersion) -o $(Build.ArtifactStagingDirectory)
   displayName: 'Create NuGet package'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
@@ -157,4 +164,4 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifactName: '_aquality-automation.aquality-appium-mobile-dotnet'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
