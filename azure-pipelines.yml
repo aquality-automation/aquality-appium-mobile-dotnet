@@ -137,28 +137,18 @@ steps:
         **/*Tests*/Log/*.log
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
   condition: succeededOrFailed()
-
+    
 - task: PublishBuildArtifacts@1
   displayName: 'Publish copied artifacts'
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'
   condition: succeededOrFailed()
-    
+
 - script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) --no-build -p:Version=$(GitVersion.NuGetVersion) -o $(Build.ArtifactStagingDirectory)
   displayName: 'Create NuGet package'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  
-- task: NuGetCommand@2
-  displayName: 'Push NuGet package'
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/Aquality.Appium.Mobile*.nupkg;!$(Build.ArtifactStagingDirectory)/**/Aquality.Appium.Mobile*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'NuGet'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  
+
 - task: GitHubRelease@0
   displayName: 'Create tag on GitHub'
   inputs:
@@ -168,4 +158,10 @@ steps:
     tag: 'v$(GitVersion.NuGetVersion)'
     tagSource: 'manual'
     isPreRelease: contains(variables['GitVersion.NuGetVersion'], '-')
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifactName: '_aquality-automation.aquality-appium-mobile-dotnet'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
