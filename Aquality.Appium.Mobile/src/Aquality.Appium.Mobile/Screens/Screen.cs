@@ -9,7 +9,8 @@ using IElementFactory = Aquality.Appium.Mobile.Elements.Interfaces.IElementFacto
 
 namespace Aquality.Appium.Mobile.Screens
 {
-    public abstract class Screen<T> where T : AppiumDriver<AppiumWebElement>
+    public abstract class Screen<T> : IScreen
+        where T : AppiumDriver<AppiumWebElement>
     {
         protected abstract PlatformName PlatformName { get; }
 
@@ -22,7 +23,7 @@ namespace Aquality.Appium.Mobile.Screens
             screenLabel = ElementFactory.GetLabel(locator, name);
         }
 
-        public T Driver
+        protected T Driver
         {
             get
             {
