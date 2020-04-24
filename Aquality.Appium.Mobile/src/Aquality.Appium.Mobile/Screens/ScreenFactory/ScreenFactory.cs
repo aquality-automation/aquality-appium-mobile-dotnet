@@ -29,7 +29,7 @@ namespace Aquality.Appium.Mobile.Screens.ScreenFactory
                 return (TAppScreen) Activator.CreateInstance(type);
             }
 
-            throw new ArgumentOutOfRangeException($"Implementation for Screen {typeof(TAppScreen).Name} " +
+            throw new NotImplementedException($"Implementation for Screen {typeof(TAppScreen).Name} " +
                 $"was not found in Assembly {AqualityServices.ApplicationProfile.AssemblyNameWithScreens}");
         }
     }
