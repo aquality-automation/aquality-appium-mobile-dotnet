@@ -1,4 +1,4 @@
-﻿namespace Aquality.Appium.Mobile.Screens
+﻿namespace Aquality.Appium.Mobile.Screens.ScreenFactory
 {
     /// <summary>
     /// Interface of abstract screen factory.

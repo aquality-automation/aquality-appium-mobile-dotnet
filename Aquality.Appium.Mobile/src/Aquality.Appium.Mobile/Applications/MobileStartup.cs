@@ -9,6 +9,7 @@ using System.Reflection;
 using Aquality.Appium.Mobile.Elements.Interfaces;
 using Aquality.Appium.Mobile.Elements;
 using Aquality.Appium.Mobile.Configurations;
+using Aquality.Appium.Mobile.Screens.ScreenFactory;
 
 namespace Aquality.Appium.Mobile.Applications
 {
@@ -27,6 +28,17 @@ namespace Aquality.Appium.Mobile.Applications
             services.AddSingleton<IApplicationProfile, ApplicationProfile>();            
             services.AddSingleton<ILocalServiceSettings, LocalServiceSettings>();            
             services.AddSingleton<ILocalizationManager>(serviceProvider => new LocalizationManager(serviceProvider.GetRequiredService<ILoggerConfiguration>(), serviceProvider.GetRequiredService<Logger>(), Assembly.GetExecutingAssembly()));
+            services.AddSingleton<IScreenFactory>(serviceProvider => 
+            {
+                if (serviceProvider.GetRequiredService<IApplicationProfile>().PlatformName == PlatformName.Android)
+                {
+                    return new AndroidScreenFactory();
+                }
+                else
+                {
+                    return new IOSScreenFactory();
+                }
+            });
             services.AddTransient(serviceProvider => AqualityServices.ApplicationFactory);
             services.AddScoped(serviceProvider => applicationProvider(serviceProvider) as IMobileApplication);
             return services;

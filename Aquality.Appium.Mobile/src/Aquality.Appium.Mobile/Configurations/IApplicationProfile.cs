@@ -28,5 +28,10 @@ namespace Aquality.Appium.Mobile.Configurations
         /// Gets remote connection URI is case of remote browser.
         /// </summary>
         Uri RemoteConnectionUrl { get; }
+
+        /// <summary>
+        /// Gets name of Assembly with screens for ScreenFactory.
+        /// </summary>
+        string AssemblyNameWithScreens { get; }
     }
 }

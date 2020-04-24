@@ -45,6 +45,11 @@
             Gets factory to create elements.
             </summary>
         </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.ScreenFactory">
+            <summary>
+            Gets factory to create screens.
+            </summary>
+        </member>
         <member name="M:Aquality.Appium.Mobile.Applications.AqualityServices.Get``1">
             <summary>
             Resolves required service from <see cref="P:Aquality.Appium.Mobile.Applications.AqualityServices.ServiceProvider"/>
@@ -133,6 +138,11 @@
         <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.RemoteConnectionUrl">
             <summary>
             Gets remote connection URI is case of remote browser.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.AssemblyNameWithScreens">
+            <summary>
+            Gets name of Assembly with screens for ScreenFactory.
             </summary>
         </member>
         <member name="T:Aquality.Appium.Mobile.Configurations.IDriverSettings">
@@ -384,6 +394,59 @@
             <param name="appPackage">Package of the target application.</param>
             <param name="appActivity">Target activity.</param>
             <param name="stopApp">True if need to stop currently running application, false otherwise. True by default.</param>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Screens.IScreen">
+            <summary>
+            Interface that describes application under the test screen.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Locator">
+            <summary>
+            Unique screen locator.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Name">
+            <summary>
+            Unique screen name.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.IScreen.IsDisplayed">
+            <summary>
+            Gets Displayed screen's state by its locator.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Size">
+            <summary>
+            Size of the element described by screen locator.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.IScreen.State">
+            <summary>
+            Screen element State.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Screens.ScreenFactory.IScreenFactory">
+            <summary>
+            Interface of abstract screen factory.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Screens.ScreenFactory.IScreenFactory.GetScreen``1">
+            <summary>
+            Returns an implementation of a particular app screen.
+            </summary>
+            <typeparam name="TAppScreen">Desired application screen.</typeparam>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenFactory`1">
+            <summary>
+            Abstract screen factory.
+            </summary>
+            <typeparam name="TPlatformScreen">Desired platform screen <see cref="T:Aquality.Appium.Mobile.Screens.IOSScreen"/> or <see cref="T:Aquality.Appium.Mobile.Screens.AndroidScreen"/></typeparam>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenFactory`1.GetScreen``1">
+            <summary>
+            Returns an implementation of a particular app screen.
+            </summary>
+            <typeparam name="TAppScreen">Desired application screen.</typeparam>
         </member>
     </members>
 </doc>
