@@ -20,11 +20,6 @@ namespace Aquality.Appium.Mobile.Screens
         string Name { get; }
 
         /// <summary>
-        /// Gets Displayed screen's state by its locator.
-        /// </summary>
-        bool IsDisplayed { get; }
-
-        /// <summary>
         /// Size of the element described by screen locator.
         /// </summary>
         Size Size { get; }

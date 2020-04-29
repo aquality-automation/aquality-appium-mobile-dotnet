@@ -12,8 +12,6 @@ namespace Aquality.Appium.Mobile.Screens
     public abstract class Screen<T> : IScreen
         where T : AppiumDriver<AppiumWebElement>
     {
-        protected abstract PlatformName PlatformName { get; }
-
         private readonly ILabel screenLabel;
 
         protected Screen(By locator, string name)
@@ -38,11 +36,11 @@ namespace Aquality.Appium.Mobile.Screens
             }
         }
 
+        protected abstract PlatformName PlatformName { get; }
+
         public By Locator { get; }
 
         public string Name { get; }
-
-        public bool IsDisplayed => State.WaitForDisplayed();
 
         public Size Size => screenLabel.GetElement().Size;
 

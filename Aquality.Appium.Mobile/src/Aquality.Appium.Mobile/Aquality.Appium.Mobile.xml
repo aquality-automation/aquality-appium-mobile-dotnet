@@ -410,11 +410,6 @@
             Unique screen name.
             </summary>
         </member>
-        <member name="P:Aquality.Appium.Mobile.Screens.IScreen.IsDisplayed">
-            <summary>
-            Gets Displayed screen's state by its locator.
-            </summary>
-        </member>
         <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Size">
             <summary>
             Size of the element described by screen locator.
