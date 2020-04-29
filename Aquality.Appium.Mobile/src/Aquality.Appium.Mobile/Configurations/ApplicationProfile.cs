@@ -21,5 +21,7 @@ namespace Aquality.Appium.Mobile.Configurations
         public PlatformName PlatformName => settingsFile.GetValue<string>(".platformName").ToEnum<PlatformName>();
 
         public Uri RemoteConnectionUrl => new Uri(settingsFile.GetValue<string>(".remoteConnectionUrl"));
+
+        public string AssemblyNameWithScreens => settingsFile.GetValue<string>(".assemblyNameWithScreens");
     }
 }

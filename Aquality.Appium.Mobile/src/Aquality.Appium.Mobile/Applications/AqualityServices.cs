@@ -1,5 +1,6 @@
 ﻿using Aquality.Appium.Mobile.Configurations;
 using Aquality.Appium.Mobile.Elements.Interfaces;
+using Aquality.Appium.Mobile.Screens.ScreenFactory;
 using Aquality.Selenium.Core.Applications;
 using Aquality.Selenium.Core.Localization;
 using Aquality.Selenium.Core.Logging;
@@ -53,6 +54,11 @@ namespace Aquality.Appium.Mobile.Applications
         /// Gets factory to create elements.
         /// </summary>
         public static IElementFactory ElementFactory => Get<IElementFactory>();
+
+        /// <summary>
+        /// Gets factory to create screens.
+        /// </summary>
+        public static IScreenFactory ScreenFactory => Get<IScreenFactory>();
 
         /// <summary>
         /// Resolves required service from <see cref="ServiceProvider"/>
@@ -118,17 +124,11 @@ namespace Aquality.Appium.Mobile.Applications
 
         private static IServiceProvider ServiceProvider => GetServiceProvider(services => Application, ConfigureServices);
 
-        private static Func<IServiceProvider, IMobileApplication> StartApplicationFunction
-        {
-            get
-            {
-                return (services) => ApplicationFactory.Application;
-            }
-        }
+        private static Func<IServiceProvider, IMobileApplication> StartApplicationFunction => (services) => ApplicationFactory.Application;
 
         private static IServiceCollection ConfigureServices()
-        {
-            return ApplicationStartupContainer.Value.ConfigureServices(new ServiceCollection(), services => Application);
+        {           
+            return ApplicationStartupContainer.Value.ConfigureServices(new ServiceCollection(), serviceProvider => Application);
         }
     }
 }

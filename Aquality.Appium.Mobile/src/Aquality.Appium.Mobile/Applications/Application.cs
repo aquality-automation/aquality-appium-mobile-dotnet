@@ -13,6 +13,7 @@ namespace Aquality.Appium.Mobile.Applications
     {
         private readonly ILocalizedLogger localizedLogger;
         private readonly IApplicationProfile applicationProfile;
+        
         private TimeSpan timeoutImplicit;
 
         public Application(AppiumDriver<AppiumWebElement> driver, AppiumLocalService driverService = null)

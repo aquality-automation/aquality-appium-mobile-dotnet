@@ -18,7 +18,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         {
             var searchScreen = new InvokeSearchScreen();
             searchScreen.Open();
-            Assume.That(searchScreen.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
+            Assume.That(searchScreen.State.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
             const string query = "Hello world!";
             searchScreen.SubmitSearch(query);
             Assert.AreEqual(query, searchScreen.SearchResult, "Search result don't match to entered query");
