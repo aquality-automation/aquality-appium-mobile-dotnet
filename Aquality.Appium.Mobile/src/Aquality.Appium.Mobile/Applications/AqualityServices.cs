@@ -58,7 +58,7 @@ namespace Aquality.Appium.Mobile.Applications
         /// <summary>
         /// Gets factory to create screens.
         /// </summary>
-        public static IScreenFactory ScreenFactory => Get<IScreenFactory>();
+        public static IScreenFactory ScreenFactory => Get<IScreenFactoryProvider>().ScreenFactory;
 
         /// <summary>
         /// Resolves required service from <see cref="ServiceProvider"/>

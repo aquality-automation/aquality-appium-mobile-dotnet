@@ -32,6 +32,6 @@ namespace Aquality.Appium.Mobile.Configurations
         /// <summary>
         /// Gets name of Assembly with screens for ScreenFactory.
         /// </summary>
-        string AssemblyNameWithScreens { get; }
+        string ScreensLocation { get; }
     }
 }

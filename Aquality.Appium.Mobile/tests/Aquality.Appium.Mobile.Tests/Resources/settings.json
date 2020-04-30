@@ -2,7 +2,7 @@
   "platformName": "android",
   "isRemote": true,
   "remoteConnectionUrl": "http://127.0.0.1:4723/wd/hub",
-  "assemblyNameWithScreens": "Aquality.Appium.Mobile.Tests",
+  "screensLocation": "Aquality.Appium.Mobile.Tests",
 
   "driverSettings": {
     "android": {
