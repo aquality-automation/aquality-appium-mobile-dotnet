@@ -1,5 +1,4 @@
 ﻿using Aquality.Appium.Mobile.Applications;
-using OpenQA.Selenium.Appium.Service;
 using System;
 
 namespace Aquality.Appium.Mobile.Configurations
@@ -15,7 +14,8 @@ namespace Aquality.Appium.Mobile.Configurations
         IDriverSettings DriverSettings { get; }
 
         /// <summary>
-        /// Is remote Appium service or not: true to use <see cref="RemoteConnectionUrl"/> and false to create default <see cref="AppiumLocalService"/>.
+        /// Is remote Appium service or not: true to use <see cref="RemoteConnectionUrl"/> 
+        /// and false to create default <see cref="OpenQA.Selenium.Appium.Service.AppiumLocalService"/>.
         /// </summary>
         bool IsRemote { get; }
 

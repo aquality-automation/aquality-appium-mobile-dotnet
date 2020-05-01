@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
+﻿using OpenQA.Selenium.Appium;
 using System;
 using CoreElement = Aquality.Selenium.Core.Elements.Interfaces.IElement;
 
@@ -12,7 +11,7 @@ namespace Aquality.Appium.Mobile.Elements.Interfaces
         /// </summary>
         /// <param name="timeout">Timeout for waiting (would use default timeout from settings by default).</param>
         /// <returns></returns>
-        /// <exception cref="NoSuchElementException">Thrown if element was not found.</exception>
+        /// <exception cref="OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
         new AppiumWebElement GetElement(TimeSpan? timeout = null);
     }
 }
