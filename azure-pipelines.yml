@@ -25,6 +25,11 @@ steps:
   inputs:
     runtime: 'core'
 
+- task: UseDotNet@2	
+  displayName: 'Switch to .NET SDK 3.1.x'
+  inputs:	
+    version: '3.1.x'
+
 - task: SonarCloudPrepare@1
   displayName: 'Prepare SonarCloud analysis'
   inputs:
