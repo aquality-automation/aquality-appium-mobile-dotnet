@@ -18,7 +18,7 @@ steps:
 - task: GitVersion@5
   displayName: 'Run GitVersion'
   inputs:
-    runtime: 'core'
+    runtime: 'full'
 
 - task: SonarCloudPrepare@1
   displayName: 'Prepare SonarCloud analysis'
