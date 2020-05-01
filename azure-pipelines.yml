@@ -15,10 +15,15 @@ variables:
   IOS_DEVICE_NAME: iPhone X
 
 steps:
+- task: UseDotNet@2	
+  displayName: 'Install .NET SDK 2.1.x'
+  inputs:	
+    version: '2.1.x'
+
 - task: GitVersion@5
   displayName: 'Run GitVersion'
   inputs:
-    runtime: 'full'
+    runtime: 'core'
 
 - task: SonarCloudPrepare@1
   displayName: 'Prepare SonarCloud analysis'
