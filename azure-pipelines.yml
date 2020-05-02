@@ -53,7 +53,6 @@ stages:
 
   - job: tests
     displayName: Run tests
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master') # remove this
     strategy:
       maxParallel: 2
       matrix: 
@@ -147,7 +146,7 @@ stages:
       condition: succeededOrFailed()
 
 - stage: deploy
-  #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
   - job: release
     displayName: 'Create tag on GitHub and publish NuGet package'
@@ -175,7 +174,6 @@ stages:
         tag: 'v$(GitVersion.NuGetVersion)'
         tagSource: 'manual'
         isPreRelease: contains(variables['GitVersion.NuGetVersion'], '-')
-      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) # remove this
 
     - task: NuGetCommand@2
       displayName: 'Push NuGet package'
@@ -184,5 +182,4 @@ stages:
         packagesToPush: '$(Build.ArtifactStagingDirectory)/**/Aquality.Appium.Mobile*.nupkg;!$(Build.ArtifactStagingDirectory)/**/Aquality.Appium.Mobile*.symbols.nupkg'
         nuGetFeedType: 'external'
         publishFeedCredentials: 'NuGet'
-      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) # remove this
     
