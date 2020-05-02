@@ -9,7 +9,7 @@ variables:
 
 stages:
 - stage: test
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master') # remove this
+  
   variables:  
     ANDROID_EMU_NAME: test
     ANDROID_EMU_ABI: x86
@@ -53,6 +53,7 @@ stages:
 
   - job: tests
     displayName: Run tests
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master') # remove this
     strategy:
       maxParallel: 2
       matrix: 
