@@ -41,7 +41,7 @@ stages:
         MSBUILDSINGLELOADCONTEXT: 1  # https://github.com/SpecFlowOSS/SpecFlow/issues/1912
       inputs:
         command: 'build'
-        projects: Aquality.Appium.Mobile.Template/Aquality.Appium.Mobile.Template.sln
+        projects: Aquality.Appium.Mobile/Aquality.Appium.Mobile.sln
         arguments: -c $(buildConfiguration)
 
     - task: SonarCloudAnalyze@1
@@ -53,6 +53,13 @@ stages:
 
   - job: tests
     displayName: Run tests
+    strategy:
+    maxParallel: 2
+    matrix: 
+      REMOTE:
+        IS_REMOTE: true
+      LOCAL:
+        IS_REMOTE: false
 
     steps:
     - task: CmdLine@2
@@ -105,31 +112,22 @@ stages:
           appium --version
           appium-doctor
 
-    - task: DotNetCoreCLI@2
-      displayName: 'Run tests using appium local service'
-      env:
-        isRemote: false
-      inputs:
-        command: 'test'
-        projects: '**/*Tests*/*.csproj'
-        arguments: -c $(buildConfiguration) --no-build
-        publishTestResults: true
-
     - task: CmdLine@2
       displayName: 'Start Appium server'
       inputs:
         script: |
           appium --allow-insecure chromedriver_autodownload &
           echo "Appium server started"
+      condition: eq(variables['IS_REMOTE'], 'true')
 
     - task: DotNetCoreCLI@2
-      displayName: 'Run tests using manually started (remote) server'
+      displayName: 'Run tests'
       env:
-        isRemote: true
+        isRemote: $(IS_REMOTE)
       inputs:
         command: 'test'
         projects: '**/*Tests*/*.csproj'
-        arguments: -c $(buildConfiguration) --no-build
+        arguments: -c $(buildConfiguration)
         publishTestResults: true
 
     - task: CopyFiles@2
