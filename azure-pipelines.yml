@@ -54,12 +54,12 @@ stages:
   - job: tests
     displayName: Run tests
     strategy:
-    maxParallel: 2
-    matrix: 
-      REMOTE:
-        IS_REMOTE: true
-      LOCAL:
-        IS_REMOTE: false
+      maxParallel: 2
+      matrix: 
+        REMOTE:
+          IS_REMOTE: true
+        LOCAL:
+          IS_REMOTE: false
 
     steps:
     - task: CmdLine@2
