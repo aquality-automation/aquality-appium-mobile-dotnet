@@ -9,7 +9,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
     public class ScreenFactoryTests
     {
         private const string PlatformNameVariableName = "platformName";
-        private const string AssemblyNameWithScreensVariableName = "assemblyNameWithScreens";
+        private const string ScreensLocationVariableName = "screensLocation";
 
         [Test]
         public void Should_BePossibleTo_GetScreenViaFactory()
@@ -42,7 +42,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         [Test]
         public void Should_ThrowInvalidOperationException_OnNotValidAssemblyNameWithScreensValue()
         {
-            Environment.SetEnvironmentVariable(AssemblyNameWithScreensVariableName, "Aquality.Fake.Assembly.Tests");            
+            Environment.SetEnvironmentVariable(ScreensLocationVariableName, "Aquality.Fake.Assembly.Tests");            
             AqualityServices.SetStartup(new MobileStartup());
             Assert.Throws<InvalidOperationException>(() => AqualityServices.ScreenFactory.GetScreen<ILoginScreen>());
         }
@@ -51,7 +51,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         public void CleanUp()
         {
             Environment.SetEnvironmentVariable(PlatformNameVariableName, null);
-            Environment.SetEnvironmentVariable(AssemblyNameWithScreensVariableName, "Aquality.Appium.Mobile.Tests");
+            Environment.SetEnvironmentVariable(ScreensLocationVariableName, "Aquality.Appium.Mobile.Tests");
             AqualityServices.SetStartup(new MobileStartup());
         }
 

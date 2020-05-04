@@ -140,7 +140,7 @@
             Gets remote connection URI is case of remote browser.
             </summary>
         </member>
-        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.AssemblyNameWithScreens">
+        <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.ScreensLocation">
             <summary>
             Gets name of Assembly with screens for ScreenFactory.
             </summary>
@@ -430,6 +430,11 @@
             Returns an implementation of a particular app screen.
             </summary>
             <typeparam name="TAppScreen">Desired application screen.</typeparam>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.ScreenFactory.IScreenFactoryProvider.ScreenFactory">
+            <summary>
+            Gets desired ScreenFactory.
+            </summary>
         </member>
         <member name="T:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenFactory`1">
             <summary>

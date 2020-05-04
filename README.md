@@ -78,6 +78,72 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens
 
 8. We use `Microsoft.Extensions.DependencyInjection` inside the `AqualityServices` to inject dependencies, so you can simply implement your MobileStartup extended from [MobileStartup](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Applications/MobileStartup.cs) and inject it to `AqualityServices.SetStartup(yourStartup)`.
 
+### ScreenFactory
+
+When you automate tests for both iOS and Android platforms it is good to have only one set of tests and different implementations of screens. `ScreenFactory` allows to do this. You can define interfaces for your screens and have different implementations for iOS and Android platforms. And then use `ScreenFactory` to resolve necessary screen depending on the chosen platform.
+
+1. Set `screensLocation` property in `settings.json`. It is a name of Assembly where you define screens.
+
+2. Define interfaces for the screens:
+
+```csharp
+
+using Aquality.Appium.Mobile.Screens;
+
+namespace Aquality.Appium.Mobile.Template.Screens.Interfaces
+{
+    public interface ILoginScreen : IScreen
+    {
+        ILoginScreen SetUsername(string username);
+
+        ILoginScreen SetPassword(string password);
+
+        void TapLogin();
+    }
+}
+
+```
+
+3. Implement interface (Android example):
+
+```csharp
+using Aquality.Appium.Mobile.Screens;
+using Aquality.Appium.Mobile.Template.Screens.Interfaces;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+
+namespace Aquality.Appium.Mobile.Template.Screens.Android
+{
+    public class LoginScreen : AndroidScreen, ILoginScreen
+    {
+        public LoginScreen() : base(By.XPath("//android.widget.TextView[@text='Login']"), "Login")
+        {
+        }
+
+        public ILoginScreen SetUsername(string username)
+        {
+            ElementFactory.GetTextBox(MobileBy.AccessibilityId("username"), "Username").SendKeys(username);
+            return this;
+        }
+
+        public ILoginScreen SetPassword(string password)
+        {
+            ElementFactory.GetTextBox(MobileBy.AccessibilityId("password"), "Password").TypeSecret(password);
+            return this;
+        }
+
+        public void TapLogin() => ElementFactory.GetButton(MobileBy.AccessibilityId("loginBtn"), "Login").Click();
+    }
+}
+```
+
+4. Resolve screen in test:
+
+```csharp
+var loginScreen = AqualityServices.ScreenFactory.GetScreen<ILoginScreen>();
+```
+
+You can find an example in [aquality-appium-mobile-dotnet-template](https://github.com/aquality-automation/aquality-appium-mobile-dotnet-template) repository.
 
 ### License
 Library's source code is made available under the [Apache 2.0 license](LICENSE).

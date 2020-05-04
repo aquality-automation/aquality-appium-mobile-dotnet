@@ -23,7 +23,7 @@ namespace Aquality.Appium.Mobile.Screens.ScreenFactory
             Type screenType = null;
             try
             {
-                screenType = Assembly.Load(AqualityServices.ApplicationProfile.AssemblyNameWithScreens)
+                screenType = Assembly.Load(AqualityServices.ApplicationProfile.ScreensLocation)
                     .GetTypes()
                     .Where(t => t.GetInterfaces().Contains(typeof(TAppScreen)))
                     .SingleOrDefault(t => t.IsSubclassOf(typeof(TPlatformScreen)));
@@ -31,13 +31,13 @@ namespace Aquality.Appium.Mobile.Screens.ScreenFactory
             catch (FileNotFoundException ex)
             {
                 throw new InvalidOperationException($"Could not find Assembly with Screens. " +
-                    $"Please specify value \"assemblyNameWithScreens\" in settings file", ex);
+                    $"Please specify value \"screensLocation\" in settings file", ex);
             }
             
             if (screenType == null)
             {
                 throw new InvalidOperationException($"Implementation for Screen {typeof(TAppScreen).Name} " +
-                    $"was not found in Assembly {AqualityServices.ApplicationProfile.AssemblyNameWithScreens}");
+                    $"was not found in Assembly {AqualityServices.ApplicationProfile.ScreensLocation}");
             }
             return (TAppScreen) Activator.CreateInstance(screenType);
         }
