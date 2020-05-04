@@ -102,6 +102,7 @@ stages:
           export PATH=$PATH:/usr/local/bin/appium
 
           echo "Installing and Running Appium doctor"
+          npm install request --save
           npm install -g appium-doctor
           ln -fs /usr/local/lib/node_modules/appium-doctor/appium-doctor.js /usr/local/bin/appium-doctor
           chmod +x /usr/local/bin/appium-doctor
