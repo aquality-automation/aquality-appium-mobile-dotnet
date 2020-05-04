@@ -102,7 +102,7 @@ stages:
           export PATH=$PATH:/usr/local/bin/appium
 
           echo "Installing and Running Appium doctor"
-          npm install --save request@2.34.0
+          npm install -g request@2.34.0
           npm install -g appium-doctor@1.15.1
           ln -fs /usr/local/lib/node_modules/appium-doctor/appium-doctor.js /usr/local/bin/appium-doctor
           chmod +x /usr/local/bin/appium-doctor
@@ -119,7 +119,7 @@ stages:
         script: |
           appium --allow-insecure chromedriver_autodownload &
           echo "Appium server started"
-      condition: eq(variables['isRemote'], 'true')
+      condition: and(succeeded(), eq(variables['isRemote'], 'true'))
 
     - task: DotNetCoreCLI@2
       displayName: 'Run tests'
