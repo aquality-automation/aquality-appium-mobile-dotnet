@@ -4,7 +4,6 @@ using Aquality.Selenium.Core.Utilities;
 using OpenQA.Selenium.Appium;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace Aquality.Appium.Mobile.Configurations
 {
@@ -26,11 +25,7 @@ namespace Aquality.Appium.Mobile.Configurations
                 ? "devices.json" 
                 : $"devices.{deviceProfileName}.json";
             Logger.Instance.Debug($"Get devices settings from: {devicesProfile}");
-
-            var jsonFile = FileReader.IsResourceFileExist(devicesProfile)
-                ? new JsonSettingsFile(devicesProfile)
-                : new JsonSettingsFile($"Resources.{devicesProfile}", Assembly.GetCallingAssembly());
-            return jsonFile;
+            return new JsonSettingsFile(devicesProfile);
         }
 
         public AppiumOptions AppiumOptions
