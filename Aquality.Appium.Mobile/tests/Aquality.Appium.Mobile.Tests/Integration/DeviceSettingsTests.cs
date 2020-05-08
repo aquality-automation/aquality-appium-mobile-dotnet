@@ -48,6 +48,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         public void Should_BePossible_ToGetDefaultDeviceSettingsForIosPlatform()
         {
             Environment.SetEnvironmentVariable(PlatformNamePropertyKey, "ios");
+            Environment.SetEnvironmentVariable(DevicesKeyPropertyKey, "iPhone_11");
             var options = AqualityServices.Get<IApplicationProfile>().DriverSettings.AppiumOptions;
             Assert.AreEqual("iPhone 11", options.ToDictionary()["deviceName"]);
         }
@@ -56,6 +57,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         public void Should_BePossible_ToGetDefaultDeviceSettingsForAndroidPlatform()
         {
             Environment.SetEnvironmentVariable(PlatformNamePropertyKey, "android");
+            Environment.SetEnvironmentVariable(DevicesKeyPropertyKey, "Nexus");
             var options = AqualityServices.Get<IApplicationProfile>().DriverSettings.AppiumOptions;
             Assert.AreEqual("Nexus", options.ToDictionary()["deviceName"]);
         }

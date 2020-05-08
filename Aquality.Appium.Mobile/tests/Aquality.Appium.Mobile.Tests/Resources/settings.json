@@ -6,7 +6,7 @@
 
   "driverSettings": {
     "android": {
-      "deviceKey": "Nexus",
+      "deviceKey": "Android_Emulator",
       "applicationPath": "./Resources/Apps/ApiDemos-debug.apk",
       "capabilities": {
         "platformName": "Android",
@@ -16,7 +16,7 @@
       }
     },
     "ios": {
-      "deviceKey": "iPhone_11",
+      "deviceKey": "iOS_Simulator",
       "applicationPath": "./Resources/Apps/TestApp.app.zip",
       "capabilities": {
         "platformName": "iOS",
