@@ -145,5 +145,15 @@ var loginScreen = AqualityServices.ScreenFactory.GetScreen<ILoginScreen>();
 
 You can find an example in [aquality-appium-mobile-dotnet-template](https://github.com/aquality-automation/aquality-appium-mobile-dotnet-template) repository.
 
+### Devices
+
+Our library allows you to run tests on different devices and store their settings (like udid, name, etc.) in JSON files.
+
+You have to add [devices.json](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Resources/devices.json) file to resources where you can define a set of devices which you use to run tests.
+
+It is possible to set default device for each platform in [settings.json](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Resources/settings.json) by defining `deviceKey` property which is a key of device settings from `devices.json` file.
+
+You can also create several profiles with devices by adding files with suffixes `devices.<devicesProfile>.json` (like `devices.set1.json`) and then specify profile using environment variable `devicesProfile: set1`.
+
 ### License
 Library's source code is made available under the [Apache 2.0 license](LICENSE).

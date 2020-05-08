@@ -127,7 +127,8 @@
         </member>
         <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.IsRemote">
             <summary>
-            Is remote Appium service or not: true to use <see cref="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.RemoteConnectionUrl"/> and false to create default <see cref="T:OpenQA.Selenium.Appium.Service.AppiumLocalService"/>.
+            Is remote Appium service or not: true to use <see cref="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.RemoteConnectionUrl"/> 
+            and false to create default <see cref="T:OpenQA.Selenium.Appium.Service.AppiumLocalService"/>.
             </summary>
         </member>
         <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.PlatformName">
@@ -143,6 +144,16 @@
         <member name="P:Aquality.Appium.Mobile.Configurations.IApplicationProfile.ScreensLocation">
             <summary>
             Gets name of Assembly with screens for ScreenFactory.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.IDeviceSettings">
+            <summary>
+            Describes desired device settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IDeviceSettings.AppiumOptions">
+            <summary>
+            Options (capabilities) related to desired device.
             </summary>
         </member>
         <member name="T:Aquality.Appium.Mobile.Configurations.IDriverSettings">
