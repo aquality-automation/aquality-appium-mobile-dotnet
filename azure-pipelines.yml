@@ -54,9 +54,9 @@ stages:
 
     variables:  
       ANDROID_EMU_NAME: test
-      ANDROID_EMU_TARGET: android-28
+      ANDROID_EMU_TARGET: android-29
       ANDROID_EMU_TAG: google_apis
-      ANDROID_EMU_ABI: x86_64
+      ANDROID_EMU_ABI: x86
       XCODE_VERSION: 10.2
       IOS_PLATFORM_VERSION: 12.2
       IOS_DEVICE_NAME: iPhone X
