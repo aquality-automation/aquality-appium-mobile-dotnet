@@ -17,8 +17,8 @@
     <Copyright>Copyright 2020 Aquality Automation</Copyright>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>Aquality.Appium.Mobile.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>

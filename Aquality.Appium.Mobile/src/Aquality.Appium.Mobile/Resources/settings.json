@@ -6,18 +6,19 @@
 
   "driverSettings": {
     "android": {
+      "deviceKey": "<KEY_OF_ANDROID_DEVICE_FROM_DEVICES_JSON>",
       "applicationPath": "./Resources/Apps/ApiDemos-debug.apk",
       "capabilities": {
-        "deviceName": "Android Emulator"
+        "platformName": "Android",
+        "automationName": "UiAutomator2"
       }
     },
     "ios": {
+      "deviceKey": "<KEY_OF_IOS_DEVICE_FROM_DEVICES_JSON>",
       "applicationPath": "./Resources/Apps/TestApp.app.zip",
       "capabilities": {
-        "deviceName": "iOS Simulator",
-        "automationName": "XCUITest",
         "platformName": "iOS",
-        "udid": "<SIMULATOR_ID/DEVICE_ID>"
+        "automationName": "XCUITest"
       }
     }
   },
@@ -42,6 +43,6 @@
     "language": "en"
   },
   "elementCache": {
-    "isEnabled": false
+    "isEnabled": true
   }
 }

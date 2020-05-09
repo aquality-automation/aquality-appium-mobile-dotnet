@@ -12,6 +12,8 @@ namespace Aquality.Appium.Mobile.Configurations
     {
         private const string ApplicationPathKey = "applicationPath";
         private const string AppCapabilityKey = "app";
+        private const string DeviceKeyKey = "deviceKey";
+
         private readonly ISettingsFile settingsFile;
         private readonly PlatformName platformName;
 
@@ -42,10 +44,21 @@ namespace Aquality.Appium.Mobile.Configurations
                 {
                     options.AddAdditionalCapability(AppCapabilityKey, ApplicationPath);
                 }
+                DeviceOptions.ToDictionary().ToList().ForEach(capability => options.AddAdditionalCapability(capability.Key, capability.Value));
                 return options;
             }
         }
 
         public string ApplicationPath => Path.GetFullPath(settingsFile.GetValue<string>(ApplicationPathJPath));
+
+        private AppiumOptions DeviceOptions
+        {
+            get
+            {
+                var deviceKey = settingsFile.GetValueOrDefault<string>($"{DriverSettingsPath}.{DeviceKeyKey}");
+                var deviceSettings = new DeviceSettings(deviceKey);
+                return deviceSettings.AppiumOptions;
+            }
+        }
     }
 }
