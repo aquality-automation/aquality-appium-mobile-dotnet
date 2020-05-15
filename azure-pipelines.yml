@@ -161,6 +161,7 @@ stages:
         repositoryName: 'aquality-automation/aquality-appium-mobile-dotnet'
         action: 'create'
         tag: 'v$(GitVersion.NuGetVersion)'
+        title: 'v$(GitVersion.NuGetVersion)'
         tagSource: 'manual'
         isPreRelease: contains(variables['GitVersion.NuGetVersion'], '-')
 
