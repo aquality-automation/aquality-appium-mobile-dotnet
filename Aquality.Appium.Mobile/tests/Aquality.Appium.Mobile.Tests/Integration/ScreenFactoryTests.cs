@@ -1,5 +1,6 @@
 ﻿using Aquality.Appium.Mobile.Applications;
 using Aquality.Appium.Mobile.Screens;
+using Aquality.Appium.Mobile.Screens.ScreenFactory;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -14,7 +15,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         [Test]
         public void Should_BePossibleTo_GetScreenViaFactory()
         {            
-            Assert.That(AqualityServices.ScreenFactory.GetScreen<ILoginScreen>() is IScreen);
+            Assert.That(AqualityServices.ScreenFactory.GetScreen<LoginScreen>() is IScreen);
         }
 
         [Test]
@@ -22,7 +23,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         {
             Environment.SetEnvironmentVariable(PlatformNameVariableName, "android");
             AqualityServices.SetStartup(new MobileStartup());
-            Assert.That(AqualityServices.ScreenFactory.GetScreen<ILoginScreen>() is AndroidScreen);
+            Assert.That(AqualityServices.ScreenFactory.GetScreen<LoginScreen>() is AndroidLoginScreen);
         }
 
         [Test]
@@ -30,13 +31,13 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         {
             Environment.SetEnvironmentVariable(PlatformNameVariableName, "ios");
             AqualityServices.SetStartup(new MobileStartup());
-            Assert.That(AqualityServices.ScreenFactory.GetScreen<ILoginScreen>() is IOSScreen);
+            Assert.That(AqualityServices.ScreenFactory.GetScreen<LoginScreen>() is IOSLoginScreen);
         }
 
         [Test]
         public void Should_ThrowInvalidOperationException_OnNotImplementedScreenInterface()
         {
-            Assert.Throws<InvalidOperationException>(() => AqualityServices.ScreenFactory.GetScreen<IFakeLoginScreen>());
+            Assert.Throws<InvalidOperationException>(() => AqualityServices.ScreenFactory.GetScreen<FakeLoginScreen>());
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         {
             Environment.SetEnvironmentVariable(ScreensLocationVariableName, "Aquality.Fake.Assembly.Tests");            
             AqualityServices.SetStartup(new MobileStartup());
-            Assert.Throws<InvalidOperationException>(() => AqualityServices.ScreenFactory.GetScreen<ILoginScreen>());
+            Assert.Throws<InvalidOperationException>(() => AqualityServices.ScreenFactory.GetScreen<LoginScreen>());
         }
 
         [TearDown]
@@ -55,22 +56,30 @@ namespace Aquality.Appium.Mobile.Tests.Integration
             AqualityServices.SetStartup(new MobileStartup());
         }
 
-        public interface IFakeLoginScreen : IScreen
+        public abstract class FakeLoginScreen : Screen
         {
+            protected FakeLoginScreen(By locator, string name) : base(locator, name)
+            {
+            }
         }
 
-        public interface ILoginScreen : IScreen
+        public abstract class LoginScreen : Screen
         {
+            protected LoginScreen(By locator, string name) : base(locator, name)
+            {
+            }
         }
 
-        public class AndroidLoginScreen : AndroidScreen, ILoginScreen
+        [ScreenPlatform(PlatformName.Android)]
+        public class AndroidLoginScreen : LoginScreen
         {
             public AndroidLoginScreen() : base(By.Id("id"), "name")
             {
             }
         }
 
-        public class IOSLoginScreen : IOSScreen, ILoginScreen
+        [ScreenPlatform(PlatformName.IOS)]
+        public class IOSLoginScreen : LoginScreen
         {
             public IOSLoginScreen() : base(By.Id("id"), "name")
             {

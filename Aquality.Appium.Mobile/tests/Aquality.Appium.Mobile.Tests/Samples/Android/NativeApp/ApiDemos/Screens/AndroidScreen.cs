@@ -1,17 +1,16 @@
 ﻿using Aquality.Appium.Mobile.Applications;
+using Aquality.Appium.Mobile.Screens;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 
-namespace Aquality.Appium.Mobile.Screens
+namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens
 {
-    public abstract class AndroidScreen : Screen<AndroidDriver<AppiumWebElement>>
+    public abstract class AndroidScreen : Screen
     {
-        protected override PlatformName PlatformName => PlatformName.Android;
-
         protected AndroidScreen(By locator, string name) : base(locator, name)
         {
-        }        
+        }
 
         /// <summary>
         /// Starts application activity.
@@ -22,7 +21,8 @@ namespace Aquality.Appium.Mobile.Screens
         protected void StartActivity(string appPackage, string appActivity, bool stopApp = true)
         {
             AqualityServices.LocalizedLogger.Info("loc.application.android.activity.start", appPackage, appActivity);
-            Driver.StartActivity(appPackage, appActivity, stopApp: stopApp);
+            var adnroidAppiumDriver = (AndroidDriver<AppiumWebElement>) AqualityServices.Application.Driver;
+            adnroidAppiumDriver.StartActivity(appPackage, appActivity, stopApp: stopApp);
         }
     }
 }

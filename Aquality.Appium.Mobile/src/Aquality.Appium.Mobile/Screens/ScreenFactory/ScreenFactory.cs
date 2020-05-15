@@ -1,4 +1,5 @@
 ﻿using Aquality.Appium.Mobile.Applications;
+using Aquality.Appium.Mobile.Configurations;
 using System;
 using System.IO;
 using System.Linq;
@@ -7,12 +8,17 @@ using System.Reflection;
 namespace Aquality.Appium.Mobile.Screens.ScreenFactory
 {
     /// <summary>
-    /// Abstract screen factory.
+    /// Screen factory.
     /// </summary>
-    /// <typeparam name="TPlatformScreen">Desired platform screen <see cref="IOSScreen"/> or <see cref="AndroidScreen"/></typeparam>
-    public abstract class ScreenFactory<TPlatformScreen> : IScreenFactory
-        where TPlatformScreen : class
+    public class ScreenFactory : IScreenFactory
     {
+        private readonly IApplicationProfile applicationProfile;
+
+        public ScreenFactory(IApplicationProfile applicationProfile)
+        {
+            this.applicationProfile = applicationProfile;
+        }
+
         /// <summary>
         /// Returns an implementation of a particular app screen.
         /// </summary>
@@ -25,8 +31,14 @@ namespace Aquality.Appium.Mobile.Screens.ScreenFactory
             {
                 screenType = Assembly.Load(AqualityServices.ApplicationProfile.ScreensLocation)
                     .GetTypes()
-                    .Where(t => t.GetInterfaces().Contains(typeof(TAppScreen)))
-                    .SingleOrDefault(t => t.IsSubclassOf(typeof(TPlatformScreen)));
+                    .Where(t => t.IsSubclassOf(typeof(TAppScreen)))
+                    .Where(t => t.IsDefined(typeof(ScreenPlatformAttribute), false))
+                    .SingleOrDefault(t => 
+                    {
+                        var attribute = (ScreenPlatformAttribute) Attribute.GetCustomAttribute(t, typeof(ScreenPlatformAttribute));
+                        return attribute.Platform == applicationProfile.PlatformName;
+                    });
+
             } 
             catch (FileNotFoundException ex)
             {

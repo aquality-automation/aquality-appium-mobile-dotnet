@@ -27,7 +27,7 @@ namespace Aquality.Appium.Mobile.Applications
             services.AddTransient<CoreElementFactory, ElementFactory>();
             services.AddSingleton<IApplicationProfile, ApplicationProfile>();            
             services.AddSingleton<ILocalServiceSettings, LocalServiceSettings>();
-            services.AddSingleton<IScreenFactoryProvider, ScreenFactoryProvider>();
+            services.AddSingleton<IScreenFactory, ScreenFactory>();
             services.AddSingleton<ILocalizationManager>(serviceProvider => new LocalizationManager(serviceProvider.GetRequiredService<ILoggerConfiguration>(), serviceProvider.GetRequiredService<Logger>(), Assembly.GetExecutingAssembly()));
             services.AddTransient(serviceProvider => AqualityServices.ApplicationFactory);
             services.AddScoped(serviceProvider => applicationProvider(serviceProvider) as IMobileApplication);
