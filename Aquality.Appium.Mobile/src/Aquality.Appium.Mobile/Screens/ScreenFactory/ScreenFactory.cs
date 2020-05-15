@@ -32,10 +32,10 @@ namespace Aquality.Appium.Mobile.Screens.ScreenFactory
                 screenType = Assembly.Load(AqualityServices.ApplicationProfile.ScreensLocation)
                     .GetTypes()
                     .Where(t => t.IsSubclassOf(typeof(TAppScreen)))
-                    .Where(t => t.IsDefined(typeof(ScreenPlatformAttribute), false))
+                    .Where(t => t.IsDefined(typeof(ScreenTypeAttribute), false))
                     .SingleOrDefault(t => 
                     {
-                        var attribute = (ScreenPlatformAttribute) Attribute.GetCustomAttribute(t, typeof(ScreenPlatformAttribute));
+                        var attribute = (ScreenTypeAttribute) Attribute.GetCustomAttribute(t, typeof(ScreenTypeAttribute));
                         return attribute.Platform == applicationProfile.PlatformName;
                     });
 

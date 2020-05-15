@@ -70,7 +70,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
             }
         }
 
-        [ScreenPlatform(PlatformName.Android)]
+        [ScreenType(PlatformName.Android)]
         public class AndroidLoginScreen : LoginScreen
         {
             public AndroidLoginScreen() : base(By.Id("id"), "name")
@@ -78,7 +78,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
             }
         }
 
-        [ScreenPlatform(PlatformName.IOS)]
+        [ScreenType(PlatformName.IOS)]
         public class IOSLoginScreen : LoginScreen
         {
             public IOSLoginScreen() : base(By.Id("id"), "name")
