@@ -34,10 +34,9 @@ If you don't start an Application directly, it would be started with the first c
 Please take a look at our example tests [here](Aquality.Appium.Mobile/tests/Aquality.Appium.Mobile.Tests/Samples/)
 
 6. To interact with Application's forms and elements, we recommend following the Page/Screen Objects pattern. This approach is fully integrated into our package.
-To start with that, you will need to create a separate class for each window/form of your application, and inherit this class from the [AndroidScreen](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Screens/AndroidScreen.cs) or [IOSScreen](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Screens/IOSScreen.cs) respectively. 
+To start with that, you will need to create a separate class for each window/form of your application, and inherit this class from the [Screen](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Screens/Screen.cs). 
 
 > We recommend to use separate Screen class for each form of your application. You can take advantage of inheritance and composition pattern. We also suggest not to mix app different platforms in single class: take advantage of interfaces instead, adding the default implementation to them if is needed.
-
 
 7. From the Screen Object perspective, each Screen consists of elements on it (e.g. Buttons, TextBox, Labels and so on). 
 To interact with elements, on your form class create fields of type IButton, ITextBox, ILabel, and initialize them using the `AqualityServices.ElementFactory`. Created elements have a various methods to interact with them. We recommend combining actions into a business-level methods:
@@ -72,8 +71,6 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens
         public string SearchResult => searchResultLabel.Text;
     }
 }
-
-
 ```
 
 8. We use `Microsoft.Extensions.DependencyInjection` inside the `AqualityServices` to inject dependencies, so you can simply implement your MobileStartup extended from [MobileStartup](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Applications/MobileStartup.cs) and inject it to `AqualityServices.SetStartup(yourStartup)`.
