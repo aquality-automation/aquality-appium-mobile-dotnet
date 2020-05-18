@@ -80,59 +80,77 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens
 
 ### ScreenFactory
 
-When you automate tests for both iOS and Android platforms it is good to have only one set of tests and different implementations of screens. `ScreenFactory` allows to do this. You can define interfaces for your screens and have different implementations for iOS and Android platforms. And then use `ScreenFactory` to resolve necessary screen depending on the chosen platform.
+When you automate tests for both iOS and Android platforms it is good to have only one set of tests and different implementations of screens. `ScreenFactory` allows to do this. You can define abstract classes for your screens and have different implementations for iOS and Android platforms. After that you can use `ScreenFactory` to resolve necessary screen depending on the chosen platform.
 
 1. Set `screensLocation` property in `settings.json`. It is a name of Assembly where you define screens.
 
-2. Define interfaces for the screens:
+2. Define abstract classes for the screens:
 
 ```csharp
-
+using Aquality.Appium.Mobile.Elements.Interfaces;
 using Aquality.Appium.Mobile.Screens;
+using OpenQA.Selenium;
 
-namespace Aquality.Appium.Mobile.Template.Screens.Interfaces
+namespace Aquality.Appium.Mobile.Template.Screens.Login
 {
-    public interface ILoginScreen : IScreen
+    public abstract class LoginScreen : Screen
     {
-        ILoginScreen SetUsername(string username);
+        private readonly ITextBox usernameTxb;
+        private readonly ITextBox passwordTxb;
+        private readonly IButton loginBtn;
 
-        ILoginScreen SetPassword(string password);
+        protected LoginScreen(By locator) : base(locator, "Login")
+        {
+            usernameTxb = ElementFactory.GetTextBox(UsernameTxbLoc, "Username");
+            passwordTxb = ElementFactory.GetTextBox(PasswordTxbLoc, "Password");
+            loginBtn = ElementFactory.GetButton(LoginBtnLoc, "Login");
+        }
 
-        void TapLogin();
+        protected abstract By UsernameTxbLoc { get; }
+
+        protected abstract By PasswordTxbLoc { get; }
+
+        protected abstract By LoginBtnLoc { get; }
+
+        public LoginScreen SetUsername(string username)
+        {
+            usernameTxb.SendKeys(username);
+            return this;
+        }
+
+        public LoginScreen SetPassword(string password)
+        {
+            passwordTxb.TypeSecret(password);
+            return this;
+        }
+
+        public void TapLogin() => loginBtn.Click();
     }
 }
-
 ```
 
 3. Implement interface (Android example):
 
 ```csharp
-using Aquality.Appium.Mobile.Screens;
-using Aquality.Appium.Mobile.Template.Screens.Interfaces;
+using Aquality.Appium.Mobile.Applications;
+using Aquality.Appium.Mobile.Screens.ScreenFactory;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 
-namespace Aquality.Appium.Mobile.Template.Screens.Android
+namespace Aquality.Appium.Mobile.Template.Screens.Login
 {
-    public class LoginScreen : AndroidScreen, ILoginScreen
+    [ScreenType(PlatformName.Android)]
+    public sealed class AndroidLoginScreen : LoginScreen
     {
-        public LoginScreen() : base(By.XPath("//android.widget.TextView[@text='Login']"), "Login")
+        public AndroidLoginScreen() : base(By.XPath("//android.widget.TextView[@text='Login']"))
         {
         }
 
-        public ILoginScreen SetUsername(string username)
-        {
-            ElementFactory.GetTextBox(MobileBy.AccessibilityId("username"), "Username").SendKeys(username);
-            return this;
-        }
+        protected override By UsernameTxbLoc => MobileBy.AccessibilityId("username");
 
-        public ILoginScreen SetPassword(string password)
-        {
-            ElementFactory.GetTextBox(MobileBy.AccessibilityId("password"), "Password").TypeSecret(password);
-            return this;
-        }
+        protected override By PasswordTxbLoc => MobileBy.AccessibilityId("password");
 
-        public void TapLogin() => ElementFactory.GetButton(MobileBy.AccessibilityId("loginBtn"), "Login").Click();
+        protected override By LoginBtnLoc => MobileBy.AccessibilityId("loginBtn");
     }
 }
 ```
@@ -140,7 +158,7 @@ namespace Aquality.Appium.Mobile.Template.Screens.Android
 4. Resolve screen in test:
 
 ```csharp
-var loginScreen = AqualityServices.ScreenFactory.GetScreen<ILoginScreen>();
+var loginScreen = AqualityServices.ScreenFactory.GetScreen<LoginScreen>();
 ```
 
 You can find an example in [aquality-appium-mobile-dotnet-template](https://github.com/aquality-automation/aquality-appium-mobile-dotnet-template) repository.
