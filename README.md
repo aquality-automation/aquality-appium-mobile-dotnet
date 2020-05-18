@@ -80,7 +80,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.ApiDemosScreens
 
 ### ScreenFactory
 
-When you automate tests for both iOS and Android platforms it is good to have only one set of tests and different implementations of screens. `ScreenFactory` allows to do this. You can define abstract classes for your screens and have different implementations for iOS and Android platforms. After that you can use `ScreenFactory` to resolve necessary screen depending on the chosen platform.
+When you automate tests for both iOS and Android platforms it is good to have only one set of tests and different implementations of screens. `ScreenFactory` allows to do this. You can define abstract classes for your screens and have different implementations for iOS and Android platforms. After that you can use `ScreenFactory` to resolve a necessary screen depending on the chosen platform.
 
 1. Set `screensLocation` property in `settings.json`. It is a name of Assembly where you define screens.
 
