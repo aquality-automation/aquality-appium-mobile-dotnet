@@ -398,14 +398,6 @@
             Removes focus from the element using send keys.
             </summary>
         </member>
-        <member name="M:Aquality.Appium.Mobile.Screens.AndroidScreen.StartActivity(System.String,System.String,System.Boolean)">
-            <summary>
-            Starts application activity.
-            </summary>
-            <param name="appPackage">Package of the target application.</param>
-            <param name="appActivity">Target activity.</param>
-            <param name="stopApp">True if need to stop currently running application, false otherwise. True by default.</param>
-        </member>
         <member name="T:Aquality.Appium.Mobile.Screens.IScreen">
             <summary>
             Interface that describes application under the test screen.
@@ -431,6 +423,51 @@
             Screen element State.
             </summary>
         </member>
+        <member name="T:Aquality.Appium.Mobile.Screens.Screen">
+            <summary>
+            Defines base class for any mobile screen.
+            Use <see cref="T:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenTypeAttribute"/> on your screen class to identify platform.
+            <seealso cref="T:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenFactory"/>
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Screens.Screen.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Constructor with parameters.
+            </summary>
+            <param name="locator">Unique locator of the screen.</param>
+            <param name="name">Name of the screen.</param>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.Screen.ScreenElement">
+            <summary>
+            Gets Screen element defined by its locator and name.
+            Could be used to find child elements relative to screen element.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.Screen.ElementFactory">
+            <summary>
+            Element factory <see cref="T:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory"/>
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.Screen.Locator">
+            <summary>
+            Locator of the screen.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.Screen.Name">
+            <summary>
+            Name of the screen.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.Screen.Size">
+            <summary>
+            Gets size of form element defined by its locator.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.Screen.State">
+            <summary>
+            Provides ability to get screen's state (whether it is displayed, exists or not) and respective waiting functions.
+            </summary>
+        </member>
         <member name="T:Aquality.Appium.Mobile.Screens.ScreenFactory.IScreenFactory">
             <summary>
             Interface of abstract screen factory.
@@ -442,22 +479,26 @@
             </summary>
             <typeparam name="TAppScreen">Desired application screen.</typeparam>
         </member>
-        <member name="P:Aquality.Appium.Mobile.Screens.ScreenFactory.IScreenFactoryProvider.ScreenFactory">
+        <member name="T:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenFactory">
             <summary>
-            Gets desired ScreenFactory.
+            Screen factory.
             </summary>
         </member>
-        <member name="T:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenFactory`1">
-            <summary>
-            Abstract screen factory.
-            </summary>
-            <typeparam name="TPlatformScreen">Desired platform screen <see cref="T:Aquality.Appium.Mobile.Screens.IOSScreen"/> or <see cref="T:Aquality.Appium.Mobile.Screens.AndroidScreen"/></typeparam>
-        </member>
-        <member name="M:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenFactory`1.GetScreen``1">
+        <member name="M:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenFactory.GetScreen``1">
             <summary>
             Returns an implementation of a particular app screen.
             </summary>
             <typeparam name="TAppScreen">Desired application screen.</typeparam>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenTypeAttribute">
+            <summary>
+            Attribute that identifies platform of screen. 
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Screens.ScreenFactory.ScreenTypeAttribute.Platform">
+            <summary>
+            Name of platform that screen relates to.
+            </summary>
         </member>
     </members>
 </doc>
