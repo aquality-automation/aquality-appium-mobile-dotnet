@@ -21,8 +21,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
         protected void StartActivity(string appPackage, string appActivity, bool stopApp = true)
         {
             AqualityServices.LocalizedLogger.Info("loc.application.android.activity.start", appPackage, appActivity);
-            var adnroidAppiumDriver = (AndroidDriver<AppiumWebElement>) AqualityServices.Application.Driver;
-            adnroidAppiumDriver.StartActivity(appPackage, appActivity, stopApp: stopApp);
+            var androidAppiumDriver = (AndroidDriver<AppiumWebElement>) AqualityServices.Application.Driver;
+            androidAppiumDriver.StartActivity(appPackage, appActivity, stopApp: stopApp);
         }
     }
 }

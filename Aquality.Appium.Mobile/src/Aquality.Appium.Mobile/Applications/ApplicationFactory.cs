@@ -6,6 +6,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.iOS;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Aquality.Appium.Mobile.Applications
@@ -42,7 +43,7 @@ namespace Aquality.Appium.Mobile.Applications
             return driver;
         }
 
-        protected class CustomActionRetrier : ElementActionRetrier
+        protected class CustomActionRetrier : ActionRetrier
         {
             private static readonly string[] handledErrorMessages = new string[]
             {
@@ -55,13 +56,18 @@ namespace Aquality.Appium.Mobile.Applications
             };
 
             public CustomActionRetrier() 
-                : base(AqualityServices.Get<IRetryConfiguration>(), new[] { typeof(WebDriverException) })
+                : base(AqualityServices.Get<IRetryConfiguration>())
             {
             }
 
-            protected override bool IsExceptionHandled(Exception exception)
+            protected override bool IsExceptionHandled(IEnumerable<Type> handledExceptions, Exception exception)
             {
-                return base.IsExceptionHandled(exception) && handledErrorMessages.Any(message => exception.Message.ToLower().Contains(message));
+                var exceptions = new List<Type>(handledExceptions ?? new List<Type>())
+                {
+                    typeof(WebDriverException)
+                };
+                return base.IsExceptionHandled(exceptions, exception) 
+                    && handledErrorMessages.Any(message => exception.Message.ToLower().Contains(message));
             }
         }
 

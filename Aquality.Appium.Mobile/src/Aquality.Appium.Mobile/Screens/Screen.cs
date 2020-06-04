@@ -3,6 +3,7 @@ using Aquality.Appium.Mobile.Elements.Interfaces;
 using Aquality.Selenium.Core.Elements.Interfaces;
 using OpenQA.Selenium;
 using System.Drawing;
+using IElement = Aquality.Appium.Mobile.Elements.Interfaces.IElement;
 using IElementFactory = Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory;
 
 namespace Aquality.Appium.Mobile.Screens
@@ -27,5 +28,7 @@ namespace Aquality.Appium.Mobile.Screens
         public IElementStateProvider State => screenLabel.State;
 
         protected IElementFactory ElementFactory => AqualityServices.ElementFactory;
+
+        protected IElement ScreenElement => screenLabel;
     }
 }

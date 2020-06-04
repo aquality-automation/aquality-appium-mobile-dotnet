@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -46,7 +46,7 @@
   
   <ItemGroup>
     <PackageReference Include="Appium.WebDriver" Version="4.1.1" />
-    <PackageReference Include="Aquality.Selenium.Core" Version="0.3.10" />
+    <PackageReference Include="Aquality.Selenium.Core" Version="1.1.1" />
   </ItemGroup>
 
 </Project>
