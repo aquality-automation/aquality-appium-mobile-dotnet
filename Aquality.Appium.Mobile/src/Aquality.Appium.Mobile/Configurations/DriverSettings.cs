@@ -27,20 +27,20 @@ namespace Aquality.Appium.Mobile.Configurations
 
         private string ApplicationPathJPath => $"{DriverSettingsPath}.{ApplicationPathKey}";
 
-        protected IDictionary<string, object> Capabilities => settingsFile.GetValueOrNew<Dictionary<string, object>>($"{DriverSettingsPath}.capabilities");
+        protected virtual IReadOnlyDictionary<string, object> Capabilities => settingsFile.GetValueDictionaryOrEmpty<object>($"{DriverSettingsPath}.capabilities");
 
         /// <summary>
         /// Defines does the current settings have the application path defined
         /// </summary>
-        protected bool HasApplicationPath => settingsFile.IsValuePresent(ApplicationPathJPath);
+        protected virtual bool HasApplicationPath => settingsFile.IsValuePresent(ApplicationPathJPath) || Capabilities.ContainsKey(AppCapabilityKey);
 
-        public AppiumOptions AppiumOptions
+        public virtual AppiumOptions AppiumOptions
         {
             get
             {
                 var options = new AppiumOptions();
                 Capabilities.ToList().ForEach(capability => options.AddAdditionalCapability(capability.Key, capability.Value));
-                if (HasApplicationPath)
+                if (HasApplicationPath && ApplicationPath != null)
                 {
                     options.AddAdditionalCapability(AppCapabilityKey, ApplicationPath);
                 }
@@ -49,7 +49,15 @@ namespace Aquality.Appium.Mobile.Configurations
             }
         }
 
-        public string ApplicationPath => Path.GetFullPath(settingsFile.GetValue<string>(ApplicationPathJPath));
+        public virtual string ApplicationPath
+        {
+            get
+            {
+                var appValue = settingsFile.GetValueOrDefault(ApplicationPathJPath,
+                    defaultValue: (Capabilities.ContainsKey(AppCapabilityKey) ? Capabilities[AppCapabilityKey] : null)?.ToString());
+                return appValue?.StartsWith(".") == true ? Path.GetFullPath(appValue) : appValue;
+            }
+        }
 
         private AppiumOptions DeviceOptions
         {

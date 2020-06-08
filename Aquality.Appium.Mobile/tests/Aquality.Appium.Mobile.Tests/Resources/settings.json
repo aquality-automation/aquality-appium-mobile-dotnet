@@ -7,8 +7,8 @@
   "driverSettings": {
     "android": {
       "deviceKey": "Android_Emulator",
-      "applicationPath": "./Resources/Apps/ApiDemos-debug.apk",
       "capabilities": {
+        "app": "./Resources/Apps/ApiDemos-debug.apk",
         "platformName": "Android",
         "automationName": "UIAutomator2",
         "eventTimings": true,
@@ -17,8 +17,8 @@
     },
     "ios": {
       "deviceKey": "iOS_Simulator",
-      "applicationPath": "./Resources/Apps/TestApp.app.zip",
       "capabilities": {
+        "app": "./Resources/Apps/TestApp.app.zip",
         "platformName": "iOS",
         "automationName": "XCUITest"
       }

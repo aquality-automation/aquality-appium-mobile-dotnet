@@ -38,6 +38,6 @@ namespace Aquality.Appium.Mobile.Configurations
             }
         }
 
-        private IDictionary<string, object> Capabilities => settingsFile.GetValueOrNew<Dictionary<string, object>>($"{deviceKey}.capabilities");
+        private IReadOnlyDictionary<string, object> Capabilities => settingsFile.GetValueDictionaryOrEmpty<object>($"{deviceKey}.capabilities");
     }
 }
