@@ -14,7 +14,9 @@ namespace Aquality.Appium.Mobile.Elements
             get
             {
                 LogElementAction("loc.checkable.is.checked");
-                return GetState();
+                var state = GetState();
+                LogElementAction("loc.checkable.state", state);
+                return state;
             }
         }
 
