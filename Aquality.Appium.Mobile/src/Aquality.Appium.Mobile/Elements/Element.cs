@@ -35,7 +35,7 @@ namespace Aquality.Appium.Mobile.Elements
 
         protected override ILocalizedLogger LocalizedLogger => AqualityServices.LocalizedLogger;
 
-        protected virtual ILocalizationManager LocalizationManager => AqualityServices.Get<ILocalizationManager>();
+        protected override ILocalizationManager LocalizationManager => AqualityServices.Get<ILocalizationManager>();
 
         public new AppiumWebElement GetElement(TimeSpan? timeout = null)
         {
