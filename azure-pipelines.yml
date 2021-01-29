@@ -141,9 +141,9 @@ stages:
     displayName: 'Create tag on GitHub and publish NuGet package'
 
     steps:
-    - task: UseDotNet@2	
+    - task: UseDotNet@2
       displayName: 'Install .NET SDK 2.1.x'
-      inputs:	
+      inputs:
         version: '2.1.x'
 
     - task: GitVersion@5
@@ -157,7 +157,7 @@ stages:
     - task: GitHubRelease@0
       displayName: 'Create tag on GitHub'
       inputs:
-        gitHubConnection: 'GitHub'
+        gitHubConnection: 'github.com_aqualityautomation'
         repositoryName: 'aquality-automation/aquality-appium-mobile-dotnet'
         action: 'create'
         tag: 'v$(GitVersion.NuGetVersion)'

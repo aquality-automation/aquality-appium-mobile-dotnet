@@ -1,7 +1,7 @@
 ﻿{
   "iPhone_11": {
     "capabilities": {
-      "platformVersion": "13.3",
+      "platformVersion": "14.3",
       "deviceName": "iPhone 11 test",
       "udid": "device_udid",
       "wdaLocalPort": "8085"
