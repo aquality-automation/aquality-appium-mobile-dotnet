@@ -45,6 +45,41 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         }
 
         [Test]
+        public void TestVerticalSwipeToElement()
+        {
+            var viewControlsScreen = new ViewControlsScreen();
+            OpenRadioButtonsScreen();
+            viewControlsScreen.ScrollToAllInsideScrollViewLabel();
+            Assert.AreEqual(
+                viewControlsScreen.GetAllInsideScrollViewLabelText(),
+                "(And all inside of a ScrollView!)",
+                "Label text does not match expected");
+            viewControlsScreen.ScrollToDisabledButton();
+            Assert.IsFalse(viewControlsScreen.IsDisabledButtonClickable());
+        }
+
+        [Test]
+        public void TestHorizontalSwipeToElement()
+        {
+            string friendlyMessage = "Tab text does not match expected";
+            var viewTabsScrollableScreen = new ViewTabsScrollableScreen();
+            OpenViewTabsScrollableScreen();
+            Assert.IsTrue(viewTabsScrollableScreen.State.IsDisplayed);
+            viewTabsScrollableScreen.SwipeTab(4, 1);
+            viewTabsScrollableScreen.SelectTab(7);
+            Assert.AreEqual(
+                viewTabsScrollableScreen.GetTabContentText(7),
+                "Content for tab with tag Tab 7",
+                friendlyMessage);
+            viewTabsScrollableScreen.SwipeTab(5, 7);
+            viewTabsScrollableScreen.SelectTab(4);
+            Assert.AreEqual(
+                viewTabsScrollableScreen.GetTabContentText(4),
+                "Content for tab with tag Tab 4",
+                friendlyMessage);
+        }
+
+        [Test]
         public void TestCheckBox() => this.InvokeCheckBoxTest();
 
         [Test]
@@ -62,5 +97,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         public void OpenCheckBoxesScreen() => new ViewControlsScreen().Open();
 
         public ICheckBox GetCheckBox(int number) => new ViewControlsScreen().GetCheckBox(number);
+
+        public void OpenViewTabsScrollableScreen() => new ViewTabsScrollableScreen().Open();
     }
 }

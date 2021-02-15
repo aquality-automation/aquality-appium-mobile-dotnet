@@ -1,4 +1,5 @@
 ﻿using Aquality.Appium.Mobile.Applications;
+using Aquality.Appium.Mobile.Elements.Actions;
 using Aquality.Selenium.Core.Applications;
 using Aquality.Selenium.Core.Configurations;
 using Aquality.Selenium.Core.Elements;
@@ -10,8 +11,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System;
 using CoreElement = Aquality.Selenium.Core.Elements.Element;
-using IElementFactory = Aquality.Selenium.Core.Elements.Interfaces.IElementFactory;
 using IElement = Aquality.Appium.Mobile.Elements.Interfaces.IElement;
+using IElementFactory = Aquality.Selenium.Core.Elements.Interfaces.IElementFactory;
 
 namespace Aquality.Appium.Mobile.Elements
 {
@@ -39,7 +40,12 @@ namespace Aquality.Appium.Mobile.Elements
 
         public new AppiumWebElement GetElement(TimeSpan? timeout = null)
         {
-            return (AppiumWebElement) base.GetElement(timeout);
+            return (AppiumWebElement)base.GetElement(timeout);
+        }
+
+        public IElementTouchActions GetTouchActions()
+        {
+            return new ElementTouchActions(this);
         }
     }
 }

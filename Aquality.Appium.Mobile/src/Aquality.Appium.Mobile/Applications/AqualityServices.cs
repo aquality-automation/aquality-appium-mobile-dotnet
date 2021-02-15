@@ -1,4 +1,5 @@
-﻿using Aquality.Appium.Mobile.Configurations;
+﻿using Aquality.Appium.Mobile.Actions;
+using Aquality.Appium.Mobile.Configurations;
 using Aquality.Appium.Mobile.Elements.Interfaces;
 using Aquality.Appium.Mobile.Screens.ScreenFactory;
 using Aquality.Selenium.Core.Applications;
@@ -61,10 +62,15 @@ namespace Aquality.Appium.Mobile.Applications
         public static IScreenFactory ScreenFactory => Get<IScreenFactory>();
 
         /// <summary>
+        /// Gets the the utility used to perform touch actions.
+        /// </summary>
+        public static ITouchActions TouchActions => Get<ITouchActions>();
+
+        /// <summary>
         /// Resolves required service from <see cref="ServiceProvider"/>
         /// </summary>
         /// <typeparam name="T">type of required service</typeparam>
-        /// <exception cref="InvalidOperationException">Thrown if there is no service of the required type.</exception> 
+        /// <exception cref="InvalidOperationException">Thrown if there is no service of the required type.</exception>
         /// <returns></returns>
         public static T Get<T>()
         {
@@ -119,7 +125,7 @@ namespace Aquality.Appium.Mobile.Applications
         /// </summary>
         public static void SetDefaultFactory()
         {
-            ApplicationFactory = ApplicationProfile.IsRemote ? new RemoteApplicationFactory() : (IApplicationFactory) new LocalApplicationFactory();
+            ApplicationFactory = ApplicationProfile.IsRemote ? new RemoteApplicationFactory() : new LocalApplicationFactory() as IApplicationFactory;
         }
 
         private static IServiceProvider ServiceProvider => GetServiceProvider(services => Application, ConfigureServices);
@@ -127,7 +133,7 @@ namespace Aquality.Appium.Mobile.Applications
         private static Func<IServiceProvider, IMobileApplication> StartApplicationFunction => (services) => ApplicationFactory.Application;
 
         private static IServiceCollection ConfigureServices()
-        {           
+        {
             return ApplicationStartupContainer.Value.ConfigureServices(new ServiceCollection(), serviceProvider => Application);
         }
     }

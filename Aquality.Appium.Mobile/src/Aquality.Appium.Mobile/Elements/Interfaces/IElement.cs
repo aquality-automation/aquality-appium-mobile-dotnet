@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Appium;
+﻿using Aquality.Appium.Mobile.Elements.Actions;
+using OpenQA.Selenium.Appium;
 using System;
 using CoreElement = Aquality.Selenium.Core.Elements.Interfaces.IElement;
 
@@ -13,5 +14,11 @@ namespace Aquality.Appium.Mobile.Elements.Interfaces
         /// <returns></returns>
         /// <exception cref="OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
         new AppiumWebElement GetElement(TimeSpan? timeout = null);
+
+        /// <summary>
+        ///Gets the the utility used to perform touch actions for element
+        /// </summary>
+        /// <returns></returns>
+        IElementTouchActions GetTouchActions();
     }
 }

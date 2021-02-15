@@ -1,7 +1,8 @@
 {
+  "loc.action.swipe": "Проводим по экрану из координат (x:{0}; y:{1}) в (x:{2}; y:{3})",
+  "loc.action.swipeLongPress": "Проводим по экрану долгим нажатием из координат (x:{0}; y:{1}) в (x:{2}; y:{3})",
   "loc.application.quit": "Закрытие приложения",
   "loc.application.driver.remote": "Установка драйвера для приложения с использованием сервера по адресу '{0}'",
-  "loc.platform.name.wrong": "Платформа '{0}' не поддерживается.",
   "loc.application.ready": "Приложение на платформе '{0}' готово...",
   "loc.application.implicit.timeout": "Установка таймаута implicit(неявного) ожидания: '{0}' сек.",
   "loc.application.android.activity.start": "Старт активности '{0}' Android приложения в пакете '{1}'",
@@ -23,6 +24,7 @@
   "loc.combobox.impossible.to.select.contain.value.or.text": "Не удаётся выбрать значение которое содержит значение/текст '{0}' в выпадающем списке '{1}'",
   "loc.label": "Надпись",
   "loc.link": "Ссылка",
+  "loc.platform.name.wrong": "Платформа '{0}' не поддерживается.",
   "loc.radio": "Радиокнопка",
   "loc.send.text": "Ввод текста - '{0}'",
   "loc.setting.value": "Установка значения '{0}'",

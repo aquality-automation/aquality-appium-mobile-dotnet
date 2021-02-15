@@ -31,10 +31,18 @@
     "pollingInterval": 300
   },
   "logger": {
-    "language": "ru",
+    "language": "en",
     "logPageSource": true
   },
   "elementCache": {
     "isEnabled": true
+  },
+  "touchActions": {
+    "swipe": {
+      "duration": 1000,
+      "retries": 5,
+      "verticalOffset": 0.2,
+      "horizontalOffset": 0.5
+    }
   }
 }
