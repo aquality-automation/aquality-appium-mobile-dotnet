@@ -1,4 +1,5 @@
 ﻿using Aquality.Selenium.Core.Configurations;
+using System;
 
 namespace Aquality.Appium.Mobile.Configurations
 {
@@ -14,10 +15,10 @@ namespace Aquality.Appium.Mobile.Configurations
 
         public int SwipeRetries => settingsFile.GetValue<int>($"{swipeSettingsPath}.retries");
 
-        public long SwipeDuration => settingsFile.GetValue<long>($"{swipeSettingsPath}.duration");
+        public TimeSpan SwipeDuration => TimeSpan.FromSeconds(settingsFile.GetValue<long>($"{swipeSettingsPath}.duration"));
 
-        public float SwipeVerticalOffset => settingsFile.GetValue<float>($"{swipeSettingsPath}.verticalOffset");
+        public double SwipeVerticalOffset => settingsFile.GetValue<double>($"{swipeSettingsPath}.verticalOffset");
 
-        public float SwipeHorizontalOffset => settingsFile.GetValue<float>($"{swipeSettingsPath}.horizontalOffset");
+        public double SwipeHorizontalOffset => settingsFile.GetValue<double>($"{swipeSettingsPath}.horizontalOffset");
     }
 }

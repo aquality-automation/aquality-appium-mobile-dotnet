@@ -7,11 +7,11 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
 {
     public class ViewControlsScreen : ApplicationActivityScreen
     {
-        private readonly ILabel lblAllInsideScrollView = ElementFactory.GetLabel(
+        private readonly ILabel allInsideScrollViewLabel = ElementFactory.GetLabel(
             MobileBy.AccessibilityId("(And all inside of a ScrollView!)"),
             "All inside of Scroll View");
 
-        private readonly IButton btnDisabled = ElementFactory.GetButton(
+        private readonly IButton disabledButton = ElementFactory.GetButton(
             By.Id("button_disabled"),
             "Disabled");
 
@@ -20,6 +20,10 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
         }
 
         protected override string Activity => ".view.Controls1";
+
+        public string AllInsideScrollViewLabelText => allInsideScrollViewLabel.Text;
+
+        public bool IsDisabledButtonClickable => disabledButton.State.IsClickable;
 
         public IRadioButton GetRadioButton(int number) =>
             ElementFactory.GetRadioButton(
@@ -31,16 +35,12 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
                 MobileBy.AccessibilityId($"Checkbox {number}"),
                 number.ToString());
 
-        public void ScrollToAllInsideScrollViewLabel() => lblAllInsideScrollView
-            .GetTouchActions()
+        public void ScrollToAllInsideScrollViewLabel() => allInsideScrollViewLabel
+            .TouchActions
             .ScrollToElement(SwipeDirection.Down);
 
-        public string GetAllInsideScrollViewLabelText() => lblAllInsideScrollView.Text;
-
-        public void ScrollToDisabledButton() => btnDisabled
-            .GetTouchActions()
+        public void ScrollToDisabledButton() => disabledButton
+            .TouchActions
             .ScrollToElement(SwipeDirection.Up);
-
-        public bool IsDisabledButtonClickable() => btnDisabled.State.IsClickable;
     }
 }

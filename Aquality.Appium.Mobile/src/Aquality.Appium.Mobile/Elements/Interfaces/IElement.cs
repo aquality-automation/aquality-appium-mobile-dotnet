@@ -11,14 +11,12 @@ namespace Aquality.Appium.Mobile.Elements.Interfaces
         /// Gets current mobile element by specified <see cref="CoreElement.Locator"/>
         /// </summary>
         /// <param name="timeout">Timeout for waiting (would use default timeout from settings by default).</param>
-        /// <returns></returns>
         /// <exception cref="OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
         new AppiumWebElement GetElement(TimeSpan? timeout = null);
 
         /// <summary>
-        ///Gets the the utility used to perform touch actions for element
+        /// Utility used to perform touch actions for element
         /// </summary>
-        /// <returns></returns>
-        IElementTouchActions GetTouchActions();
+        IElementTouchActions TouchActions { get; }
     }
 }

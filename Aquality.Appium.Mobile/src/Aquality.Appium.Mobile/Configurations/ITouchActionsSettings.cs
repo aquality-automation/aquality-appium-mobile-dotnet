@@ -1,4 +1,6 @@
-﻿namespace Aquality.Appium.Mobile.Configurations
+﻿using System;
+
+namespace Aquality.Appium.Mobile.Configurations
 {
     /// <summary>
     /// Describes Touch Actions settings.
@@ -11,9 +13,9 @@
         int SwipeRetries { get; }
 
         /// <summary>
-        /// Gets the number of milliseconds required to perform a swipe action.
+        /// Gets the number of seconds required to perform a swipe action.
         /// </summary>
-        long SwipeDuration { get; }
+        TimeSpan SwipeDuration { get; }
 
         /// <summary>
         /// Gets the offset coefficient to adjust the start/end point for swipe action relatively to the parallel screen edge.
@@ -28,7 +30,7 @@
         /// If offset coefficient == 0.2, then the end point's X coordinate == screen's width * 0.2.
         /// The vice versa for swipe right action.
         /// </summary>
-        float SwipeVerticalOffset { get; }
+        double SwipeVerticalOffset { get; }
 
         /// <summary>
         /// Gets the offset coefficient to adjust the start/end point for swipe action relatively to the perpendicular screen edge.
@@ -43,6 +45,6 @@
         /// If offset coefficient == 0.5, then the end point's Y coordinate == screen's length * 0.5.
         /// The vice versa for swipe right action.
         /// </summary>
-        float SwipeHorizontalOffset { get; }
+        double SwipeHorizontalOffset { get; }
     }
 }

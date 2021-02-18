@@ -51,17 +51,17 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             OpenRadioButtonsScreen();
             viewControlsScreen.ScrollToAllInsideScrollViewLabel();
             Assert.AreEqual(
-                viewControlsScreen.GetAllInsideScrollViewLabelText(),
+                viewControlsScreen.AllInsideScrollViewLabelText,
                 "(And all inside of a ScrollView!)",
                 "Label text does not match expected");
             viewControlsScreen.ScrollToDisabledButton();
-            Assert.IsFalse(viewControlsScreen.IsDisabledButtonClickable());
+            Assert.IsFalse(viewControlsScreen.IsDisabledButtonClickable);
         }
 
         [Test]
         public void TestHorizontalSwipeToElement()
         {
-            string friendlyMessage = "Tab text does not match expected";
+            var friendlyMessage = "Tab text does not match expected";
             var viewTabsScrollableScreen = new ViewTabsScrollableScreen();
             OpenViewTabsScrollableScreen();
             Assert.IsTrue(viewTabsScrollableScreen.State.IsDisplayed);

@@ -10,6 +10,7 @@ namespace Aquality.Appium.Mobile.Elements.Actions
     public class ElementTouchActions : IElementTouchActions
     {
         private readonly IElement element;
+        private readonly ITouchActionsSettings touchActionsSettings = AqualityServices.Get<ITouchActionsSettings>();
         private readonly Point scrollDownStartPoint;
         private readonly Point scrollDownEndPoint;
         private readonly Point swipeLeftStartPoint;
@@ -18,27 +19,28 @@ namespace Aquality.Appium.Mobile.Elements.Actions
         private readonly Point scrollUpEndPoint;
         private readonly Point swipeRightStartPoint;
         private readonly Point swipeRightEndPoint;
-        private readonly ITouchActionsSettings touchActionsSettings = AqualityServices.Get<ITouchActionsSettings>();
 
         public ElementTouchActions(IElement element)
         {
             this.element = element;
+            var horizontalOffset = touchActionsSettings.SwipeHorizontalOffset;
+            var verticalOffset = touchActionsSettings.SwipeVerticalOffset;
             scrollDownStartPoint = RecalculatePointCoordinates(
                 GetBottomRightCornerPoint(),
-                1 - touchActionsSettings.SwipeHorizontalOffset,
-                1 - touchActionsSettings.SwipeVerticalOffset);
+                1 - horizontalOffset,
+                1 - verticalOffset);
             scrollDownEndPoint = RecalculatePointCoordinates(
                 GetBottomRightCornerPoint(),
-                touchActionsSettings.SwipeHorizontalOffset,
-                touchActionsSettings.SwipeVerticalOffset);
+                horizontalOffset,
+                verticalOffset);
             swipeLeftStartPoint = RecalculatePointCoordinates(
                 GetBottomRightCornerPoint(),
-                1 - touchActionsSettings.SwipeVerticalOffset,
-                1 - touchActionsSettings.SwipeHorizontalOffset);
+                1 - verticalOffset,
+                1 - horizontalOffset);
             swipeLeftEndPoint = RecalculatePointCoordinates(
                 GetBottomRightCornerPoint(),
-                touchActionsSettings.SwipeHorizontalOffset,
-                touchActionsSettings.SwipeVerticalOffset);
+                horizontalOffset,
+                verticalOffset);
             scrollUpStartPoint = scrollDownEndPoint;
             scrollUpEndPoint = scrollDownStartPoint;
             swipeRightStartPoint = swipeLeftEndPoint;
@@ -57,8 +59,8 @@ namespace Aquality.Appium.Mobile.Elements.Actions
 
         public void ScrollToElement(SwipeDirection direction)
         {
-            int numberOfRetries = touchActionsSettings.SwipeRetries;
-            ITouchActions touchActions = AqualityServices.TouchActions;
+            var numberOfRetries = touchActionsSettings.SwipeRetries;
+            var touchActions = AqualityServices.TouchActions;
             while (numberOfRetries-- > 0 && !element.State.IsDisplayed)
             {
                 switch (direction)
@@ -76,7 +78,7 @@ namespace Aquality.Appium.Mobile.Elements.Actions
                         touchActions.Swipe(swipeRightStartPoint, swipeRightEndPoint);
                         break;
                     default:
-                        throw new InvalidEnumArgumentException($"'{direction.ToString()}' direction does not exist");
+                        throw new InvalidEnumArgumentException($"'{direction}' direction does not exist");
                 }
             }
         }
@@ -85,8 +87,8 @@ namespace Aquality.Appium.Mobile.Elements.Actions
 
         private Point RecalculatePointCoordinates(
             Point point,
-            float horizontalOffset,
-            float verticalOffset)
+            double horizontalOffset,
+            double verticalOffset)
         {
             return new Point((int)(point.X * horizontalOffset),
                              (int)(point.Y * verticalOffset));
@@ -94,7 +96,7 @@ namespace Aquality.Appium.Mobile.Elements.Actions
 
         private Point GetBottomRightCornerPoint()
         {
-            Size screnSize = AqualityServices.Application.Driver.Manage().Window.Size;
+            var screnSize = AqualityServices.Application.Driver.Manage().Window.Size;
             return new Point(screnSize.Width, screnSize.Height);
         }
     }

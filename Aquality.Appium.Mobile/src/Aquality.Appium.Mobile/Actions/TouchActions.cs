@@ -21,7 +21,7 @@ namespace Aquality.Appium.Mobile.Actions
             PerformTouchAction(
                 touchAction => touchAction
                     .Press(startPoint.X, startPoint.Y)
-                    .Wait(AqualityServices.Get<ITouchActionsSettings>().SwipeDuration),
+                    .Wait(GetLongSwipeDuration()),
                 endPoint);
         }
 
@@ -42,6 +42,12 @@ namespace Aquality.Appium.Mobile.Actions
             var touchAction = new TouchAction(AqualityServices.Application.Driver);
             actionRetrier.DoWithRetry(() =>
                 function(touchAction).MoveTo(endPoint.X, endPoint.Y).Release().Perform());
+        }
+
+        private long GetLongSwipeDuration()
+        {
+            var swipeDuration = AqualityServices.Get<ITouchActionsSettings>().SwipeDuration;
+            return Convert.ToInt64(swipeDuration.TotalMilliseconds);
         }
     }
 }

@@ -22,6 +22,8 @@ namespace Aquality.Appium.Mobile.Elements
         {
         }
 
+        public IElementTouchActions TouchActions => new ElementTouchActions(this);
+
         protected override IElementActionRetrier ActionRetrier => AqualityServices.Get<IElementActionRetrier>();
 
         protected override IApplication Application => AqualityServices.Application;
@@ -41,11 +43,6 @@ namespace Aquality.Appium.Mobile.Elements
         public new AppiumWebElement GetElement(TimeSpan? timeout = null)
         {
             return (AppiumWebElement)base.GetElement(timeout);
-        }
-
-        public IElementTouchActions GetTouchActions()
-        {
-            return new ElementTouchActions(this);
         }
     }
 }

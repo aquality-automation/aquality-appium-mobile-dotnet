@@ -1,6 +1,5 @@
 ﻿using Aquality.Appium.Mobile.Elements.Interfaces;
 using OpenQA.Selenium;
-using System.Drawing;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens
 {
@@ -24,8 +23,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
 
         public void SwipeTab(int startTabNumber, int endTabNumber)
         {
-            Point endTabPoint = GetTab(endTabNumber).GetElement().Location;
-            GetTab(startTabNumber).GetTouchActions().Swipe(endTabPoint);
+            var endTabPoint = GetTab(endTabNumber).GetElement().Location;
+            GetTab(startTabNumber).TouchActions.Swipe(endTabPoint);
         }
 
         public string GetTabContentText(int tabNumber) => GetTabContent(tabNumber).GetElement().Text;

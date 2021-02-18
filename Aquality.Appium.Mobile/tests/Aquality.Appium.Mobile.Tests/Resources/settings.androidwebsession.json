@@ -39,7 +39,7 @@
   },
   "touchActions": {
     "swipe": {
-      "duration": 1000,
+      "duration": 1,
       "retries": 5,
       "verticalOffset": 0.2,
       "horizontalOffset": 0.5
