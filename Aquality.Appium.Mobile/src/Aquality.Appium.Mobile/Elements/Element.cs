@@ -42,7 +42,7 @@ namespace Aquality.Appium.Mobile.Elements
 
         public new AppiumWebElement GetElement(TimeSpan? timeout = null)
         {
-            return (AppiumWebElement)base.GetElement(timeout);
+            return (AppiumWebElement) base.GetElement(timeout);
         }
     }
 }
