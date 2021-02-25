@@ -28,7 +28,6 @@ namespace Aquality.Appium.Mobile.Elements
                 return string.IsNullOrEmpty(checkedAttribute)
                     ? GetElement().Selected
                     : checkedAttribute == "true";
-
             });
         }
     }

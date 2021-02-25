@@ -1,7 +1,8 @@
 {
+  "loc.action.swipe": "Swiping from coordinates (x:{0}; y:{1}) to (x:{2}; y:{3})",
+  "loc.action.swipeLongPress": "Swiping using long press from coordinates (x:{0}; y:{1}) to (x:{2}; y:{3})",
   "loc.application.quit": "Closing application",
   "loc.application.driver.remote": "Setting application driver using the server on '{0}'",
-  "loc.platform.name.wrong": "Platform '{0}' is not supported.",
   "loc.application.ready": "Application on platform '{0}' is ready...",
   "loc.application.implicit.timeout": "Set implicit timeout '{0}' in seconds",
   "loc.application.android.activity.start": "Starting the '{0}' activity of the Android app at package '{1}'",
@@ -23,6 +24,7 @@
   "loc.combobox.impossible.to.select.contain.value.or.text": "It is impossible to select option that contains value/text '{0}' from combobox '{1}'",
   "loc.label": "Label",
   "loc.link": "Link",
+  "loc.platform.name.wrong": "Platform '{0}' is not supported.",
   "loc.radio": "Radiobutton",
   "loc.send.text": "Setting text - '{0}'",
   "loc.setting.value": "Setting value '{0}'",

@@ -1,7 +1,8 @@
 {
+  "loc.action.swipe": "Праводзім па экране з каардынатаў (x:{0}; y:{1}) у (x:{2}; y:{3})",
+  "loc.action.swipeLongPress": "Праводзім па экране доўгім націскам з каардынатаў (x:{0}; y:{1}) у (x:{2}; y:{3})",
   "loc.application.quit": "Закрываем праграму",
   "loc.application.driver.remote": "Усталёўваем драйвер праграммы з выкарыстаннем сервера па адрасе '{0}'",
-  "loc.platform.name.wrong": "Платформа '{0}' не падтрымліваецца.",
   "loc.application.ready": "Праграма на платформе '{0}' гатовая...",
   "loc.application.implicit.timeout": "Задаем таймаўт implicit(няяўнага) чакання: '{0}' сек.",
   "loc.application.android.activity.start": "Стартуем '{0}' актыўнасць Android праграмы ў пакеце '{1}'",
@@ -23,6 +24,7 @@
   "loc.combobox.impossible.to.select.contain.value.or.text": "Немагчыма выбраць опцыю, якая змяшчае значэнне/тэкст '{0}' у камбабоксе '{1}'",
   "loc.label": "Надпіс",
   "loc.link": "Спасылка",
+  "loc.platform.name.wrong": "Платформа '{0}' не падтрымліваецца.",
   "loc.radio": "Радыёкнопка",
   "loc.send.text": "Задаем тэкст - '{0}'",
   "loc.setting.value": "Задаем значэнне '{0}'",

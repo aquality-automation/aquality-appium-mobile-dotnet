@@ -45,6 +45,44 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         }
 
         [Test]
+        public void TestVerticalSwipeToElement()
+        {
+            var viewControlsScreen = new ViewControlsScreen();
+            OpenRadioButtonsScreen();
+            viewControlsScreen.ScrollToAllInsideScrollViewLabel();
+            Assert.AreEqual(
+                viewControlsScreen.AllInsideScrollViewLabelText,
+                "(And all inside of a ScrollView!)",
+                "Label text does not match expected");
+            viewControlsScreen.ScrollToDisabledButton();
+            Assert.IsFalse(viewControlsScreen.IsDisabledButtonClickable);
+        }
+
+        [Test]
+        public void TestHorizontalSwipeToElement()
+        {
+            var tabTextDoesNotMatchFriendlyMessage = "Tab text does not match expected";
+            var tabContentFriendlyMessage = "Content for tab with tag Tab";
+            var tabSevenTag = 7;
+            var tabFourTag = 4;
+            var viewTabsScrollableScreen = new ViewTabsScrollableScreen();
+            OpenViewTabsScrollableScreen();
+            Assert.IsTrue(viewTabsScrollableScreen.State.IsDisplayed);
+            viewTabsScrollableScreen.SwipeTab(tabFourTag, 1);
+            viewTabsScrollableScreen.SelectTab(tabSevenTag);
+            Assert.AreEqual(
+                viewTabsScrollableScreen.GetTabContentText(tabSevenTag),
+                $"{tabContentFriendlyMessage} {tabSevenTag}",
+                tabTextDoesNotMatchFriendlyMessage);
+            viewTabsScrollableScreen.SwipeTab(5, tabSevenTag);
+            viewTabsScrollableScreen.SelectTab(tabFourTag);
+            Assert.AreEqual(
+                viewTabsScrollableScreen.GetTabContentText(tabFourTag),
+                $"{tabContentFriendlyMessage} {tabFourTag}",
+                tabTextDoesNotMatchFriendlyMessage);
+        }
+
+        [Test]
         public void TestCheckBox() => this.InvokeCheckBoxTest();
 
         [Test]
@@ -62,5 +100,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         public void OpenCheckBoxesScreen() => new ViewControlsScreen().Open();
 
         public ICheckBox GetCheckBox(int number) => new ViewControlsScreen().GetCheckBox(number);
+
+        public void OpenViewTabsScrollableScreen() => new ViewTabsScrollableScreen().Open();
     }
 }
