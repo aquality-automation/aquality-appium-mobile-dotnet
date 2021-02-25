@@ -61,22 +61,25 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         [Test]
         public void TestHorizontalSwipeToElement()
         {
-            var friendlyMessage = "Tab text does not match expected";
+            var tabTextDoesNotMatchFriendlyMessage = "Tab text does not match expected";
+            var tabContentFriendlyMessage = "Content for tab with tag Tab";
+            var tabSevenTag = 7;
+            var tabFourTag = 4;
             var viewTabsScrollableScreen = new ViewTabsScrollableScreen();
             OpenViewTabsScrollableScreen();
             Assert.IsTrue(viewTabsScrollableScreen.State.IsDisplayed);
-            viewTabsScrollableScreen.SwipeTab(4, 1);
-            viewTabsScrollableScreen.SelectTab(7);
+            viewTabsScrollableScreen.SwipeTab(tabFourTag, 1);
+            viewTabsScrollableScreen.SelectTab(tabSevenTag);
             Assert.AreEqual(
-                viewTabsScrollableScreen.GetTabContentText(7),
-                "Content for tab with tag Tab 7",
-                friendlyMessage);
-            viewTabsScrollableScreen.SwipeTab(5, 7);
-            viewTabsScrollableScreen.SelectTab(4);
+                viewTabsScrollableScreen.GetTabContentText(tabSevenTag),
+                $"{tabContentFriendlyMessage} {tabSevenTag}",
+                tabTextDoesNotMatchFriendlyMessage);
+            viewTabsScrollableScreen.SwipeTab(5, tabSevenTag);
+            viewTabsScrollableScreen.SelectTab(tabFourTag);
             Assert.AreEqual(
-                viewTabsScrollableScreen.GetTabContentText(4),
-                "Content for tab with tag Tab 4",
-                friendlyMessage);
+                viewTabsScrollableScreen.GetTabContentText(tabFourTag),
+                $"{tabContentFriendlyMessage} {tabFourTag}",
+                tabTextDoesNotMatchFriendlyMessage);
         }
 
         [Test]
