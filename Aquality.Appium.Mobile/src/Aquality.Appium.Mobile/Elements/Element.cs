@@ -6,6 +6,7 @@ using Aquality.Selenium.Core.Elements;
 using Aquality.Selenium.Core.Elements.Interfaces;
 using Aquality.Selenium.Core.Localization;
 using Aquality.Selenium.Core.Utilities;
+using Aquality.Selenium.Core.Visualization;
 using Aquality.Selenium.Core.Waitings;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -35,6 +36,8 @@ namespace Aquality.Appium.Mobile.Elements
         protected override IElementFactory Factory => AqualityServices.ElementFactory;
 
         protected override IElementFinder Finder => AqualityServices.Get<IElementFinder>();
+
+        protected override IImageComparator ImageComparator => AqualityServices.Get<IImageComparator>();
 
         protected override ILocalizedLogger LocalizedLogger => AqualityServices.LocalizedLogger;
 
