@@ -65,8 +65,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             OpenRadioButtonsScreen();
             viewControlsScreen.ScrollToAllInsideScrollViewLabel();
             Assert.AreEqual(
-                viewControlsScreen.AllInsideScrollViewLabelText,
                 "(And all inside of a ScrollView!)",
+                viewControlsScreen.AllInsideScrollViewLabelText,
                 "Label text does not match expected");
             viewControlsScreen.ScrollToDisabledButton();
             Assert.IsFalse(viewControlsScreen.IsDisabledButtonClickable);
