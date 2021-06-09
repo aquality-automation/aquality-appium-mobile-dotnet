@@ -503,11 +503,6 @@
             Unique screen locator.
             </summary>
         </member>
-        <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Name">
-            <summary>
-            Unique screen name.
-            </summary>
-        </member>
         <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Size">
             <summary>
             Size of the element described by screen locator.

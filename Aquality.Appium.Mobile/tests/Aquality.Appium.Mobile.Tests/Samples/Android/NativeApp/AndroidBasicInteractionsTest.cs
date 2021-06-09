@@ -25,6 +25,20 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         }
 
         [Test]
+        public void SaveAndCompareScreenDump()
+        {
+            var searchScreen = new InvokeSearchScreen();
+            searchScreen.Open();
+            Assume.That(searchScreen.State.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
+
+            searchScreen.Dump.Save();
+            Assert.That(searchScreen.Dump.Compare(), Is.EqualTo(0), "Current screen should have no visual difference comparing to just saved dump");
+            const string query = "Hello world!";
+            searchScreen.TypeQuery(query);
+            Assert.That(searchScreen.Dump.Compare(), Is.GreaterThan(0), "Current screen should have visual difference comparing to dump saved before the search");
+        }
+
+        [Test]
         public void AlertInteraction()
         {
             LogStep("Open the 'Alert Dialog' activity of the android app");
