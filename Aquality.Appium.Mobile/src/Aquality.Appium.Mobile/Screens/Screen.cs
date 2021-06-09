@@ -1,6 +1,9 @@
 ﻿using Aquality.Appium.Mobile.Applications;
 using Aquality.Appium.Mobile.Elements.Interfaces;
+using Aquality.Selenium.Core.Configurations;
 using Aquality.Selenium.Core.Elements.Interfaces;
+using Aquality.Selenium.Core.Forms;
+using Aquality.Selenium.Core.Localization;
 using OpenQA.Selenium;
 using System.Drawing;
 using IElement = Aquality.Appium.Mobile.Elements.Interfaces.IElement;
@@ -13,7 +16,7 @@ namespace Aquality.Appium.Mobile.Screens
     /// Use <see cref="ScreenFactory.ScreenTypeAttribute"/> on your screen class to identify platform.
     /// <seealso cref="ScreenFactory.ScreenFactory"/>
     /// </summary>
-    public abstract class Screen : IScreen
+    public abstract class Screen : Form<IElement>, IScreen
     {
         private readonly ILabel screenLabel;
 
@@ -39,7 +42,11 @@ namespace Aquality.Appium.Mobile.Screens
         /// Element factory <see cref="IElementFactory"/>
         /// </summary>
         protected static IElementFactory ElementFactory => AqualityServices.ElementFactory;
-        
+
+        protected override IVisualizationConfiguration VisualizationConfiguration => AqualityServices.Get<IVisualizationConfiguration>();
+
+        protected override ILocalizedLogger LocalizedLogger => AqualityServices.LocalizedLogger;
+
         /// <summary>
         /// Locator of the screen.
         /// </summary>
@@ -48,12 +55,12 @@ namespace Aquality.Appium.Mobile.Screens
         /// <summary>
         /// Name of the screen.
         /// </summary>
-        public string Name { get; }
+        public override string Name { get; }
 
         /// <summary>
         /// Gets size of form element defined by its locator.
         /// </summary>
-        public Size Size => screenLabel.GetElement().Size;
+        public Size Size => screenLabel.Visual.Size;
 
         /// <summary>
         /// Provides ability to get screen's state (whether it is displayed, exists or not) and respective waiting functions.

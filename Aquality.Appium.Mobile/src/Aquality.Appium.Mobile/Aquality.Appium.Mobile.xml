@@ -4,6 +4,20 @@
         <name>Aquality.Appium.Mobile</name>
     </assembly>
     <members>
+        <member name="M:Aquality.Appium.Mobile.Actions.ITouchActions.Swipe(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Swipes from start point to end point using TouchAction.
+            </summary>
+            <param name="startPoint">Point on screen to swipe from.</param>
+            <param name="endPoint">Point on screen to swipe to.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Actions.ITouchActions.SwipeWithLongPress(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Performs long press action and moves cursor from a start point to an end point imitating the swipe action.
+            </summary>
+            <param name="startPoint">Point on screen to swipe from.</param>
+            <param name="endPoint">Point on screen to swipe to.</param>
+        </member>
         <member name="T:Aquality.Appium.Mobile.Applications.AqualityServices">
             <summary>
             Controls application and Aquality services
@@ -50,12 +64,17 @@
             Gets factory to create screens.
             </summary>
         </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.TouchActions">
+            <summary>
+            Gets the the utility used to perform touch actions.
+            </summary>
+        </member>
         <member name="M:Aquality.Appium.Mobile.Applications.AqualityServices.Get``1">
             <summary>
             Resolves required service from <see cref="P:Aquality.Appium.Mobile.Applications.AqualityServices.ServiceProvider"/>
             </summary>
             <typeparam name="T">type of required service</typeparam>
-            <exception cref="T:System.InvalidOperationException">Thrown if there is no service of the required type.</exception> 
+            <exception cref="T:System.InvalidOperationException">Thrown if there is no service of the required type.</exception>
             <returns></returns>
         </member>
         <member name="P:Aquality.Appium.Mobile.Applications.AqualityServices.Application">
@@ -181,6 +200,78 @@
             Gets desired Appium local service server options.
             </summary>
         </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.ITouchActionsSettings">
+            <summary>
+            Describes Touch Actions settings.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.ITouchActionsSettings.SwipeRetries">
+            <summary>
+            Gets number of retries to perform swipe.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.ITouchActionsSettings.SwipeDuration">
+            <summary>
+            Gets the number of seconds required to perform a swipe action.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.ITouchActionsSettings.SwipeVerticalOffset">
+            <summary>
+            Gets the offset coefficient to adjust the start/end point for swipe action relatively to the parallel screen edge.
+            Example for swipe down action:
+            The offset coefficient is used to calculate start/end point's Y coordinate.
+            If offset coefficient == 0.2, then the start point's Y coordinate == screen's length * (1 - 0.2).
+            If offset coefficient == 0.2, then the end point's Y coordinate == screen's length * 0.2.
+            The vice versa for swipe up action.
+            Example for swipe left action:
+            The offset coefficient is used to calculate start/end point's X coordinate.
+            If offset coefficient == 0.2, then the start point's X coordinate == screen's width * (1 - 0.2).
+            If offset coefficient == 0.2, then the end point's X coordinate == screen's width * 0.2.
+            The vice versa for swipe right action.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.ITouchActionsSettings.SwipeHorizontalOffset">
+            <summary>
+            Gets the offset coefficient to adjust the start/end point for swipe action relatively to the perpendicular screen edge.
+            Example for swipe down action:
+            The offset coefficient is used to calculate start/end point's X coordinate.
+            If offset coefficient == 0.5, then the start point's X coordinate == screen's width * (1 - 0.5).
+            If offset coefficient == 0.5, then the end point's X coordinate == screen's width * 0.5.
+            The vice versa for swipe up action.
+            Example for swipe left action:
+            The offset coefficient is used to calculate start/end point's X coordinate.
+            If offset coefficient == 0.5, then the start point's Y coordinate == screen's length * (1 - 0.5).
+            If offset coefficient == 0.5, then the end point's Y coordinate == screen's length * 0.5.
+            The vice versa for swipe right action.
+            </summary>
+        </member>
+        <member name="T:Aquality.Appium.Mobile.Elements.Actions.IElementTouchActions">
+            <summary>
+            Describes Touch Actions for elements.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Actions.IElementTouchActions.Swipe(System.Drawing.Point)">
+            <summary>
+            Swipes from element to end point using TouchAction.
+            </summary>
+            <param name="endPoint"> Point on screen to swipe to.</param>
+            <exception cref="T:OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Actions.IElementTouchActions.SwipeWithLongPress(System.Drawing.Point)">
+            <summary>
+            Swipes from element to end point using LongPress.
+            <param name="endPoint"> Point on screen to swipe to.</param>
+            </summary>
+            <exception cref="T:OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Elements.Actions.IElementTouchActions.ScrollToElement(Aquality.Appium.Mobile.Actions.SwipeDirection)">
+            <summary>
+            Scrolls current screen in provided direction until element is displayed.
+            <param name="direction"> Direction to swipe.</param>
+            </summary>
+            <exception cref="T:OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Thrown if incorrect swipe direction was provided.</exception>
+        </member>
         <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.ICheckBox.Check">
             <summary>
             Set true.
@@ -268,8 +359,12 @@
             Gets current mobile element by specified <see cref="P:Aquality.Selenium.Core.Elements.Interfaces.IElement.Locator"/>
             </summary>
             <param name="timeout">Timeout for waiting (would use default timeout from settings by default).</param>
-            <returns></returns>
             <exception cref="T:OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Elements.Interfaces.IElement.TouchActions">
+            <summary>
+            Utility used to perform touch actions for element
+            </summary>
         </member>
         <member name="M:Aquality.Appium.Mobile.Elements.Interfaces.IElementFactory.Get``1(OpenQA.Selenium.By,System.String,Aquality.Selenium.Core.Elements.ElementState)">
             <summary>
@@ -406,11 +501,6 @@
         <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Locator">
             <summary>
             Unique screen locator.
-            </summary>
-        </member>
-        <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Name">
-            <summary>
-            Unique screen name.
             </summary>
         </member>
         <member name="P:Aquality.Appium.Mobile.Screens.IScreen.Size">

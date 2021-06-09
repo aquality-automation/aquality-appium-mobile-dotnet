@@ -20,9 +20,11 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
 
         public string SearchResult => searchResultLabel.Text;
 
+        public void TypeQuery(string query) => searchTextBox.ClearAndType(query);
+
         public void SubmitSearch(string query)
         {
-            searchTextBox.ClearAndType(query);
+            TypeQuery(query);
             startSearchButton.Click();
         }
     }
