@@ -25,6 +25,12 @@ stages:
         projectVersion: '$(Build.BuildNumber)'
         extraProperties: |
           sonar.coverage.exclusions=**/**
+          
+    - task: UseDotNet@2
+      displayName: Use .NET 6.0
+      inputs:
+        packageType: 'sdk'
+        version: '6.0.x'
     
     - task: DotNetCoreCLI@2
       displayName: 'Build solution'
@@ -93,11 +99,6 @@ stages:
           appium driver install uiautomator2
           appium driver list
           echo "UIA2 driver installed"
-          
-          echo "Installing libgdiplus for System.Drawing.Common"
-          brew update
-          brew install mono-libgdiplus
-          echo "mono-libgdiplus installed"
 
           echo "Installing and Running Appium doctor"
           npm install -g request@2.34.0
@@ -115,7 +116,13 @@ stages:
           appium --allow-insecure chromedriver_autodownload --base-path /wd/hub &
           echo "Appium server started"
       condition: and(succeeded(), eq(variables['isRemote'], 'true'))
-
+          
+    - task: UseDotNet@2
+      displayName: Use .NET 6.0
+      inputs:
+        packageType: 'sdk'
+        version: '6.0.x'
+        
     - task: DotNetCoreCLI@2
       displayName: 'Run tests'
       inputs:
