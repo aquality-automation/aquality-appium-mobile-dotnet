@@ -1,6 +1,7 @@
 ﻿using Aquality.Appium.Mobile.Applications;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
 {
@@ -35,8 +36,10 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
         }
 
         private void CheckIsKeyboardShown(bool expectedState, string message)
-        {            
-            Assert.AreEqual(expectedState, AqualityServices.Application.Driver.IsKeyboardShown(), message);
+        {
+            Assert.IsTrue(
+                AqualityServices.ConditionalWait.WaitFor(driver => ((AppiumDriver) driver).IsKeyboardShown() == expectedState, message: message),
+                message);
         }
     }
 }
