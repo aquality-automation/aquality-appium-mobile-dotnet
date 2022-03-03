@@ -93,6 +93,11 @@ stages:
           appium driver install uiautomator2
           appium driver list
           echo "UIA2 driver installed"
+          
+          echo "Installing libgdiplus for System.Drawing.Common"
+          brew update
+          brew install mono-libgdiplus
+          echo "mono-libgdiplus installed"
 
           echo "Installing and Running Appium doctor"
           npm install -g request@2.34.0
