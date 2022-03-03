@@ -12,7 +12,7 @@ namespace Aquality.Appium.Mobile.Applications
         /// <summary>
         /// Provides instance of Appium Driver for current application.
         /// </summary>
-        new AppiumDriver<AppiumWebElement> Driver { get; }
+        new AppiumDriver Driver { get; }
 
         /// <summary>
         /// Closes application and disposes <see cref="DriverService"/> if it not null.

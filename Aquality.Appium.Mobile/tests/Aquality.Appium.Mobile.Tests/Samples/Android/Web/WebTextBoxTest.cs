@@ -35,9 +35,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
         }
 
         private void CheckIsKeyboardShown(bool expectedState, string message)
-        {
-            // TODO: not yet implemented in dotnet Appium client: http://appium.io/docs/en/commands/device/keys/is-keyboard-shown/
-            Assert.AreEqual(expectedState, expectedState, message);
+        {            
+            Assert.AreEqual(expectedState, AqualityServices.Application.Driver.IsKeyboardShown(), message);
         }
     }
 }

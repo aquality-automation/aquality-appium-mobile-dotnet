@@ -12,7 +12,7 @@ namespace Aquality.Appium.Mobile.Elements.Interfaces
         /// </summary>
         /// <param name="timeout">Timeout for waiting (would use default timeout from settings by default).</param>
         /// <exception cref="OpenQA.Selenium.NoSuchElementException">Thrown if element was not found.</exception>
-        new AppiumWebElement GetElement(TimeSpan? timeout = null);
+        new AppiumElement GetElement(TimeSpan? timeout = null);
 
         /// <summary>
         /// Utility used to perform touch actions for element

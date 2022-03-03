@@ -15,7 +15,7 @@ namespace Aquality.Appium.Mobile.Applications
     {
         public abstract IMobileApplication Application { get; }
 
-        protected virtual AppiumDriver<AppiumWebElement> GetDriver(Uri serviceUrl)
+        protected virtual AppiumDriver GetDriver(Uri serviceUrl)
         {
             var platformName = AqualityServices.ApplicationProfile.PlatformName;
             var driverOptions = AqualityServices.ApplicationProfile.DriverSettings.AppiumOptions;
@@ -24,17 +24,17 @@ namespace Aquality.Appium.Mobile.Applications
                 () => CreateSession(platformName, serviceUrl, driverOptions, commandTimeout));
         }
 
-        protected virtual AppiumDriver<AppiumWebElement> CreateSession(PlatformName platformName, Uri serviceUrl, AppiumOptions driverOptions, TimeSpan commandTimeout)
+        protected virtual AppiumDriver CreateSession(PlatformName platformName, Uri serviceUrl, AppiumOptions driverOptions, TimeSpan commandTimeout)
         {
             AqualityServices.LocalizedLogger.Info("loc.application.driver.remote", serviceUrl);
-            AppiumDriver<AppiumWebElement> driver;
+            AppiumDriver driver;
             switch (platformName)
             {
                 case PlatformName.Android:
-                    driver = new AndroidDriver<AppiumWebElement>(serviceUrl, driverOptions, commandTimeout);
+                    driver = new AndroidDriver(serviceUrl, driverOptions, commandTimeout);
                     break;
                 case PlatformName.IOS:
-                    driver = new IOSDriver<AppiumWebElement>(serviceUrl, driverOptions, commandTimeout);
+                    driver = new IOSDriver(serviceUrl, driverOptions, commandTimeout);
                     break;
                 default:
                     throw GetLoggedWrongPlatformNameException(platformName.ToString());
