@@ -131,7 +131,7 @@
         </member>
         <member name="T:Aquality.Appium.Mobile.Configurations.CapabilityBasedSettings">
             <summary>
-            Class to support known capabilities that became 
+            Class to support known capabilities that became properties of <see cref="T:OpenQA.Selenium.Appium.AppiumOptions"/>.
             </summary>
         </member>
         <member name="P:Aquality.Appium.Mobile.Configurations.DriverSettings.HasApplicationPath">

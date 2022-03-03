@@ -6,7 +6,7 @@ using System.Linq;
 namespace Aquality.Appium.Mobile.Configurations
 {
     /// <summary>
-    /// Class to support known capabilities that became 
+    /// Class to support known capabilities that became properties of <see cref="AppiumOptions"/>.
     /// </summary>
     public abstract class CapabilityBasedSettings
     {
