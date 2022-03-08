@@ -154,11 +154,12 @@ stages:
   - job: release
     displayName: 'Create tag on GitHub and publish NuGet package'
 
-    steps:
+    steps:          
     - task: UseDotNet@2
-      displayName: 'Install .NET SDK 2.1.x'
+      displayName: Use .NET 6.0
       inputs:
-        version: '2.1.x'
+        packageType: 'sdk'
+        version: '6.0.x'
 
     - task: gitversion/setup@0
       displayName: 'Install GitTools'
