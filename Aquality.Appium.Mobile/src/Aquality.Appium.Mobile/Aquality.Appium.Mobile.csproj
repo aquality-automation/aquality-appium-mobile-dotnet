@@ -26,11 +26,15 @@
   <ItemGroup>
     <None Remove="Resources\Localization\be.json" />
     <None Remove="Resources\Localization\en.json" />
+    <None Remove="Resources\Localization\pl.json" />
     <None Remove="Resources\Localization\ru.json" />
+    <None Remove="Resources\Localization\uk.json" />
     <None Remove="Resources\settings.json" />
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Localization\pl.json" />
+    <EmbeddedResource Include="Resources\Localization\uk.json" />
     <EmbeddedResource Include="Resources\Localization\be.json" />
     <EmbeddedResource Include="Resources\Localization\en.json" />
     <EmbeddedResource Include="Resources\Localization\ru.json" />

@@ -26,6 +26,14 @@ We use interfaces where is possible, so you can implement your own version of ta
 3. Ensure that [Appium server](https://appium.io) is set up at your machine where the code would be executed, and the address/port match to set in your `settings.json` in `remoteConnectionUrl` parameter.
 If the parameter `isRemote` in your settings.json is set to `false`, this means that AppiumDriverLocalService would be used to setup Appium server using Node.js. This option requires specific version of node.js to be preinstalled on your machine (Please read more [here](http://appium.io/docs/en/contributing-to-appium/appium-from-source/#nodejs) )
 
+> Note:
+After migration to Appium v.5, we need to make some changes in the way we set up the server:
+> - As soon as we continue to use "remoteConnectionUrl": "http://127.0.0.1:4723/wd/hub" in our [settings.json](./src/main/resources/settings.json), we need to specify the `--base-path` when starting Appium server:
+> ```yaml
+> appium --allow-insecure chromedriver_autodownload --base-path /wd/hub &
+> ```
+>
+
 4. (optional) Launch an application directly by calling `var application = AqualityServices.Application;`. 
 > Note: 
 If you don't start an Application directly, it would be started with the first call of any Aquality service or class requiring interacting with the Application.
