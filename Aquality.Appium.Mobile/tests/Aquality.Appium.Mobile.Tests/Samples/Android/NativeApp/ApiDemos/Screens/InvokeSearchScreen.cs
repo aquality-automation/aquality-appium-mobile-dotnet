@@ -1,5 +1,6 @@
 ﻿using Aquality.Appium.Mobile.Elements.Interfaces;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens
 {
@@ -11,9 +12,9 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
 
         public InvokeSearchScreen() : base(By.XPath("//android.widget.TextView[@text='App/Search/Invoke Search']"), "Invoke Search")
         {
-            searchTextBox = ElementFactory.GetTextBox(By.Id("txt_query_prefill"), "Search");
-            startSearchButton = ElementFactory.GetButton(By.Id("btn_start_search"), "Start search");
-            searchResultLabel = ElementFactory.GetLabel(By.Id("android:id/search_src_text"), "Search results");
+            searchTextBox = ElementFactory.GetTextBox(MobileBy.Id("txt_query_prefill"), "Search");
+            startSearchButton = ElementFactory.GetButton(MobileBy.Id("btn_start_search"), "Start search");
+            searchResultLabel = ElementFactory.GetLabel(MobileBy.Id("android:id/search_src_text"), "Search results");
         }
 
         protected override string Activity => ".app.SearchInvoke";

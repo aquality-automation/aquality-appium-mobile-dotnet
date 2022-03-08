@@ -2,9 +2,9 @@
 using Aquality.Selenium.Core.Applications;
 using Aquality.Selenium.Core.Configurations;
 using Aquality.Selenium.Core.Localization;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Service;
-using OpenQA.Selenium.Remote;
 using System;
 
 namespace Aquality.Appium.Mobile.Applications
@@ -16,7 +16,7 @@ namespace Aquality.Appium.Mobile.Applications
         
         private TimeSpan timeoutImplicit;
 
-        public Application(AppiumDriver<AppiumWebElement> driver, AppiumLocalService driverService = null)
+        public Application(AppiumDriver driver, AppiumLocalService driverService = null)
         {
             Driver = driver;
             DriverService = driverService;
@@ -31,11 +31,11 @@ namespace Aquality.Appium.Mobile.Applications
             timeoutImplicit = timeout;
         }
 
-        RemoteWebDriver IApplication.Driver => Driver;
+        WebDriver IApplication.Driver => Driver;
 
         public bool IsStarted => Driver.SessionId != null;
 
-        public AppiumDriver<AppiumWebElement> Driver { get; }
+        public AppiumDriver Driver { get; }
 
         public AppiumLocalService DriverService { get; }
 

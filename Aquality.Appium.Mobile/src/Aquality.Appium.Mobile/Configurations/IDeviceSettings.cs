@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium.Appium;
+using System.Collections.Generic;
 
 namespace Aquality.Appium.Mobile.Configurations
 {
@@ -8,8 +9,8 @@ namespace Aquality.Appium.Mobile.Configurations
     public interface IDeviceSettings
     {
         /// <summary>
-        /// Options (capabilities) related to desired device.
+        /// Capabilities related to desired device.
         /// </summary>
-        AppiumOptions AppiumOptions { get; }
+        IReadOnlyDictionary<string, object> Capabilities { get; }
     }
 }

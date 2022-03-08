@@ -14,11 +14,11 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>appium mobile ios android automation</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Copyright>Copyright 2020 Aquality Automation</Copyright>
+    <Copyright>Copyright 2022 Aquality Automation</Copyright>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
     
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup>
     <DocumentationFile>Aquality.Appium.Mobile.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
@@ -26,11 +26,15 @@
   <ItemGroup>
     <None Remove="Resources\Localization\be.json" />
     <None Remove="Resources\Localization\en.json" />
+    <None Remove="Resources\Localization\pl.json" />
     <None Remove="Resources\Localization\ru.json" />
+    <None Remove="Resources\Localization\uk.json" />
     <None Remove="Resources\settings.json" />
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Localization\pl.json" />
+    <EmbeddedResource Include="Resources\Localization\uk.json" />
     <EmbeddedResource Include="Resources\Localization\be.json" />
     <EmbeddedResource Include="Resources\Localization\en.json" />
     <EmbeddedResource Include="Resources\Localization\ru.json" />
@@ -45,8 +49,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Appium.WebDriver" Version="4.3.1" />
-    <PackageReference Include="Aquality.Selenium.Core" Version="1.6.1" />
+    <PackageReference Include="Appium.WebDriver" Version="5.0.0-beta01" />
+    <PackageReference Include="Aquality.Selenium.Core" Version="2.0.2" />
   </ItemGroup>
 
 </Project>

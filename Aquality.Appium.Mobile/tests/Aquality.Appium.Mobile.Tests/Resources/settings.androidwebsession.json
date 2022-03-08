@@ -8,6 +8,8 @@
       "capabilities": {
         "deviceName": "test",
         "browserName": "Chrome",
+        "platformName": "Android",
+        "automationName": "UIAutomator2",
         "uiautomator2ServerInstallTimeout": 30000,
         "eventTimings": true
       }
@@ -35,7 +37,7 @@
     "logPageSource": true
   },
   "elementCache": {
-    "isEnabled": true
+    "isEnabled": false
   },
   "touchActions": {
     "swipe": {

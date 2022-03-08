@@ -27,7 +27,7 @@ namespace Aquality.Appium.Mobile.Configurations
             get
             {
                 var options = new AppiumOptions();
-                Capabilities.ToList().ForEach(capability => options.AddAdditionalCapability(capability.Key, capability.Value));
+                Capabilities.ToList().ForEach(capability => options.AddAdditionalAppiumOption(capability.Key, capability.Value));
                 return options;
             }
         }

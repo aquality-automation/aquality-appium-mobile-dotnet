@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Aquality.Appium.Mobile.Configurations
 {
-    public class DriverSettings : IDriverSettings
+    public class DriverSettings : CapabilityBasedSettings, IDriverSettings
     {
         private const string ApplicationPathKey = "applicationPath";
         private const string AppCapabilityKey = "app";
@@ -39,12 +39,12 @@ namespace Aquality.Appium.Mobile.Configurations
             get
             {
                 var options = new AppiumOptions();
-                Capabilities.ToList().ForEach(capability => options.AddAdditionalCapability(capability.Key, capability.Value));
+                Capabilities.ToList().ForEach(capability => SetCapability(options, capability));
                 if (HasApplicationPath && ApplicationPath != null)
                 {
-                    options.AddAdditionalCapability(AppCapabilityKey, ApplicationPath);
+                    SetCapability(options, new KeyValuePair<string, object> (AppCapabilityKey, ApplicationPath));
                 }
-                DeviceOptions.ToDictionary().ToList().ForEach(capability => options.AddAdditionalCapability(capability.Key, capability.Value));
+                DeviceCapabilities.ToList().ForEach(capability => SetCapability(options, capability));
                 return options;
             }
         }
@@ -59,13 +59,13 @@ namespace Aquality.Appium.Mobile.Configurations
             }
         }
 
-        private AppiumOptions DeviceOptions
+        private IReadOnlyDictionary<string, object> DeviceCapabilities
         {
             get
             {
                 var deviceKey = settingsFile.GetValueOrDefault<string>($"{DriverSettingsPath}.{DeviceKeyKey}");
                 var deviceSettings = new DeviceSettings(deviceKey);
-                return deviceSettings.AppiumOptions;
+                return deviceSettings.Capabilities;
             }
         }
     }

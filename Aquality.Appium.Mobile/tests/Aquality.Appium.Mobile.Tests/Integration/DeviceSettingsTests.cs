@@ -1,8 +1,8 @@
 ﻿using Aquality.Appium.Mobile.Applications;
 using Aquality.Appium.Mobile.Configurations;
-using Castle.Core.Internal;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace Aquality.Appium.Mobile.Tests.Integration
 {
@@ -16,18 +16,18 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         public void Should_BePossible_ToGetDeviceCapabilities()
         {
             var deviceSettings = new DeviceSettings("iPhone_11");
-            var options = deviceSettings.AppiumOptions;
+            var options = deviceSettings.Capabilities;
             Assert.IsNotNull(options);
-            Assert.IsFalse(options.ToDictionary().IsNullOrEmpty());
+            Assert.IsTrue(options.Any());
         }
 
         [Test]
         public void Should_BePossible_ToGetEmptyCapabilitiesWhenDeviceKeyIsNull()
         {
             var deviceSettings = new DeviceSettings(null);
-            var options = deviceSettings.AppiumOptions;
+            var options = deviceSettings.Capabilities;
             Assert.IsNotNull(options);
-            Assert.IsTrue(options.ToDictionary().IsNullOrEmpty());
+            Assert.IsFalse(options.Any());
         }
 
         [Test]
@@ -35,13 +35,13 @@ namespace Aquality.Appium.Mobile.Tests.Integration
         {
             Environment.SetEnvironmentVariable(DevicesProfilePropertyKey, "test");
             var deviceSettings = new DeviceSettings("iPhone_11");
-            var options = deviceSettings.AppiumOptions;
-            Assert.AreEqual("iPhone 11 test", options.ToDictionary()["deviceName"]);
+            var options = deviceSettings.Capabilities;
+            Assert.AreEqual("iPhone 11 test", options["deviceName"]);
 
             Environment.SetEnvironmentVariable(DevicesProfilePropertyKey, null);
             deviceSettings = new DeviceSettings("iPhone_11");
-            options = deviceSettings.AppiumOptions;
-            Assert.AreEqual("iPhone 11", options.ToDictionary()["deviceName"]);
+            options = deviceSettings.Capabilities;
+            Assert.AreEqual("iPhone 11", options["deviceName"]);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
             Environment.SetEnvironmentVariable(PlatformNamePropertyKey, "ios");
             Environment.SetEnvironmentVariable(DevicesKeyPropertyKey, "iPhone_11");
             var options = AqualityServices.Get<IApplicationProfile>().DriverSettings.AppiumOptions;
-            Assert.AreEqual("iPhone 11", options.ToDictionary()["deviceName"]);
+            Assert.AreEqual("iPhone 11", options.DeviceName);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
             Environment.SetEnvironmentVariable(PlatformNamePropertyKey, "android");
             Environment.SetEnvironmentVariable(DevicesKeyPropertyKey, "Nexus");
             var options = AqualityServices.Get<IApplicationProfile>().DriverSettings.AppiumOptions;
-            Assert.AreEqual("Nexus", options.ToDictionary()["deviceName"]);
+            Assert.AreEqual("Nexus", options.DeviceName);
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Aquality.Appium.Mobile.Tests.Integration
             Environment.SetEnvironmentVariable(PlatformNamePropertyKey, "android");
             Environment.SetEnvironmentVariable(DevicesKeyPropertyKey, "Samsung_Galaxy");
             var options = AqualityServices.Get<IApplicationProfile>().DriverSettings.AppiumOptions;
-            Assert.AreEqual("Samsung Galaxy", options.ToDictionary()["deviceName"]);
+            Assert.AreEqual("Samsung Galaxy", options.DeviceName);
         }
 
         [TearDown]

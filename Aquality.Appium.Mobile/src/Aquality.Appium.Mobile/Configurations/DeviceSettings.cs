@@ -1,9 +1,7 @@
 ﻿using Aquality.Selenium.Core.Configurations;
 using Aquality.Selenium.Core.Logging;
 using Aquality.Selenium.Core.Utilities;
-using OpenQA.Selenium.Appium;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Aquality.Appium.Mobile.Configurations
 {
@@ -28,16 +26,6 @@ namespace Aquality.Appium.Mobile.Configurations
             return new JsonSettingsFile(devicesProfile);
         }
 
-        public AppiumOptions AppiumOptions
-        {
-            get
-            {
-                var deviceOptions = new AppiumOptions();
-                Capabilities.ToList().ForEach(capability => deviceOptions.AddAdditionalCapability(capability.Key, capability.Value));
-                return deviceOptions;
-            }
-        }
-
-        private IReadOnlyDictionary<string, object> Capabilities => settingsFile.GetValueDictionaryOrEmpty<object>($"{deviceKey}.capabilities");
+        public IReadOnlyDictionary<string, object> Capabilities => settingsFile.GetValueDictionaryOrEmpty<object>($"{deviceKey}.capabilities");
     }
 }

@@ -129,6 +129,11 @@
             Provides functionality to  register services
             </summary>
         </member>
+        <member name="T:Aquality.Appium.Mobile.Configurations.CapabilityBasedSettings">
+            <summary>
+            Class to support known capabilities that became properties of <see cref="T:OpenQA.Selenium.Appium.AppiumOptions"/>.
+            </summary>
+        </member>
         <member name="P:Aquality.Appium.Mobile.Configurations.DriverSettings.HasApplicationPath">
             <summary>
             Defines does the current settings have the application path defined
@@ -170,9 +175,9 @@
             Describes desired device settings.
             </summary>
         </member>
-        <member name="P:Aquality.Appium.Mobile.Configurations.IDeviceSettings.AppiumOptions">
+        <member name="P:Aquality.Appium.Mobile.Configurations.IDeviceSettings.Capabilities">
             <summary>
-            Options (capabilities) related to desired device.
+            Capabilities related to desired device.
             </summary>
         </member>
         <member name="T:Aquality.Appium.Mobile.Configurations.IDriverSettings">

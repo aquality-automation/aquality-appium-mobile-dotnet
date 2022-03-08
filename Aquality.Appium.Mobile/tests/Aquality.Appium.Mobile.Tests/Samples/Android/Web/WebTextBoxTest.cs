@@ -34,7 +34,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
             Assert.IsTrue(txbSearch.State.WaitForNotDisplayed(), "text field should disappear after the submit");
         }
 
-        private void CheckIsKeyboardShown(bool expectedState, string message)
+        private static void CheckIsKeyboardShown(bool expectedState, string message)
         {
             // TODO: not yet implemented in dotnet Appium client: http://appium.io/docs/en/commands/device/keys/is-keyboard-shown/
             Assert.AreEqual(expectedState, expectedState, message);
