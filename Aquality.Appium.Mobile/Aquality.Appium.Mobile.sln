@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C20555E4-7B6C-47E0-AB89-ADA80F4B1106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aquality.Appium.Mobile", "src\Aquality.Appium.Mobile\Aquality.Appium.Mobile.csproj", "{6FB08B9A-2D6E-4465-B939-97547B3E3ADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquality.Appium.Mobile", "src\Aquality.Appium.Mobile\Aquality.Appium.Mobile.csproj", "{6FB08B9A-2D6E-4465-B939-97547B3E3ADE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B0327F3B-D308-4443-8268-39DF01EF087C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aquality.Appium.Mobile.Tests", "tests\Aquality.Appium.Mobile.Tests\Aquality.Appium.Mobile.Tests.csproj", "{84F82BC0-6EFA-4373-BCCD-00583DC3321B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquality.Appium.Mobile.Tests", "tests\Aquality.Appium.Mobile.Tests\Aquality.Appium.Mobile.Tests.csproj", "{84F82BC0-6EFA-4373-BCCD-00583DC3321B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
