@@ -31,6 +31,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             searchScreen.Open();
             Assume.That(searchScreen.State.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
 
+            searchScreen.TypeQuery(string.Empty);
             searchScreen.Dump.Save();
             Assert.That(searchScreen.Dump.Compare(), Is.EqualTo(0), "Current screen should have no visual difference comparing to just saved dump");
             const string query = "Hello world!";

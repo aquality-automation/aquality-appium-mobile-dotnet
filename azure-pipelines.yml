@@ -137,6 +137,7 @@ stages:
         SourceFolder: '$(Build.SourcesDirectory)'
         Contents: |
             **/*Tests*/Screenshots/*.png
+            **/*Tests*/Resources/VisualDumps/*.png
             **/*Tests*/Log/*.log
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
       condition: succeededOrFailed()
