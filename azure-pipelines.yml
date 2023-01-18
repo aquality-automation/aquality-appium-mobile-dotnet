@@ -60,7 +60,7 @@ stages:
 
     variables:  
       ANDROID_EMU_NAME: test
-      ANDROID_SDK_ID: system-images;android-28;default;x86
+      ANDROID_SDK_ID: system-images;android-21;google_apis;x86
 
     steps:
     - task: CmdLine@2
