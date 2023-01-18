@@ -47,5 +47,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Resources\VisualDumps\Invoke Search\" />
+	</ItemGroup>
+
 
 </Project>
