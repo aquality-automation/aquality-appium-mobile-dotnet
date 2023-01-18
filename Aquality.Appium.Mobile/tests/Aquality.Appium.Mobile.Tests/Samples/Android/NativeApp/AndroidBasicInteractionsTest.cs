@@ -28,10 +28,6 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         [Test]
         public void SaveAndCompareScreenDump()
         {
-            AqualityServices.Logger.Info("Files in dumps dir:");
-            System.IO.Directory.EnumerateFiles(AqualityServices.Get<Selenium.Core.Configurations.IVisualizationConfiguration>().PathToDumps, "*", System.IO.SearchOption.AllDirectories).ToList().ForEach(AqualityServices.Logger.Info);
-            AqualityServices.Logger.Info("Directories in dumps dir:");
-            System.IO.Directory.EnumerateDirectories(AqualityServices.Get<Selenium.Core.Configurations.IVisualizationConfiguration>().PathToDumps).ToList().ForEach(AqualityServices.Logger.Info);
             var searchScreen = new InvokeSearchScreen();
             searchScreen.Open();
             Assume.That(searchScreen.State.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
