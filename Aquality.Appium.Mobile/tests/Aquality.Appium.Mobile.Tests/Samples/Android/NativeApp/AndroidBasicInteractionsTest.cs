@@ -36,10 +36,6 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             Assert.That(searchScreen.Dump.Compare(customDumpName), Is.EqualTo(0), "Current screen should have no visual difference comparing to just saved dump");
             const string query = "Hello world!";
             searchScreen.TypeQuery(query);
-            AqualityServices.Logger.Info("Files in dumps dir:");
-            System.IO.Directory.EnumerateFiles(AqualityServices.Get<Selenium.Core.Configurations.IVisualizationConfiguration>().PathToDumps, "*", System.IO.SearchOption.AllDirectories).ToList().ForEach(AqualityServices.Logger.Info);
-            AqualityServices.Logger.Info("Directories in dumps dir:");
-            System.IO.Directory.EnumerateDirectories(AqualityServices.Get<Selenium.Core.Configurations.IVisualizationConfiguration>().PathToDumps).ToList().ForEach(AqualityServices.Logger.Info);
             Assert.That(searchScreen.Dump.Compare(), Is.GreaterThan(0), "Current screen after the search should have visual difference comparing to dump saved");
         }
 
