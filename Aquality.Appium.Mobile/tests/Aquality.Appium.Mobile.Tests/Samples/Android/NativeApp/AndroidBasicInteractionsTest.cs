@@ -28,6 +28,10 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         [Test]
         public void SaveAndCompareScreenDump()
         {
+            AqualityServices.Logger.Info("Files in dumps dir:");
+            System.IO.Directory.EnumerateFiles(AqualityServices.Get<Selenium.Core.Configurations.IVisualizationConfiguration>().PathToDumps, "*", System.IO.SearchOption.AllDirectories).ToList().ForEach(AqualityServices.Logger.Info);
+            AqualityServices.Logger.Info("Directories in dumps dir:");
+            System.IO.Directory.EnumerateDirectories(AqualityServices.Get<Selenium.Core.Configurations.IVisualizationConfiguration>().PathToDumps).ToList().ForEach(AqualityServices.Logger.Info);
             var searchScreen = new InvokeSearchScreen();
             searchScreen.Open();
             Assume.That(searchScreen.State.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
@@ -36,14 +40,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             Assert.That(searchScreen.Dump.Compare(customDumpName), Is.EqualTo(0), "Current screen should have no visual difference comparing to just saved dump");
             const string query = "Hello world!";
             searchScreen.TypeQuery(query);
-            AqualityServices.Logger.Info("Files in dumps dir:");
-            System.IO.Directory.EnumerateFiles(AqualityServices.Get<Selenium.Core.Configurations.IVisualizationConfiguration>().PathToDumps, "*", System.IO.SearchOption.AllDirectories).ToList().ForEach(AqualityServices.Logger.Info);
-            AqualityServices.Logger.Info("Directories in dumps dir:");
-            System.IO.Directory.EnumerateDirectories(AqualityServices.Get<Selenium.Core.Configurations.IVisualizationConfiguration>().PathToDumps).ToList().ForEach(AqualityServices.Logger.Info);
-            AqualityServices.Logger.Info("Directories in current dir:");
-            System.IO.Directory.EnumerateDirectories("./").ToList().ForEach(AqualityServices.Logger.Info);
-            AqualityServices.Logger.Info("Files and dirs in current dir:");
-            System.IO.Directory.EnumerateFileSystemEntries("./").ToList().ForEach(AqualityServices.Logger.Info);
+            AqualityServices.Logger.Info("Files and dirs in Resources dir:");
+            System.IO.Directory.EnumerateFileSystemEntries("./Resources", "*", System.IO.SearchOption.AllDirectories).Select(System.IO.Path.GetFullPath).ToList().ForEach(AqualityServices.Logger.Info);
             Assert.That(searchScreen.Dump.Compare(), Is.GreaterThan(0), "Current screen after the search should have visual difference comparing to dump saved");
         }
 
