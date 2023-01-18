@@ -22,6 +22,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
             AqualityServices.LocalizedLogger.Info("loc.application.android.activity.start", appPackage, appActivity);
             var androidDriver = (AndroidDriver) AqualityServices.Application.Driver;
             androidDriver.StartActivity(appPackage, appActivity, stopApp: stopApp);
+            AqualityServices.ConditionalWait.WaitFor(driver => ((AndroidDriver) driver).CurrentActivity == appActivity, message: $"Activity {appActivity} was not started");
         }
     }
 }
