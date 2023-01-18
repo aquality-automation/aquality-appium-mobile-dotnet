@@ -2,6 +2,7 @@
 using Aquality.Appium.Mobile.Elements.Interfaces;
 using Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens;
 using NUnit.Framework;
+using System.Linq;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
 {
@@ -30,12 +31,12 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             var searchScreen = new InvokeSearchScreen();
             searchScreen.Open();
             Assume.That(searchScreen.State.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
-
-            searchScreen.Dump.Save();
-            Assert.That(searchScreen.Dump.Compare(), Is.EqualTo(0), "Current screen should have no visual difference comparing to just saved dump");
+            var customDumpName = $"my dump of {searchScreen.Name}";
+            searchScreen.Dump.Save(customDumpName);
+            Assert.That(searchScreen.Dump.Compare(customDumpName), Is.EqualTo(0), "Current screen should have no visual difference comparing to just saved dump");
             const string query = "Hello world!";
             searchScreen.TypeQuery(query);
-            Assert.That(searchScreen.Dump.Compare(), Is.GreaterThan(0), "Current screen should have visual difference comparing to dump saved before the search");
+            Assert.That(searchScreen.Dump.Compare(), Is.GreaterThan(0), "Current screen after the search should have visual difference comparing to dump saved");
         }
 
         [Test]

@@ -81,14 +81,14 @@ stages:
           $ANDROID_HOME/emulator/emulator -list-avds
 
           echo "Starting emulator"
-          nohup $ANDROID_HOME/emulator/emulator -avd "$(ANDROID_EMU_NAME)" -no-snapshot > /dev/null 2>&1 &
+          nohup $ANDROID_HOME/emulator/emulator -avd "$(ANDROID_EMU_NAME)" -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot > /dev/null 2>&1 &
           $ANDROID_HOME/platform-tools/adb wait-for-device
           while [[ $? -ne 0 ]]; do sleep 1; $ANDROID_HOME/platform-tools/adb shell pm list packages; done;
           $ANDROID_HOME/platform-tools/adb devices
           echo "Emulator started"
 
           echo "Installing Appium"
-          npm install -g appium
+          npm install -g appium@next
           ln -fs /usr/local/lib/node_modules/appium/build/lib/main.js /usr/local/bin/appium
           chmod +x /usr/local/bin/appium
           export PATH=$PATH:/usr/local/bin/appium
@@ -137,6 +137,7 @@ stages:
         SourceFolder: '$(Build.SourcesDirectory)'
         Contents: |
             **/*Tests*/Screenshots/*.png
+            **/*Tests*/**/Resources/VisualDumps/*.png
             **/*Tests*/Log/*.log
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
       condition: succeededOrFailed()

@@ -1,15 +1,22 @@
 ﻿using Aquality.Appium.Mobile.Applications;
 using Aquality.Appium.Mobile.Configurations;
 using Aquality.Selenium.Core.Utilities;
-using OpenQA.Selenium.Appium.Interfaces;
-using OpenQA.Selenium.Appium.MultiTouch;
+using OpenQA.Selenium.Interactions;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Aquality.Appium.Mobile.Actions
 {
     public class TouchActions : ITouchActions
     {
+        private TimeSpan SwipeDuration => AqualityServices.Get<ITouchActionsSettings>().SwipeDuration;
+
+        private ActionSequence PressSequence(PointerInputDevice finger, Point startPoint) => new ActionSequence(finger, initialSize: 0)
+            .AddAction(finger.CreatePointerMove(CoordinateOrigin.Viewport, startPoint.X, startPoint.Y, TimeSpan.Zero))
+            .AddAction(finger.CreatePointerDown(MouseButton.Left));
+            
+
         public void Swipe(Point startPoint, Point endPoint)
         {
             AqualityServices.LocalizedLogger.Info(
@@ -18,11 +25,7 @@ namespace Aquality.Appium.Mobile.Actions
                 startPoint.Y,
                 endPoint.X,
                 endPoint.Y);
-            PerformTouchAction(
-                touchAction => touchAction
-                    .Press(startPoint.X, startPoint.Y)
-                    .Wait(GetLongSwipeDuration()),
-                endPoint);
+            PerformTouchAction(finger => PressSequence(finger, startPoint), endPoint);
         }
 
         public void SwipeWithLongPress(Point startPoint, Point endPoint)
@@ -33,21 +36,19 @@ namespace Aquality.Appium.Mobile.Actions
                startPoint.Y,
                endPoint.X,
                endPoint.Y);
-            PerformTouchAction(touchAction => touchAction.LongPress(startPoint.X, startPoint.Y), endPoint);
+            PerformTouchAction(finger => PressSequence(finger, startPoint).AddAction(finger.CreatePointerMove(CoordinateOrigin.Viewport, startPoint.X, startPoint.Y, SwipeDuration)), endPoint);
         }
 
-        protected void PerformTouchAction(Func<ITouchAction, ITouchAction> function, Point endPoint)
+        protected void PerformTouchAction(Func<PointerInputDevice, ActionSequence> getActionSequence, Point endPoint)
         {
             var actionRetrier = AqualityServices.Get<IElementActionRetrier>();
-            var touchAction = new TouchAction(AqualityServices.Application.Driver);
-            actionRetrier.DoWithRetry(() =>
-                function(touchAction).MoveTo(endPoint.X, endPoint.Y).Release().Perform());
-        }
+            var finger = new PointerInputDevice(PointerKind.Touch, "finger");
+            var actionSequence = getActionSequence(finger)
+                .AddAction(finger.CreatePointerMove(CoordinateOrigin.Viewport, endPoint.X, endPoint.Y, SwipeDuration))
+                .AddAction(finger.CreatePointerUp(MouseButton.Left));
 
-        private long GetLongSwipeDuration()
-        {
-            var swipeDuration = AqualityServices.Get<ITouchActionsSettings>().SwipeDuration;
-            return Convert.ToInt64(swipeDuration.TotalMilliseconds);
+            actionRetrier.DoWithRetry(() =>
+                AqualityServices.Application.Driver.PerformActions(new List<ActionSequence> { actionSequence }));
         }
     }
 }

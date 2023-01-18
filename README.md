@@ -27,12 +27,18 @@ We use interfaces where is possible, so you can implement your own version of ta
 If the parameter `isRemote` in your settings.json is set to `false`, this means that AppiumDriverLocalService would be used to setup Appium server using Node.js. This option requires specific version of node.js to be preinstalled on your machine (Please read more [here](http://appium.io/docs/en/contributing-to-appium/appium-from-source/#nodejs) )
 
 > Note:
-After migration to Appium v.5, we need to make some changes in the way we set up the server:
-> - As soon as we continue to use "remoteConnectionUrl": "http://127.0.0.1:4723/wd/hub" in our [settings.json](./src/main/resources/settings.json), we need to specify the `--base-path` when starting Appium server:
+After migration to Appium v.5, we started using Appium server v.2 in our [azure-pipelines](azure-pipelines.yml). 
+> It has some breaking changes, described [here](https://appium.github.io/appium/docs/en/2.0/guides/migrating-1-to-2/).
+> In particular:
+> 1. Please install required driver manually:
+> ```yaml
+> npm install -g appium@next
+> appium driver install uiautomator2
+> 2. As soon as we continue to use "remoteConnectionUrl": "http://127.0.0.1:4723/wd/hub" in our [settings.json](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Resources/settings.json), we need to specify the `--base-path` when starting Appium server:
 > ```yaml
 > appium --allow-insecure chromedriver_autodownload --base-path /wd/hub &
 > ```
->
+> 3. We also recommend disabling element caching and w3c in chromeOptions when you run Android Chrome session. Take a look at example here: [settings.androidwebsession.json](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Resources/settings.androidwebsession.json).
 
 4. (optional) Launch an application directly by calling `var application = AqualityServices.Application;`. 
 > Note: 
