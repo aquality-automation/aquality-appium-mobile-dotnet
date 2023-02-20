@@ -13,6 +13,8 @@ namespace Aquality.Appium.Mobile.Applications
 {
     public abstract class ApplicationFactory : IApplicationFactory
     {
+        protected virtual IActionRetrier ActionRetrier => new CustomActionRetrier();
+
         public abstract IMobileApplication Application { get; }
 
         protected virtual AppiumDriver GetDriver(Uri serviceUrl)
@@ -20,7 +22,7 @@ namespace Aquality.Appium.Mobile.Applications
             var platformName = AqualityServices.ApplicationProfile.PlatformName;
             var driverOptions = AqualityServices.ApplicationProfile.DriverSettings.AppiumOptions;
             var commandTimeout = AqualityServices.Get<ITimeoutConfiguration>().Command;
-            return new CustomActionRetrier().DoWithRetry(
+            return ActionRetrier.DoWithRetry(
                 () => CreateSession(platformName, serviceUrl, driverOptions, commandTimeout));
         }
 
@@ -52,7 +54,8 @@ namespace Aquality.Appium.Mobile.Applications
                 "appium settings app is not running",
                 "socket hang up",
                 "stream was destroyed",
-                "invalid or unrecognized response"
+                "invalid or unrecognized response",
+                "has been expired"
             };
 
             public CustomActionRetrier() 

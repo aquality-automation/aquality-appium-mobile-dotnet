@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium.Appium.Service;
+using OpenQA.Selenium.Appium.Service.Exceptions;
 
 namespace Aquality.Appium.Mobile.Applications
 {
@@ -9,7 +10,7 @@ namespace Aquality.Appium.Mobile.Applications
             get
             {
                 var service = new AppiumServiceBuilder().WithArguments(AqualityServices.LocalServiceSettings.ServerOptions).Build();
-                service.Start();
+                ActionRetrier.DoWithRetry(service.Start, new [] { typeof(AppiumServerHasNotBeenStartedLocallyException)} );
                 var driver = GetDriver(service.ServiceUrl);
                 LogApplicationIsReady();
                 return new Application(driver, service);
