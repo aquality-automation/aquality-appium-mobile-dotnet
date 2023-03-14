@@ -2,7 +2,6 @@
 using Aquality.Appium.Mobile.Elements.Interfaces;
 using Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens;
 using NUnit.Framework;
-using System.Linq;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
 {
