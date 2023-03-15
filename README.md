@@ -16,7 +16,12 @@ We use interfaces where is possible, so you can implement your own version of ta
 
 ### Quick start
 
-1. To start work with this package, simply add the nuget dependency Aquality.Appium.Mobile to your project.
+To start the project using Aquality.Appium.Mobile framework, you can [download our template BDD project by this link.](https://github.com/aquality-automation/aquality-appium-mobile-dotnet-template)
+
+Alternatively, you can follow the steps below:
+
+
+1. Add the nuget dependency Aquality.Appium.Mobile to your project.
 
 2. Configure path to your application at settings.json:
  - Create a `Resources` folder in your project and copy [settings.json](Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Resources/settings.json) into it. 
@@ -171,8 +176,6 @@ namespace Aquality.Appium.Mobile.Template.Screens.Login
 ```csharp
 var loginScreen = AqualityServices.ScreenFactory.GetScreen<LoginScreen>();
 ```
-
-You can find an example in [aquality-appium-mobile-dotnet-template](https://github.com/aquality-automation/aquality-appium-mobile-dotnet-template) repository.
 
 ### Devices
 

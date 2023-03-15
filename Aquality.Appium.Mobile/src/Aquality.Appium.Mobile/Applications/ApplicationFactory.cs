@@ -55,7 +55,8 @@ namespace Aquality.Appium.Mobile.Applications
                 "socket hang up",
                 "stream was destroyed",
                 "invalid or unrecognized response",
-                "has been expired"
+                "has been expired",
+                "unknown server-side error"
             };
 
             public CustomActionRetrier() 

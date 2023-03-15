@@ -50,7 +50,7 @@
   
   <ItemGroup>
     <PackageReference Include="Appium.WebDriver" Version="5.0.0-beta03" />
-    <PackageReference Include="Aquality.Selenium.Core" Version="2.1.0" />
+    <PackageReference Include="Aquality.Selenium.Core" Version="3.0.0" />
   </ItemGroup>
 
 </Project>
