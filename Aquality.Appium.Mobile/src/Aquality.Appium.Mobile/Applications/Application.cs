@@ -4,6 +4,7 @@ using Aquality.Selenium.Core.Configurations;
 using Aquality.Selenium.Core.Localization;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.Service;
 using System;
 
@@ -55,6 +56,11 @@ namespace Aquality.Appium.Mobile.Applications
             localizedLogger.Info("loc.application.quit");
             Driver?.Quit();
             DriverService?.Dispose();
+        }
+
+        public bool TerminateApp(string bundleId)
+        {
+            return ((IInteractsWithApps)Driver).TerminateApp(bundleId);
         }
     }
 }
