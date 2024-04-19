@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net48;net6.0</TargetFrameworks>
 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>appium mobile ios android automation</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Copyright>Copyright 2023 Aquality Automation</Copyright>
+    <Copyright>Copyright 2024 Aquality Automation</Copyright>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
     
@@ -49,8 +49,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Appium.WebDriver" Version="5.0.0-rc.2" />
-    <PackageReference Include="Aquality.Selenium.Core" Version="3.0.5" />
+    <PackageReference Include="Appium.WebDriver" Version="[5.0.0-rc.7, 5.0.0]" />
+    <PackageReference Include="Aquality.Selenium.Core" Version="[3.0.7, 4.0.0)" />
   </ItemGroup>
 
 </Project>

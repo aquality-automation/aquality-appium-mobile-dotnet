@@ -114,6 +114,13 @@
             Closes application and disposes <see cref="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService"/> if it not null.
             </summary>
         </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.TerminateApp(System.String)">
+            <summary>
+            Terminate the particular application if it is running.
+            </summary>
+            <param name="bundleId">the bundle identifier (or app id) of the app to be terminated.</param>
+            <returns>true if the app was running before and has been successfully stopped.</returns>
+        </member>
         <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService">
             <summary>
             Provides current AppiumDriver service instance (would be null if driver is not local).

@@ -20,6 +20,13 @@ namespace Aquality.Appium.Mobile.Applications
         void Quit();
 
         /// <summary>
+        /// Terminate the particular application if it is running.
+        /// </summary>
+        /// <param name="bundleId">the bundle identifier (or app id) of the app to be terminated.</param>
+        /// <returns>true if the app was running before and has been successfully stopped.</returns>
+        bool TerminateApp(string bundleId);
+
+        /// <summary>
         /// Provides current AppiumDriver service instance (would be null if driver is not local).
         /// </summary>
         AppiumLocalService DriverService { get; }
