@@ -21,7 +21,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             Assume.That(searchScreen.State.IsDisplayed, $"{searchScreen.Name} should be opened from the menu");
             const string query = "Hello world!";
             searchScreen.SubmitSearch(query);
-            Assert.AreEqual(query, searchScreen.SearchResult, "Search result don't match to entered query");
+            Assert.That(searchScreen.SearchResult, Is.EqualTo(query), "Search result don't match to entered query");
         }
 
         [Test]
@@ -51,8 +51,9 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             LogStep("Check that the dialog is there");
             var alertDialog = new TwoButtonsAlert();
             const string expectedText = "Lorem ipsum dolor sit aie consectetur adipiscingPlloaso mako nuto siwuf cakso dodtos anr koop.";
-            Assert.AreEqual(expectedText,
-                alertDialog.AlertText.Replace("\r", string.Empty).Replace("\n", string.Empty), "Alert text should match to expected");
+            Assert.That(alertDialog.AlertText.Replace("\r", string.Empty).Replace("\n", string.Empty), 
+                Is.EqualTo(expectedText),
+                "Alert text should match to expected");
 
             LogStep("Close the dialog");
             alertDialog.Close();
@@ -64,12 +65,12 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             var viewControlsScreen = new ViewControlsScreen();
             OpenRadioButtonsScreen();
             viewControlsScreen.ScrollToAllInsideScrollViewLabel();
-            Assert.AreEqual(
-                "(And all inside of a ScrollView!)",
+            Assert.That(                
                 viewControlsScreen.AllInsideScrollViewLabelText,
+                Is.EqualTo("(And all inside of a ScrollView!)"),
                 "Label text does not match expected");
             viewControlsScreen.ScrollToDisabledButton();
-            Assert.IsFalse(viewControlsScreen.IsDisabledButtonClickable);
+            Assert.That(viewControlsScreen.IsDisabledButtonClickable, Is.False);
         }
 
         [Test]
@@ -81,18 +82,18 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             var tabFourTag = 4;
             var viewTabsScrollableScreen = new ViewTabsScrollableScreen();
             OpenViewTabsScrollableScreen();
-            Assert.IsTrue(viewTabsScrollableScreen.State.IsDisplayed);
+            Assert.That(viewTabsScrollableScreen.State.IsDisplayed, Is.True);
             viewTabsScrollableScreen.SwipeTab(tabFourTag, 1);
             viewTabsScrollableScreen.SelectTab(tabSevenTag);
-            Assert.AreEqual(
+            Assert.That(
                 viewTabsScrollableScreen.GetTabContentText(tabSevenTag),
-                $"{tabContentFriendlyMessage} {tabSevenTag}",
+                Is.EqualTo($"{tabContentFriendlyMessage} {tabSevenTag}"),
                 tabTextDoesNotMatchFriendlyMessage);
             viewTabsScrollableScreen.SwipeTab(5, tabSevenTag);
             viewTabsScrollableScreen.SelectTab(tabFourTag);
-            Assert.AreEqual(
+            Assert.That(
                 viewTabsScrollableScreen.GetTabContentText(tabFourTag),
-                $"{tabContentFriendlyMessage} {tabFourTag}",
+                Is.EqualTo($"{tabContentFriendlyMessage} {tabFourTag}"),
                 tabTextDoesNotMatchFriendlyMessage);
         }
 
@@ -102,7 +103,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
         [Test]
         public void TestRadioButton() => this.InvokeRadioButtonTest();
 
-        private void LogStep(string step)
+        private static void LogStep(string step)
         {
             AqualityServices.Logger.Info(step);
         }
@@ -115,6 +116,6 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
 
         public ICheckBox GetCheckBox(int number) => new ViewControlsScreen().GetCheckBox(number);
 
-        public void OpenViewTabsScrollableScreen() => new ViewTabsScrollableScreen().Open();
+        public static void OpenViewTabsScrollableScreen() => new ViewTabsScrollableScreen().Open();
     }
 }
