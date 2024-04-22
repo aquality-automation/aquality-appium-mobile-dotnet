@@ -6,14 +6,13 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
 {
     public class AndroidWebSessionTest : UITest
     {
-        private IWebDriver Driver => AqualityServices.Application.Driver;
+        private static IWebDriver Driver => AqualityServices.Application.Driver;
 
         [Test]
         public void CreateWebSession()
         {
             Driver.Url = "http://www.google.com";
-            var title = Driver.Title;
-            Assert.AreEqual("Google", title);
+            Assert.That(Driver.Title, Is.EqualTo("Google"));
         }
     }
 }

@@ -17,14 +17,14 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
 
         [Test]
         public void TestLinkGetsHref() =>
-            Assert.IsTrue(link.Href.Contains("redirect"), "Link href mismatch");
+            Assert.That(link.Href.Contains("redirect"), Is.True, "Link href mismatch");
 
         [Test]
         public void TestLinkClickable()
         {
             link.State.WaitForClickable();
             link.Click();
-            Assert.IsTrue(link.State.WaitForNotExist(), "Link was not clicked properly as it isn't disappeared");
+            Assert.That(link.State.WaitForNotExist(), Is.True, "Link was not clicked properly as it isn't disappeared");
         }
     }
 }

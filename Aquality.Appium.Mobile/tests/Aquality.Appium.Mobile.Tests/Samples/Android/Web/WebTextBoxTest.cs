@@ -1,6 +1,7 @@
 ﻿using Aquality.Appium.Mobile.Applications;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
 {
@@ -21,23 +22,24 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
             txbSearch.Focus();
             CheckIsKeyboardShown(expectedState: true, "Keyboard should be shown when focus successful");
             txbSearch.Type(ValueToSubmit);
-            Assert.AreEqual(ValueToSubmit, txbSearch.Value, "Submitted value should match to expected");
+            Assert.That(txbSearch.Value, Is.EqualTo(ValueToSubmit), "Submitted value should match to expected");
             txbSearch.Clear();
-            Assert.AreEqual(string.Empty, txbSearch.Value, "Value should be cleared");
+            Assert.That(txbSearch.Value, Is.EqualTo(string.Empty), "Value should be cleared");
             txbSearch.TypeSecret(ValueToSubmit);
-            Assert.AreEqual(ValueToSubmit, txbSearch.Value, "Submitted value should match to expected");
+            Assert.That(txbSearch.Value, Is.EqualTo(ValueToSubmit), "Submitted value should match to expected");
             txbSearch.ClearAndType(ValueToSubmit);
-            Assert.AreEqual(ValueToSubmit, txbSearch.Value, "Submitted value should match to expected");
+            Assert.That(txbSearch.Value, Is.EqualTo(ValueToSubmit), "Submitted value should match to expected");
             txbSearch.ClearAndTypeSecret(ValueToSubmit);
-            Assert.AreEqual(ValueToSubmit, txbSearch.Value, "Submitted value should match to expected");
+            Assert.That(txbSearch.Value, Is.EqualTo(ValueToSubmit), "Submitted value should match to expected");
             txbSearch.SendKeys(Keys.Enter);
-            Assert.IsTrue(txbSearch.State.WaitForNotDisplayed(), "text field should disappear after the submit");
+            Assert.That(txbSearch.State.WaitForNotDisplayed(), Is.True, "text field should disappear after the submit");
         }
 
         private static void CheckIsKeyboardShown(bool expectedState, string message)
         {
-            // TODO: not yet implemented in dotnet Appium client: http://appium.io/docs/en/commands/device/keys/is-keyboard-shown/
-            Assert.AreEqual(expectedState, expectedState, message);
+            var waitResult = AqualityServices.ConditionalWait.WaitFor(driver => ((AppiumDriver)driver).IsKeyboardShown() == expectedState,
+                message:$"is keyboard shown condition should be {expectedState}");
+            Assert.That(AqualityServices.Application.Driver.IsKeyboardShown(), Is.EqualTo(expectedState), message);
         }
     }
 }
