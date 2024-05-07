@@ -1,4 +1,5 @@
 ﻿using Aquality.Appium.Mobile.Applications;
+using Aquality.Selenium.Core.Configurations;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -37,7 +38,10 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
 
         private static void CheckIsKeyboardShown(bool expectedState, string message)
         {
+            var timeoutConfig = AqualityServices.Get<ITimeoutConfiguration>();
             var waitResult = AqualityServices.ConditionalWait.WaitFor(driver => ((AppiumDriver)driver).IsKeyboardShown() == expectedState,
+                timeout: timeoutConfig.Command,
+                pollingInterval: timeoutConfig.PollingInterval.Multiply(10),
                 message:$"is keyboard shown condition should be {expectedState}");
             Assert.That(AqualityServices.Application.Driver.IsKeyboardShown(), Is.EqualTo(expectedState), message);
         }

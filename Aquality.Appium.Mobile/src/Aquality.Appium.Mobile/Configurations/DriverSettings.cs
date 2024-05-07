@@ -27,6 +27,8 @@ namespace Aquality.Appium.Mobile.Configurations
 
         private string ApplicationPathJPath => $"{DriverSettingsPath}.{ApplicationPathKey}";
 
+        private string BundleIdCapabilityKey => platformName == PlatformName.Android ? "appPackage" : "bundleId";
+
         protected virtual IReadOnlyDictionary<string, object> Capabilities => settingsFile.GetValueDictionaryOrEmpty<object>($"{DriverSettingsPath}.capabilities");
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace Aquality.Appium.Mobile.Configurations
                 Capabilities.ToList().ForEach(capability => SetCapability(options, capability));
                 if (HasApplicationPath && ApplicationPath != null)
                 {
-                    SetCapability(options, new KeyValuePair<string, object> (AppCapabilityKey, ApplicationPath));
+                    SetCapability(options, new KeyValuePair<string, object>(AppCapabilityKey, ApplicationPath));
                 }
                 DeviceCapabilities.ToList().ForEach(capability => SetCapability(options, capability));
                 return options;
@@ -56,6 +58,15 @@ namespace Aquality.Appium.Mobile.Configurations
                 var appValue = settingsFile.GetValueOrDefault(ApplicationPathJPath,
                     defaultValue: (Capabilities.ContainsKey(AppCapabilityKey) ? Capabilities[AppCapabilityKey] : null)?.ToString());
                 return appValue?.StartsWith(".") == true ? Path.GetFullPath(appValue) : appValue;
+            }
+        }
+
+        public virtual string BundleId
+        {
+            get
+            {
+                DeviceCapabilities.TryGetValue(BundleIdCapabilityKey, out var bundleId);
+                return bundleId?.ToString() ?? settingsFile.GetValue<string>($"{DriverSettingsPath}.capabilities.{BundleIdCapabilityKey}");
             }
         }
 

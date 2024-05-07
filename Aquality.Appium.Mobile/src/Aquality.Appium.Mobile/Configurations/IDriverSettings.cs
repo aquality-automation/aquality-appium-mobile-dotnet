@@ -16,5 +16,10 @@ namespace Aquality.Appium.Mobile.Configurations
         /// Provides a path to the application.
         /// </summary>
         string ApplicationPath { get; }
+
+        /// <summary>
+        /// The bundleId/appPackage of the application.
+        /// </summary>
+        string BundleId { get; }
     }
 }

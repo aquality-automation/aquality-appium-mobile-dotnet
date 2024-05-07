@@ -1,6 +1,8 @@
 ﻿using Aquality.Selenium.Core.Applications;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.Service;
+using System;
 
 namespace Aquality.Appium.Mobile.Applications
 {
@@ -15,16 +17,71 @@ namespace Aquality.Appium.Mobile.Applications
         new AppiumDriver Driver { get; }
 
         /// <summary>
-        /// Closes application and disposes <see cref="DriverService"/> if it not null.
+        /// Quits application driver and disposes <see cref="DriverService"/> if it not null.
         /// </summary>
         void Quit();
 
         /// <summary>
+        /// Installs an application.
+        /// </summary>
+        /// <param name="appPath">a string containing the file path or url of the application.</param>
+        void Install(string appPath);
+
+        /// <summary>
+        /// Installs an application defined in settings.
+        /// Note that path to the application must be defined as 'app' capability.
+        /// </summary>
+        void Install();
+
+        /// <summary>
+        /// Send the currently active application to the background, 
+        /// and either return after a certain amount of time, or leave the application deactivated
+        /// (as "Home" button does).
+        /// <param name="timeout">How long to background the application for. If null, application would be deactivated entirely.</param>
+        /// </summary>
+        void Background(TimeSpan? timeout = null);
+
+        /// <summary>
+        /// Removes an application.
+        /// </summary>
+        /// <param name="appId">the bundle identifier (or appId) of the application to be removed.</param>
+        void Remove(string appId);
+
+        /// <summary>
+        /// Removes currently running application (or startup application for iOS session).
+        /// Note that for iOS the bundleId of the application must be defined in the capabilities settings.
+        /// </summary>
+        void Remove();
+
+        /// <summary>
+        /// Activates the given application by moving to the foreground if it is running in the background
+        /// or starting it if it is not running yet.
+        /// </summary>
+        /// <param name="appId">the bundle identifier (or appId) of the application.</param>
+        void Activate(string appId, TimeSpan? timeout = null);
+
+        /// <summary>
         /// Terminate the particular application if it is running.
         /// </summary>
-        /// <param name="bundleId">the bundle identifier (or app id) of the app to be terminated.</param>
-        /// <returns>true if the app was running before and has been successfully stopped.</returns>
-        bool TerminateApp(string bundleId);
+        /// <param name="appId">the bundle identifier (or appId) of the application to be terminated.</param>
+        /// <param name="timeout">If not null, defines for how long to wait until the application is terminated.</param>
+        /// <returns>true if the application was running before and has been successfully stopped.</returns>
+        bool Terminate(string appId, TimeSpan? timeout = null);
+
+        /// <summary>
+        /// Terminates currently running application (or startup application for iOS session).
+        /// Note that for iOS the bundleId of the application must be defined in the capabilities settings.
+        /// </summary>
+        /// <param name="timeout">If not null, defines for how long to wait until the application is terminated.</param>
+        /// <returns>true if the application was running before and has been successfully stopped.</returns>
+        bool Terminate(TimeSpan? timeout = null);
+
+        /// <summary>
+        /// Gets the state of the application.
+        /// </summary>
+        /// <param name="appId">the bundle identifier (or appId) of the application.</param>
+        /// <returns>an enumeration of the application state.</returns>
+        AppState GetAppState(string appId);
 
         /// <summary>
         /// Provides current AppiumDriver service instance (would be null if driver is not local).
@@ -35,5 +92,10 @@ namespace Aquality.Appium.Mobile.Applications
         /// Provides name of current platform.
         /// </summary>
         PlatformName PlatformName { get; }
+
+        /// <summary>
+        /// Gets id of the currently running application (or startup application for iOS session).
+        /// </summary>
+        string Id { get; }
     }
 }

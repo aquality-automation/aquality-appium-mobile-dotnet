@@ -111,15 +111,70 @@
         </member>
         <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Quit">
             <summary>
-            Closes application and disposes <see cref="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService"/> if it not null.
+            Quits application driver and disposes <see cref="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService"/> if it not null.
             </summary>
         </member>
-        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.TerminateApp(System.String)">
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.InstallApp(System.String)">
+            <summary>
+            Installs an application.
+            </summary>
+            <param name="appPath">a string containing the file path or url of the application.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Install">
+            <summary>
+            Installs an application defined in settings.
+            Note that path to the application must be defined as 'app' capability.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Background(System.Nullable{System.TimeSpan})">
+            <summary>
+            Send the currently active application to the background, 
+            and either return after a certain amount of time, or leave the application deactivated
+            (as "Home" button does).
+            <param name="timeout">How long to background the application for. If null, application would be deactivated entirely.</param>
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.RemoveApp(System.String)">
+            <summary>
+            Removes an application.
+            </summary>
+            <param name="appId">the bundle identifier (or appId) of the application to be removed.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Remove">
+            <summary>
+            Removes currently running application (or startup application for iOS session).
+            Note that for iOS the bundleId of the application must be defined in the capabilities settings.
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.ActivateApp(System.String)">
+            <summary>
+            Activates the given application by moving to the foreground if it is running in the background
+            or starting it if it is not running yet.
+            </summary>
+            <param name="appId">the bundle identifier (or appId) of the application.</param>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.TerminateApp(System.String,System.Nullable{System.TimeSpan})">
             <summary>
             Terminate the particular application if it is running.
             </summary>
-            <param name="bundleId">the bundle identifier (or app id) of the app to be terminated.</param>
-            <returns>true if the app was running before and has been successfully stopped.</returns>
+            <param name="appId">the bundle identifier (or appId) of the application to be terminated.</param>
+            <param name="timeout">If not null, defines for how long to wait until the application is terminated.</param>
+            <returns>true if the application was running before and has been successfully stopped.</returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Terminate(System.Nullable{System.TimeSpan})">
+            <summary>
+            Terminates currently running application (or startup application for iOS session).
+            Note that for iOS the bundleId of the application must be defined in the capabilities settings.
+            </summary>
+            <param name="timeout">If not null, defines for how long to wait until the application is terminated.</param>
+            <returns>true if the application was running before and has been successfully stopped.</returns>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.GetAppState(System.String)">
+            <summary>
+            Gets the state of the application.
+            </summary>
+            <param name="appId">the bundle identifier (or appId) of the application.</param>
+            <returns>an enumeration of the application state.</returns>
         </member>
         <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService">
             <summary>
@@ -129,6 +184,11 @@
         <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.PlatformName">
             <summary>
             Provides name of current platform.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Applications.IMobileApplication.Id">
+            <summary>
+            Gets id of the currently running application (or startup application for iOS session).
             </summary>
         </member>
         <member name="T:Aquality.Appium.Mobile.Applications.MobileStartup">
@@ -200,6 +260,11 @@
         <member name="P:Aquality.Appium.Mobile.Configurations.IDriverSettings.ApplicationPath">
             <summary>
             Provides a path to the application.
+            </summary>
+        </member>
+        <member name="P:Aquality.Appium.Mobile.Configurations.IDriverSettings.BundleId">
+            <summary>
+            The bundleId/appPackage of the application.
             </summary>
         </member>
         <member name="T:Aquality.Appium.Mobile.Configurations.ILocalServiceSettings">
