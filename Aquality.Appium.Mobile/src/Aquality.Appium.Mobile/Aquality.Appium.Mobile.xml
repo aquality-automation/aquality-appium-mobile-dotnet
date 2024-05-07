@@ -114,7 +114,7 @@
             Quits application driver and disposes <see cref="P:Aquality.Appium.Mobile.Applications.IMobileApplication.DriverService"/> if it not null.
             </summary>
         </member>
-        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.InstallApp(System.String)">
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Install(System.String)">
             <summary>
             Installs an application.
             </summary>
@@ -134,7 +134,7 @@
             <param name="timeout">How long to background the application for. If null, application would be deactivated entirely.</param>
             </summary>
         </member>
-        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.RemoveApp(System.String)">
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Remove(System.String)">
             <summary>
             Removes an application.
             </summary>
@@ -146,14 +146,14 @@
             Note that for iOS the bundleId of the application must be defined in the capabilities settings.
             </summary>
         </member>
-        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.ActivateApp(System.String)">
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Activate(System.String,System.Nullable{System.TimeSpan})">
             <summary>
             Activates the given application by moving to the foreground if it is running in the background
             or starting it if it is not running yet.
             </summary>
             <param name="appId">the bundle identifier (or appId) of the application.</param>
         </member>
-        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.TerminateApp(System.String,System.Nullable{System.TimeSpan})">
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Terminate(System.String,System.Nullable{System.TimeSpan})">
             <summary>
             Terminate the particular application if it is running.
             </summary>
