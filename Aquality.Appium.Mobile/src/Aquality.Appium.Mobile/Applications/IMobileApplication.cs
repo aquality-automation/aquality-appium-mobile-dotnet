@@ -48,8 +48,7 @@ namespace Aquality.Appium.Mobile.Applications
         void Remove(string appId);
 
         /// <summary>
-        /// Removes currently running application (or startup application for iOS session).
-        /// Note that for iOS the bundleId of the application must be defined in the capabilities settings.
+        /// Removes currently running application.
         /// </summary>
         void Remove();
 
@@ -58,6 +57,7 @@ namespace Aquality.Appium.Mobile.Applications
         /// or starting it if it is not running yet.
         /// </summary>
         /// <param name="appId">the bundle identifier (or appId) of the application.</param>
+        /// <param name="timeout">command timeout.</param>
         void Activate(string appId, TimeSpan? timeout = null);
 
         /// <summary>
@@ -69,8 +69,7 @@ namespace Aquality.Appium.Mobile.Applications
         bool Terminate(string appId, TimeSpan? timeout = null);
 
         /// <summary>
-        /// Terminates currently running application (or startup application for iOS session).
-        /// Note that for iOS the bundleId of the application must be defined in the capabilities settings.
+        /// Terminates currently running application.
         /// </summary>
         /// <param name="timeout">If not null, defines for how long to wait until the application is terminated.</param>
         /// <returns>true if the application was running before and has been successfully stopped.</returns>
@@ -81,7 +80,7 @@ namespace Aquality.Appium.Mobile.Applications
         /// </summary>
         /// <param name="appId">the bundle identifier (or appId) of the application.</param>
         /// <returns>an enumeration of the application state.</returns>
-        AppState GetAppState(string appId);
+        AppState GetState(string appId);
 
         /// <summary>
         /// Provides current AppiumDriver service instance (would be null if driver is not local).
@@ -94,7 +93,7 @@ namespace Aquality.Appium.Mobile.Applications
         PlatformName PlatformName { get; }
 
         /// <summary>
-        /// Gets id of the currently running application (or startup application for iOS session).
+        /// Gets the bundle identifier (or appId) of the currently running application.
         /// </summary>
         string Id { get; }
     }

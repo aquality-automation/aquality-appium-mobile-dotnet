@@ -8,6 +8,7 @@ using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.Service;
 using System;
+using System.Collections.Generic;
 
 namespace Aquality.Appium.Mobile.Applications
 {
@@ -46,7 +47,7 @@ namespace Aquality.Appium.Mobile.Applications
 
         public string Id => PlatformName.Android == PlatformName
                 ? ((AndroidDriver)Driver).CurrentPackage
-                : applicationProfile.DriverSettings.BundleId;
+                : ((Dictionary<string, object>) Driver.ExecuteScript("mobile: activeAppInfo"))["bundleId"].ToString();
 
         public void SetImplicitWaitTimeout(TimeSpan timeout)
         {
@@ -72,9 +73,8 @@ namespace Aquality.Appium.Mobile.Applications
         public bool Terminate(string appId, TimeSpan? timeout = null)
         {
             localizedLogger.Info("loc.application.terminate", appId);
-            return timeout.HasValue 
-                ? Driver.TerminateApp(appId, timeout.Value)
-                : Driver.TerminateApp(appId);
+            return Driver.TerminateApp(appId, 
+                timeout ?? AqualityServices.Get<ITimeoutConfiguration>().Command);
         }
 
         public void Install(string appPath)
@@ -126,7 +126,7 @@ namespace Aquality.Appium.Mobile.Applications
             }
         }
 
-        public AppState GetAppState(string appId)
+        public AppState GetState(string appId)
         {
             localizedLogger.Info("loc.application.get.state", appId);
             var state = Driver.GetAppState(appId);
