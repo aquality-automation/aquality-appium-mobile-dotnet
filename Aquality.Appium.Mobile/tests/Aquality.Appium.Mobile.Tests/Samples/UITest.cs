@@ -1,5 +1,6 @@
 ﻿using Aquality.Appium.Mobile.Applications;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using System.IO;
 
 namespace Aquality.Appium.Mobile.Tests.Samples
@@ -11,7 +12,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples
         [TearDown]
         public void AddScreenshot()
         {
-            if (AqualityServices.IsApplicationStarted)
+            if (AqualityServices.IsApplicationStarted && TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Passed)
             {
                 File.WriteAllBytes(TestResultsScreenshot, AqualityServices.Application.Driver.GetScreenshot().AsByteArray);
                 TestContext.AddTestAttachment(TestResultsScreenshot);
