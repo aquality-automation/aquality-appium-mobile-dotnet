@@ -2,14 +2,18 @@
 using Aquality.Selenium.Core.Applications;
 using Aquality.Selenium.Core.Configurations;
 using Aquality.Selenium.Core.Localization;
+using Aquality.Selenium.Core.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.Service;
 using System;
+using System.Collections.Generic;
 
 namespace Aquality.Appium.Mobile.Applications
 {
+    // Ignore Spelling: app
     public class Application : IMobileApplication
     {
         private readonly ILocalizedLogger localizedLogger;
@@ -42,6 +46,22 @@ namespace Aquality.Appium.Mobile.Applications
 
         public PlatformName PlatformName => applicationProfile.PlatformName;
 
+        protected virtual T DoWithRetry<T>(Func<T> function) => AqualityServices.Get<IActionRetrier>()
+            .DoWithRetry(function, new[] { typeof(WebDriverException) });
+
+        protected virtual void DoWithRetry(Action action) => AqualityServices.Get<IActionRetrier>()
+            .DoWithRetry(action, new[] { typeof(WebDriverException) });
+
+        public string Id
+        {
+            get
+            {
+                return DoWithRetry(() => PlatformName.Android == PlatformName
+                ? ((AndroidDriver)Driver).CurrentPackage
+                : ((Dictionary<string, object>)Driver.ExecuteScript("mobile: activeAppInfo"))["bundleId"].ToString());
+            }
+        }
+
         public void SetImplicitWaitTimeout(TimeSpan timeout)
         {
             if (timeout != timeoutImplicit)
@@ -58,9 +78,73 @@ namespace Aquality.Appium.Mobile.Applications
             DriverService?.Dispose();
         }
 
-        public bool TerminateApp(string bundleId)
+        public bool Terminate(TimeSpan? timeout = null)
         {
-            return ((IInteractsWithApps)Driver).TerminateApp(bundleId);
+            return Terminate(Id, timeout);
+        }
+
+        public bool Terminate(string appId, TimeSpan? timeout = null)
+        {
+            localizedLogger.Info("loc.application.terminate", appId);
+            return DoWithRetry(() => Driver.TerminateApp(appId, 
+                timeout ?? AqualityServices.Get<ITimeoutConfiguration>().Condition));
+        }
+
+        public void Install(string appPath)
+        {
+            localizedLogger.Info("loc.application.install", appPath);
+            DoWithRetry(() => Driver.InstallApp(appPath));
+        }
+
+        public void Install()
+        {
+            Install(applicationProfile.DriverSettings.ApplicationPath);
+        }
+
+        public void Background(TimeSpan? timeout = null)
+        {
+            if (timeout.HasValue)
+            {
+                localizedLogger.Info("loc.application.background.with.timeout", timeout.Value.TotalSeconds);
+                DoWithRetry(() => Driver.BackgroundApp(timeout.Value));
+            }
+            else
+            {
+                localizedLogger.Info("loc.application.background");
+                DoWithRetry(() => Driver.BackgroundApp());
+            }
+        }
+
+        public void Remove(string appId)
+        {
+            localizedLogger.Info("loc.application.remove", appId);
+            DoWithRetry(() => Driver.RemoveApp(appId));
+        }
+
+        public void Remove()
+        {
+            Remove(Id);
+        }
+
+        public void Activate(string appId, TimeSpan? timeout = null)
+        {
+            localizedLogger.Info("loc.application.activate", appId);
+            if (timeout.HasValue)
+            {
+                DoWithRetry(() => Driver.ActivateApp(appId, timeout.Value));
+            }
+            else
+            {
+                DoWithRetry(() => Driver.ActivateApp(appId));
+            }
+        }
+
+        public AppState GetState(string appId)
+        {
+            localizedLogger.Info("loc.application.get.state", appId);
+            var state = DoWithRetry(() => Driver.GetAppState(appId));
+            localizedLogger.Info("loc.application.state", state);
+            return state;
         }
     }
 }
