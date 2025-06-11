@@ -77,7 +77,8 @@ stages:
           echo "JAVA_HOME: ${JAVA_HOME}"
           echo "PATH: ${PATH}"
 
-          echo "y" | sdkmanager "$(ANDROID_SDK_ID)"
+          yes | sdkmanager "$(ANDROID_SDK_ID)" --licenses
+          #echo "y" | sdkmanager "$(ANDROID_SDK_ID)"
           echo "no" | avdmanager create avd -n "$(ANDROID_EMU_NAME)" -k "$(ANDROID_SDK_ID)" -f
           emulator -list-avds
 
