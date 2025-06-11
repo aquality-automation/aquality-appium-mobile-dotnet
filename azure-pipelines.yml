@@ -69,11 +69,9 @@ stages:
         script: |
           echo "Configuring Environment"
 
-          brew uninstall --cask java
+          brew uninstall --cask temurin
           brew tap homebrew/cask-versions
-          brew install --cask java8
-          touch ~/.android/repositories.cfg
-          brew install --cask android-sdk
+          brew install --cask homebrew/cask-versions/adoptopenjdk8
 
           export PATH=$PATH:$JAVA_HOME/bin
           echo export "ANDROID_HOME=\$ANDROID_HOME" >> ~/.bash_profile
