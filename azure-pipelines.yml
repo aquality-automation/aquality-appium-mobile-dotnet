@@ -69,9 +69,11 @@ stages:
         script: |
           echo "Configuring Environment"
 
-          brew remove android-sdk
-          brew install --cask android-commandlinetools
-          brew install --cask android-platform-tools
+          brew uninstall --cask java
+          brew tap homebrew/cask-versions
+          brew install --cask java8
+          touch ~/.android/repositories.cfg
+          brew install --cask android-sdk
 
           export PATH=$PATH:$JAVA_HOME/bin
           echo export "ANDROID_HOME=\$ANDROID_HOME" >> ~/.bash_profile
