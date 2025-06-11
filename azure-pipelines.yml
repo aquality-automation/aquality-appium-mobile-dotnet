@@ -68,11 +68,7 @@ stages:
       inputs:
         script: |
           echo "Configuring Environment"
-
-          brew uninstall temurin
-          brew install --cask temurin@8
-
-          export PATH=$PATH:$JAVA_HOME/bin
+          
           echo export "ANDROID_HOME=\$ANDROID_HOME" >> ~/.bash_profile
           export PATH=$PATH:$ANDROID_HOME
 
