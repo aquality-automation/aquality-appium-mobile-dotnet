@@ -79,6 +79,7 @@ stages:
           yes | sdkmanager --licenses
           echo "y" | sdkmanager "$(ANDROID_SDK_ID)"
           echo "no" | avdmanager create avd -n "$(ANDROID_EMU_NAME)" -k "$(ANDROID_SDK_ID)" -f
+          sdkmanager "emulator"
           emulator -list-avds
 
           echo "Starting emulator"
