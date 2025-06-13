@@ -71,6 +71,9 @@ stages:
           
           brew install --cask android-commandlinetools
           brew install --cask android-platform-tools
+
+          export ANDROID_HOME=/usr/local/share/android-commandlinetools
+          export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
           
           echo "ANDROID_HOME: ${ANDROID_HOME}"
           echo "JAVA_HOME: ${JAVA_HOME}"
@@ -84,7 +87,7 @@ stages:
 
           echo "Starting emulator"
           nohup emulator -avd "$(ANDROID_EMU_NAME)" -no-window -no-audio -gpu swiftshader_indirect -verbose &
-          android-wait-for-emulator
+          adb wait-for-device
           adb devices
           echo "Emulator started"
 
