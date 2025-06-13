@@ -73,6 +73,7 @@ stages:
           brew install --cask android-platform-tools
 
           export ANDROID_HOME=/usr/local/share/android-commandlinetools
+          export ANDROID_SDK_ROOT=/usr/local/share/android-commandlinetools
           export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
           
           echo "ANDROID_HOME: ${ANDROID_HOME}"
