@@ -18,6 +18,20 @@
             <param name="startPoint">Point on screen to swipe from.</param>
             <param name="endPoint">Point on screen to swipe to.</param>
         </member>
+        <member name="T:Aquality.Appium.Mobile.Applications.AndroidExtensions">
+            <summary>
+            Extensions for Android applications
+            </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.AndroidExtensions.StartActivity(Aquality.Appium.Mobile.Applications.IMobileApplication,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts application activity.
+            </summary>
+            <param name="application">Android application</param>
+            <param name="appPackage">Package of the target application.</param>
+            <param name="appActivity">Target activity.</param>
+            <param name="stopApp">True if need to stop currently running application, false otherwise. True by default.</param>
+        </member>
         <member name="T:Aquality.Appium.Mobile.Applications.AqualityServices">
             <summary>
             Controls application and Aquality services
@@ -108,6 +122,14 @@
             <summary>
             Provides instance of Appium Driver for current application.
             </summary>
+        </member>
+        <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.ExecuteScript(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Execute application script
+            </summary>
+            <param name="script">script</param>
+            <param name="args">parameters</param>
+            <returns></returns>
         </member>
         <member name="M:Aquality.Appium.Mobile.Applications.IMobileApplication.Quit">
             <summary>

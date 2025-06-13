@@ -3,6 +3,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.Service;
 using System;
+using System.Collections.Generic;
 
 namespace Aquality.Appium.Mobile.Applications
 {
@@ -15,6 +16,14 @@ namespace Aquality.Appium.Mobile.Applications
         /// Provides instance of Appium Driver for current application.
         /// </summary>
         new AppiumDriver Driver { get; }
+
+        /// <summary>
+        /// Execute application script
+        /// </summary>
+        /// <param name="script">script</param>
+        /// <param name="args">parameters</param>
+        /// <returns></returns>
+        object ExecuteScript(string script, Dictionary<string, object> args = null);
 
         /// <summary>
         /// Quits application driver and disposes <see cref="DriverService"/> if it not null.

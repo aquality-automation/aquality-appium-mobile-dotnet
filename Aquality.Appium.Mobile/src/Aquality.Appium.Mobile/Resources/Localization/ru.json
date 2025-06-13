@@ -14,6 +14,8 @@
   "loc.application.ready": "Приложение на платформе '{0}' готово...",
   "loc.application.implicit.timeout": "Установка таймаута implicit(неявного) ожидания: '{0}' сек.",
   "loc.application.android.activity.start": "Старт активности '{0}' Android приложения в пакете '{1}'",
+  "loc.application.execute.script": "Исполнение скрипта '{0}'",
+  "loc.application.script.result": "Результат исполнения скрипта: '{0}'",
   "loc.button": "Кнопка",
   "loc.checkbox": "Чекбокс",
   "loc.checkable.is.checked": "Получение состояния",

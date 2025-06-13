@@ -14,6 +14,8 @@
   "loc.application.ready": "Праграма на платформе '{0}' гатовая...",
   "loc.application.implicit.timeout": "Задаем таймаўт implicit(няяўнага) чакання: '{0}' сек.",
   "loc.application.android.activity.start": "Стартуем '{0}' актыўнасць Android праграмы ў пакеце '{1}'",
+  "loc.application.execute.script": "Выконваем скрыпт '{0}'",
+  "loc.application.script.result": "Вынік выканання скрыпту: '{0}'",
   "loc.button": "Кнопка",
   "loc.checkbox": "Чэкбокс",
   "loc.checkable.is.checked": "Атрымліваем стан",

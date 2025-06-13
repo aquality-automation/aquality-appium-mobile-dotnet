@@ -10,11 +10,8 @@
         "browserName": "Chrome",
         "platformName": "Android",
         "automationName": "UIAutomator2",
-        "chromeOptions": {
-          "w3c": false
-        },
         "uiautomator2ServerInstallTimeout": 30000,
-        "adbExecTimeout": 30000,
+        "adbExecTimeout": 45000,
         "eventTimings": true
       }
     }
