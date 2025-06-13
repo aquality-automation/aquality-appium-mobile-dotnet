@@ -68,28 +68,25 @@ stages:
       inputs:
         script: |
           echo "Configuring Environment"
-          
-          brew install --cask android-commandlinetools
-          brew install --cask android-platform-tools
+          brew install --cask temurin@8
+          export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+          export PATH=$JAVA_HOME/bin:$PATH
+          echo export "ANDROID_HOME=\$ANDROID_HOME" >> ~/.bash_profile
+          export PATH=$PATH:$ANDROID_HOME
 
-          export ANDROID_HOME=/usr/local/share/android-commandlinetools
-          export ANDROID_SDK_ROOT=/usr/local/share/android-commandlinetools
-          export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
-          
           echo "ANDROID_HOME: ${ANDROID_HOME}"
           echo "JAVA_HOME: ${JAVA_HOME}"
           echo "PATH: ${PATH}"
 
-          yes | sdkmanager --licenses
-          echo "y" | sdkmanager "$(ANDROID_SDK_ID)"
-          echo "no" | avdmanager create avd -n "$(ANDROID_EMU_NAME)" -k "$(ANDROID_SDK_ID)" -f
-          sdkmanager "emulator"
-          emulator -list-avds
+          echo "y" | $ANDROID_HOME/tools/bin/sdkmanager "$(ANDROID_SDK_ID)"
+          echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n "$(ANDROID_EMU_NAME)" -k "$(ANDROID_SDK_ID)" -f
+          $ANDROID_HOME/emulator/emulator -list-avds
 
           echo "Starting emulator"
-          nohup emulator -avd "$(ANDROID_EMU_NAME)" -no-window -no-audio -gpu swiftshader_indirect -verbose &
-          adb wait-for-device
-          adb devices
+          nohup $ANDROID_HOME/emulator/emulator -avd "$(ANDROID_EMU_NAME)" -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -verbose > /dev/null 2>&1 &
+          $ANDROID_HOME/platform-tools/adb wait-for-device
+          while [[ $? -ne 0 ]]; do sleep 1; $ANDROID_HOME/platform-tools/adb shell pm list packages; done;
+          $ANDROID_HOME/platform-tools/adb devices
           echo "Emulator started"
 
           echo "Installing Appium"
