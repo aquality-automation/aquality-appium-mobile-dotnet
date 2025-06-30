@@ -56,7 +56,8 @@ namespace Aquality.Appium.Mobile.Applications
                 "stream was destroyed",
                 "invalid or unrecognized response",
                 "has been expired",
-                "unknown server-side error"
+                "unknown server-side error",
+                "response to the /status api is not valid"
             };
 
             public CustomActionRetrier() 
@@ -68,7 +69,8 @@ namespace Aquality.Appium.Mobile.Applications
             {
                 var exceptions = new List<Type>(handledExceptions ?? new List<Type>())
                 {
-                    typeof(WebDriverException)
+                    typeof(WebDriverException),
+                    typeof(UnknownErrorException)
                 };
                 return base.IsExceptionHandled(exceptions, exception) 
                     && handledErrorMessages.Any(message => exception.Message.ToLower().Contains(message));

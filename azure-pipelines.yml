@@ -111,6 +111,16 @@ stages:
           appium-doctor
           echo "Appium doctor installed and executed"
 
+          
+          echo "Updating Chrome on Emulator"
+          # Download Chrome APK (you might want to specify a different version or method based on your needs)
+          wget https://r2-static-assets.androidapksfree.com/sdata/02e10eec8859e2b850ec11874a315238/com.android.chrome_v104.0.5112.97-511209710_Android-6.0.apk -O /tmp/chrome.apk          
+          # Install Chrome APK on the emulator
+          $ANDROID_HOME/platform-tools/adb install -r /tmp/chrome.apk
+          # Verify the installation
+          $ANDROID_HOME/platform-tools/adb shell pm list packages | grep com.android.chrome
+          echo "Chrome installed/updated"
+
     - task: CmdLine@2
       displayName: 'Start Appium server'
       inputs:
