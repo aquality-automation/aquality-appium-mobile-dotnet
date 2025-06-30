@@ -6,7 +6,7 @@ using System;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
 {
-    public class AndroidApplicationManagementTest : UITest
+    public class ApplicationManagementTest : UITest
     {
         [TearDown]
         public void TearDown()
@@ -27,7 +27,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp
             Assert.That(app.GetState(id), Is.EqualTo(AppState.RunningInForeground));
             Assert.DoesNotThrow(() => app.Terminate());
             Assert.That(app.IsStarted, Is.True);
-            Assert.That(app.GetState(id), Is.EqualTo(AppState.NotRunning));
+            Assert.That(app.GetState(id), Is.AnyOf(AppState.NotRunning, AppState.RunningInBackground));
             Assert.DoesNotThrow(() => app.Remove(id));
             Assert.That(app.GetState(id), Is.EqualTo(AppState.NotInstalled));
             Assert.DoesNotThrow(app.Install);

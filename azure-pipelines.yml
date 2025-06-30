@@ -113,8 +113,8 @@ stages:
 
           
           echo "Updating Chrome on Emulator"
-          # Download Chrome APK 
-          wget http://srv-watch-dwn0108.apk.watch/storage/15/273/4273/x86/45a73dcf03d045810a03ad0fe464ebc4/Chrome-119.0.6045.193.apk?s=4MlkqWQ7JBxfvy_n7LdnMg&e=1751377742&lang=en&apk_id=1163&premium_speed=1 -O /tmp/chrome.apk          
+          # Download Chrome APK (you might want to specify a different version or method based on your needs)
+          wget https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=9799753&key=f031adeb710376d4956dfa4e30a00ad603d690e5&forcebaseapk=true -O /tmp/chrome.apk          
           # Install Chrome APK on the emulator
           $ANDROID_HOME/platform-tools/adb install -r /tmp/chrome.apk
           # Verify the installation
