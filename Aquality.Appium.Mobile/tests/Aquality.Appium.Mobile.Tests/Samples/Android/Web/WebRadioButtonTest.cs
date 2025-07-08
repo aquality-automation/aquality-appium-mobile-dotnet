@@ -12,7 +12,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
                 By.XPath($"(//input[@type='radio'])[{number}]"), $"#{number}");
 
         public void OpenRadioButtonsScreen() => 
-            AqualityServices.Application.Driver.Url = "http://www.echoecho.com/htmlforms10.htm";
+            AqualityServices.Application.Driver.Url = "https://formy-project.herokuapp.com/radiobutton";
 
         [Test]
         public void TestRadioButton() => this.InvokeRadioButtonTest();
