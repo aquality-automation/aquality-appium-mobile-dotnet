@@ -18,6 +18,7 @@
   },
   "localServiceSettings": {
     "arguments": {
+      "--allow-insecure": "chromedriver_autodownload"
     },
     "capabilities": {
     }
