@@ -14,6 +14,8 @@
   "loc.application.ready": "Aplikacja na platformie '{0}' jest gotowa...",
   "loc.application.implicit.timeout": "Ustawianie implicit(niejawny) limitu czasu '{0}' sek.",
   "loc.application.android.activity.start": "Rozpoczęcie aktywności '{0}' aplikacji Android w pakiecie '{1}'",
+  "loc.application.execute.script": "Wykonywanie skryptu: '{0}'",
+  "loc.application.script.result": "Wynik wykonania skryptu: '{0}'",
   "loc.button": "Przycisk",
   "loc.checkbox": "Pole wyboru",
   "loc.checkable.is.checked": "Uzyskiwanie stanu",

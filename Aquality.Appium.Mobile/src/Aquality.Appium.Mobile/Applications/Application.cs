@@ -7,9 +7,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
+using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Appium.Service;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading;
 
 namespace Aquality.Appium.Mobile.Applications
 {
@@ -18,7 +21,7 @@ namespace Aquality.Appium.Mobile.Applications
     {
         private readonly ILocalizedLogger localizedLogger;
         private readonly IApplicationProfile applicationProfile;
-        
+
         private TimeSpan timeoutImplicit;
 
         public Application(AppiumDriver driver, AppiumLocalService driverService = null)
@@ -52,13 +55,28 @@ namespace Aquality.Appium.Mobile.Applications
         protected virtual void DoWithRetry(Action action) => AqualityServices.Get<IActionRetrier>()
             .DoWithRetry(action, new[] { typeof(WebDriverException) });
 
+        public object ExecuteScript(string script, Dictionary<string, object> args = null)
+        {
+            return DoWithRetry(() =>
+            {
+                var argsString = args == null ? string.Empty : JsonSerializer.SerializeToNode(args).ToString();
+                localizedLogger.Info("loc.application.execute.script", script + argsString);
+                var result = Driver.ExecuteScript(script, args);
+                if (result != null)
+                {
+                    localizedLogger.Info("loc.application.script.result", JsonSerializer.SerializeToNode(result).ToString());
+                }
+                return result;
+            });
+        }
+
         public string Id
         {
             get
             {
                 return DoWithRetry(() => PlatformName.Android == PlatformName
                 ? ((AndroidDriver)Driver).CurrentPackage
-                : ((Dictionary<string, object>)Driver.ExecuteScript("mobile: activeAppInfo"))["bundleId"].ToString());
+                : ((Dictionary<string, object>)ExecuteScript("mobile: activeAppInfo"))["bundleId"].ToString());
             }
         }
 
@@ -86,7 +104,7 @@ namespace Aquality.Appium.Mobile.Applications
         public bool Terminate(string appId, TimeSpan? timeout = null)
         {
             localizedLogger.Info("loc.application.terminate", appId);
-            return DoWithRetry(() => Driver.TerminateApp(appId, 
+            return DoWithRetry(() => Driver.TerminateApp(appId,
                 timeout ?? AqualityServices.Get<ITimeoutConfiguration>().Condition));
         }
 
@@ -142,7 +160,7 @@ namespace Aquality.Appium.Mobile.Applications
         public AppState GetState(string appId)
         {
             localizedLogger.Info("loc.application.get.state", appId);
-            var state = DoWithRetry(() => Driver.GetAppState(appId));
+            var state = PlatformName.Android == PlatformName ? ((AndroidDriver)Driver).GetAppState(appId) : ((IOSDriver)Driver).GetAppState(appId);
             localizedLogger.Info("loc.application.state", state);
             return state;
         }

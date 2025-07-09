@@ -15,13 +15,13 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android
         public static void InvokeRadioButtonTest(this IRadioButtonTest radioButtonTest)
         {
             radioButtonTest.OpenRadioButtonsScreen();
-            IRadioButton button1 = radioButtonTest.GetRadioButton(1);
-            Assert.That(button1.IsChecked, Is.False, "RadioButton should not be checked initially");
-            button1.Click();
-            Assert.That(button1.IsChecked, Is.True, "RadioButton should be checked after click on it");
-            radioButtonTest.GetRadioButton(2).Click();
-            Assert.That(button1.IsChecked, Is.False,
-                    $"RadioButton {button1.Name} should not be checked after click on another option");
+            IRadioButton button2 = radioButtonTest.GetRadioButton(2);
+            Assert.That(button2.IsChecked, Is.False, "RadioButton should not be checked initially");
+            button2.Click();
+            Assert.That(button2.IsChecked, Is.True, "RadioButton should be checked after click on it");
+            radioButtonTest.GetRadioButton(1).Click();
+            Assert.That(button2.IsChecked, Is.False,
+                    $"RadioButton {button2.Name} should not be checked after click on another option");
         }
     }
 }
