@@ -12,19 +12,19 @@ stages:
 
   jobs:
   - job: sonar
-    displayName: Analyse code with SonarQube
+    displayName: Analyze code with SonarQube
 
     steps:
-    - task: SonarCloudPrepare@1
+    - task: SonarCloudPrepare@3
       displayName: 'Prepare SonarCloud analysis'
       inputs:
-        SonarCloud: 'SonarCloud'
+        SonarQube: 'SonarCloud'
         organization: 'aqualityautomation'
+        scannerMode: 'dotnet'
         projectKey: 'aquality-automation_aquality-appium-mobile-dotnet'
         projectName: 'aquality-appium-mobile-dotnet'
         projectVersion: '$(Build.BuildNumber)'
-        extraProperties: |
-          sonar.coverage.exclusions=**/**
+        extraProperties: 'sonar.coverage.exclusions=**/**'
           
     - task: UseDotNet@2
       displayName: Use .NET 8.0
@@ -41,11 +41,15 @@ stages:
         projects: Aquality.Appium.Mobile/Aquality.Appium.Mobile.sln
         arguments: -c $(buildConfiguration)
 
-    - task: SonarCloudAnalyze@1
+    - task: SonarCloudAnalyze@3
+      inputs:
+        jdkversion: 'JAVA_HOME_17_X64'
       displayName: 'Run SonarCloud code analysis'
       continueOnError: true
 
-    - task: SonarCloudPublish@1
+    - task: SonarCloudPublish@3
+      inputs:
+        pollingTimeoutSec: '300'
       displayName: 'Publish SonarCloud quality gate results'
 
   - job: tests
@@ -184,17 +188,20 @@ stages:
 
     - script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) -p:Version=$(GitVersion.NuGetVersion) -o $(Build.ArtifactStagingDirectory)
       displayName: 'Create NuGet package'
-
-    - task: GitHubRelease@0
+      
+    - task: GitHubRelease@1
       displayName: 'Create tag on GitHub'
       inputs:
         gitHubConnection: 'github.com_aqualityautomation'
         repositoryName: 'aquality-automation/aquality-appium-mobile-dotnet'
         action: 'create'
+        target: '$(Build.SourceVersion)'
+        tagSource: 'userSpecifiedTag'
         tag: 'v$(GitVersion.NuGetVersion)'
         title: 'v$(GitVersion.NuGetVersion)'
-        tagSource: 'manual'
         isPreRelease: contains(variables['GitVersion.NuGetVersion'], '-')
+        changeLogCompareToRelease: 'lastFullRelease'
+        changeLogType: 'commitBased'
 
     - task: NuGetCommand@2
       displayName: 'Push NuGet package'
