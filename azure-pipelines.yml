@@ -1,14 +1,14 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'macOS-latest'
-
 variables:  
   buildConfiguration: 'Release'
 
 stages:
 - stage: test
+
+  pool:
+    vmImage: 'macOS-latest'
 
   jobs:
   - job: sonar
@@ -165,6 +165,10 @@ stages:
 
 - stage: deploy
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  
+  pool:
+    vmImage: 'windows-latest'
+
   jobs:
   - job: release
     displayName: 'Create tag on GitHub and publish NuGet package'
@@ -203,7 +207,7 @@ stages:
         changeLogCompareToRelease: 'lastFullRelease'
         changeLogType: 'commitBased'
 
-    - task: DotNetCoreCLI@2
+    - task: NuGetCommand@2
       displayName: 'Push NuGet package'
       inputs:
         command: 'push'
