@@ -11,7 +11,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
         private const string ValueToSubmit = "quality assurance";
         private readonly ITextBox txbSearch = AqualityServices.ElementFactory.GetTextBox(By.Id("searchInput"), "Search");
         private readonly IButton btnOverlayToggle = AqualityServices.ElementFactory.GetButton(By.ClassName("frb-header-minimize-icon"), "Toggle Overlay");
-        private readonly IButton btnCloseBanner = AqualityServices.ElementFactory.GetButton(By.ClassName(".overlay-banner-close"), "Close banner");
+        private readonly IButton btnCloseBanner = AqualityServices.ElementFactory.GetButton(By.ClassName("overlay-banner-close"), "Close banner");
             
 
         [Test, Retry(2)]
