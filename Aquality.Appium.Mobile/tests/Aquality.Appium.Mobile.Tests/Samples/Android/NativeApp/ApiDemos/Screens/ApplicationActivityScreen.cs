@@ -7,7 +7,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
     public abstract class ApplicationActivityScreen : AndroidScreen
     {
         private const string Package = "io.appium.android.apis";
-        private readonly IButton WaitButton = ElementFactory.GetButton(MobileBy.AccessibilityId("Wait"), "Wait");
+        private readonly IButton WaitButton = ElementFactory.GetButton(By.Id("android:id/aerr_wait"), "Wait");
 
         public ApplicationActivityScreen(By locator, string name) : base(locator, name)
         {
@@ -23,6 +23,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
             if (WaitButton.State.WaitForDisplayed())
             {
                 WaitButton.Click();
+                WaitButton.State.WaitForNotDisplayed();
             }
         }
     }
