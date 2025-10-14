@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>appium mobile ios android automation</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Copyright>Copyright 2024 Aquality Automation</Copyright>
+    <Copyright>Copyright 2025 Aquality Automation</Copyright>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
     
@@ -49,8 +49,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Appium.WebDriver" Version="8.0.0" />
-    <PackageReference Include="Aquality.Selenium.Core" Version="3.5.0" />
+    <PackageReference Include="Appium.WebDriver" Version="8.0.1" />
+    <PackageReference Include="Aquality.Selenium.Core" Version="4.1.0" />
   </ItemGroup>
 
 </Project>
