@@ -16,6 +16,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples
             {
                 File.WriteAllBytes(TestResultsScreenshot, AqualityServices.Application.Driver.GetScreenshot().AsByteArray);
                 TestContext.AddTestAttachment(TestResultsScreenshot);
+                File.WriteAllText("page_source.xml", AqualityServices.Application.Driver.PageSource);
             }
         }
 

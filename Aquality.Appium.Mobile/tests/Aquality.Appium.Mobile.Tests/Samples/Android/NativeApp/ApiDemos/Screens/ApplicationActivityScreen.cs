@@ -1,10 +1,13 @@
-﻿using OpenQA.Selenium;
+﻿using Aquality.Appium.Mobile.Elements.Interfaces;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens
 {
     public abstract class ApplicationActivityScreen : AndroidScreen
     {
         private const string Package = "io.appium.android.apis";
+        private readonly IButton WaitButton = ElementFactory.GetButton(MobileBy.AccessibilityId("Wait"), "Wait");
 
         public ApplicationActivityScreen(By locator, string name) : base(locator, name)
         {
@@ -15,6 +18,12 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
         public void Open()
         {
             StartActivity(Package, Activity, stopApp: false);
+
+            // workaround to handle System UI isn't responding dialog            
+            if (WaitButton.State.WaitForDisplayed())
+            {
+                WaitButton.Click();
+            }
         }
     }
 }
