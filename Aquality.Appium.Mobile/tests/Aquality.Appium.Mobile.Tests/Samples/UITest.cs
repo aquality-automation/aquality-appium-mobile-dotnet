@@ -8,6 +8,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples
     public abstract class UITest
     {
         private const string TestResultsScreenshot = "final_screen.png";
+        private const string PageSourceFile = "page_source.xml";
 
         [TearDown]
         public void AddScreenshot()
@@ -16,6 +17,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples
             {
                 File.WriteAllBytes(TestResultsScreenshot, AqualityServices.Application.Driver.GetScreenshot().AsByteArray);
                 TestContext.AddTestAttachment(TestResultsScreenshot);
+                File.WriteAllText(PageSourceFile, AqualityServices.Application.Driver.PageSource);
+                TestContext.AddTestAttachment(PageSourceFile);
             }
         }
 

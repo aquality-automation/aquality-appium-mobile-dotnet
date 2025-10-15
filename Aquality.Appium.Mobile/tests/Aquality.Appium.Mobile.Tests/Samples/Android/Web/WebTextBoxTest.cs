@@ -10,6 +10,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
     {
         private const string ValueToSubmit = "quality assurance";
         private readonly ITextBox txbSearch = AqualityServices.ElementFactory.GetTextBox(By.Id("searchInput"), "Search");
+        private readonly IButton btnOverlayToggle = AqualityServices.ElementFactory.GetButton(By.ClassName("button-collapse"), "Toggle Overlay");
+        private readonly IButton btnCloseBanner = AqualityServices.ElementFactory.GetButton(By.ClassName("overlay-banner-close"), "Close banner");
             
 
         [Test, Retry(2)]
@@ -17,6 +19,11 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
         {
             AqualityServices.Application.Driver.Url = "https://wikipedia.org";
             txbSearch.State.WaitForClickable();
+            if (btnOverlayToggle.State.IsDisplayed)
+            {
+                btnOverlayToggle.Click();
+                btnCloseBanner.Click();
+            }
             txbSearch.Click();
             txbSearch.Type(ValueToSubmit);
             CheckIsKeyboardShown(expectedState: true, "Keyboard should be shown when click successful");

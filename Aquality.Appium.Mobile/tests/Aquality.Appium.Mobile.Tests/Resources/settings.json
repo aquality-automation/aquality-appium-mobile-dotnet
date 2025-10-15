@@ -13,6 +13,7 @@
         "automationName": "UIAutomator2",
         "eventTimings": true,
         "uiautomator2ServerInstallTimeout": 30000,
+        "uiautomator2ServerLaunchTimeout": 60000,
         "adbExecTimeout": 30000
       }
     },

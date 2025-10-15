@@ -19,7 +19,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.Web
         [SetUp]
         public void OpenDropdownPage()
         {
-            AqualityServices.Application.Driver.Url = "http://the-internet.herokuapp.Com/dropdown";
+            AqualityServices.Application.Driver.Url = "http://the-internet.herokuapp.com/dropdown";
             comboBox.State.WaitForClickable();
         }
 
