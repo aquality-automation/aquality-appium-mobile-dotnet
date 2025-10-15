@@ -8,7 +8,7 @@ stages:
 - stage: test
 
   pool:
-    vmImage: 'macOS-14'
+    vmImage: 'macOS-14-large'
 
   jobs:
   - job: sonar
@@ -65,7 +65,7 @@ stages:
 
     variables:  
       ANDROID_EMU_NAME: test
-      ANDROID_SDK_ID: system-images;android-30;google_apis_playstore;x86_64
+      ANDROID_SDK_ID: system-images;android-29;google_apis_playstore;x86_64
 
     steps:
     - task: CmdLine@2

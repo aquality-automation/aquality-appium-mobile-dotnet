@@ -1,6 +1,7 @@
-﻿using Aquality.Appium.Mobile.Elements.Interfaces;
+﻿using Aquality.Appium.Mobile.Applications;
+using Aquality.Appium.Mobile.Elements.Interfaces;
+using Aquality.Selenium.Core.Configurations;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
 
 namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screens
 {
@@ -8,6 +9,7 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
     {
         private const string Package = "io.appium.android.apis";
         private readonly IButton WaitButton = ElementFactory.GetButton(By.Id("android:id/aerr_wait"), "Wait");
+        private readonly IButton CloseAppButton = ElementFactory.GetButton(By.Id("android:id/aerr_close"), "Close app");
 
         public ApplicationActivityScreen(By locator, string name) : base(locator, name)
         {
@@ -18,12 +20,19 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
         public void Open()
         {
             StartActivity(Package, Activity, stopApp: false);
-
-            // workaround to handle System UI isn't responding dialog            
-            if (WaitButton.State.WaitForDisplayed())
+            // workaround to handle System UI isn't responding dialog
+            var result = AqualityServices.ConditionalWait.WaitFor(() =>
             {
+                if (!WaitButton.State.WaitForDisplayed())
+                {
+                    return true;
+                }
                 WaitButton.Click();
-                WaitButton.State.WaitForNotDisplayed();
+                return WaitButton.State.WaitForNotDisplayed();
+            }, AqualityServices.Get<ITimeoutConfiguration>().Command);
+            if (!result)
+            {
+                CloseAppButton.Click();
             }
         }
     }
