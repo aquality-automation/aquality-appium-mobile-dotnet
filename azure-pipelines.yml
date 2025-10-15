@@ -8,7 +8,7 @@ stages:
 - stage: test
 
   pool:
-    vmImage: 'macOS-14-large'
+    vmImage: 'macOS-14'
 
   jobs:
   - job: sonar
