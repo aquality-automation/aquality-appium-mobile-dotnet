@@ -29,7 +29,8 @@ namespace Aquality.Appium.Mobile.Tests.Samples.Android.NativeApp.ApiDemos.Screen
                 }
                 WaitButton.Click();
                 return WaitButton.State.WaitForNotDisplayed();
-            }, AqualityServices.Get<ITimeoutConfiguration>().Command);
+            }, AqualityServices.Get<ITimeoutConfiguration>().Command,
+            exceptionsToIgnore: [typeof(UnknownErrorException)]);
             if (!result)
             {
                 CloseAppButton.Click();
