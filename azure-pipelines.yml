@@ -27,10 +27,10 @@ stages:
         extraProperties: 'sonar.coverage.exclusions=**/**'
           
     - task: UseDotNet@2
-      displayName: Use .NET 8.0
+      displayName: Use .NET 10.0
       inputs:
         packageType: 'sdk'
-        version: '8.0.x'
+        version: '10.0.x'
     
     - task: DotNetCoreCLI@2
       displayName: 'Build solution'
@@ -133,10 +133,10 @@ stages:
       condition: and(succeeded(), eq(variables['isRemote'], 'true'))
           
     - task: UseDotNet@2
-      displayName: Use .NET 8.0
+      displayName: Use .NET 10.0
       inputs:
         packageType: 'sdk'
-        version: '8.0.x'
+        version: '10.0.x'
         
     - task: DotNetCoreCLI@2
       displayName: 'Run tests'
@@ -177,10 +177,10 @@ stages:
 
     steps:          
     - task: UseDotNet@2
-      displayName: Use .NET 8.0
+      displayName: Use .NET 10.0
       inputs:
         packageType: 'sdk'
-        version: '8.0.x'
+        version: '10.0.x'
 
     - task: gitversion/setup@0
       displayName: 'Install GitTools'
