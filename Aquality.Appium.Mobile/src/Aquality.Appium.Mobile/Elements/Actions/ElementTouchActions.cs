@@ -85,7 +85,7 @@ namespace Aquality.Appium.Mobile.Elements.Actions
 
         private Point GetElementLocation() => element.GetElement().Location;
 
-        private Point RecalculatePointCoordinates(
+        private static Point RecalculatePointCoordinates(
             Point point,
             double horizontalOffset,
             double verticalOffset)
@@ -94,7 +94,7 @@ namespace Aquality.Appium.Mobile.Elements.Actions
                              (int)(point.Y * verticalOffset));
         }
 
-        private Point GetBottomRightCornerPoint()
+        private static Point GetBottomRightCornerPoint()
         {
             var screnSize = AqualityServices.Application.Driver.Manage().Window.Size;
             return new Point(screnSize.Width, screnSize.Height);

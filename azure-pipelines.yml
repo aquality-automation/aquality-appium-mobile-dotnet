@@ -182,12 +182,12 @@ stages:
         packageType: 'sdk'
         version: '10.0.x'
 
-    - task: gitversion/setup@0
+    - task: gitversion-setup@4
       displayName: 'Install GitTools'
       inputs:
         versionSpec: '5.x'
         
-    - task: gitversion/execute@0
+    - task: gitversion-execute@4
       inputs:
         useConfigFile: true
         configFilePath: 'GitVersion.yml'

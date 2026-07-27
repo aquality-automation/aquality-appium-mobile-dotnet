@@ -33,9 +33,9 @@ namespace Aquality.Appium.Mobile.Configurations
 
         private void SetKnownProperty(AppiumOptions options, KeyValuePair<string, object> capability, ArgumentException exception)
         {
-            if (KnownCapabilitySetters.ContainsKey(capability.Key))
+            if (KnownCapabilitySetters.TryGetValue(capability.Key, out var setter))
             {
-                KnownCapabilitySetters[capability.Key](options, capability.Value);
+                setter(options, capability.Value);
             }
             else
             {
@@ -57,20 +57,20 @@ namespace Aquality.Appium.Mobile.Configurations
             optionProperty.SetValue(options, valueToSet);
         }
 
-        private bool IsPropertyNameMatchOption(string propertyName, string optionKey)
+        private static bool IsPropertyNameMatchOption(string propertyName, string optionKey)
         {
             return propertyName.Equals(optionKey, StringComparison.InvariantCultureIgnoreCase)
                 || optionKey.ToLowerInvariant().Contains(propertyName.ToLowerInvariant());
         }
 
-        private object ParseEnumValue(Type propertyType, object optionValue)
+        private static object ParseEnumValue(Type propertyType, object optionValue)
         {
             return optionValue is string
                 ? Enum.Parse(propertyType, optionValue.ToString(), ignoreCase: true)
                 : Enum.ToObject(propertyType, Convert.ChangeType(optionValue, Enum.GetUnderlyingType(propertyType)));
         }
 
-        private bool IsEnumValue(Type propertyType, object optionValue)
+        private static bool IsEnumValue(Type propertyType, object optionValue)
         {
             var valueAsString = optionValue.ToString();
             if (!propertyType.IsEnum || string.IsNullOrEmpty(valueAsString))
@@ -85,7 +85,7 @@ namespace Aquality.Appium.Mobile.Configurations
                     && propertyType.IsEnumDefined(Convert.ChangeType(optionValue, Enum.GetUnderlyingType(propertyType))));
         }
 
-        private bool IsValueOfIntegralNumericType(object value)
+        private static bool IsValueOfIntegralNumericType(object value)
         {
             return value is byte || value is sbyte
                 || value is ushort || value is short

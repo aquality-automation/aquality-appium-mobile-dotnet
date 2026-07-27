@@ -10,9 +10,9 @@ namespace Aquality.Appium.Mobile.Actions
 {
     public class TouchActions : ITouchActions
     {
-        private TimeSpan SwipeDuration => AqualityServices.Get<ITouchActionsSettings>().SwipeDuration;
+        private static TimeSpan SwipeDuration => AqualityServices.Get<ITouchActionsSettings>().SwipeDuration;
 
-        private ActionSequence PressSequence(PointerInputDevice finger, Point startPoint) => new ActionSequence(finger, initialSize: 0)
+        private static ActionSequence PressSequence(PointerInputDevice finger, Point startPoint) => new ActionSequence(finger, initialSize: 0)
             .AddAction(finger.CreatePointerMove(CoordinateOrigin.Viewport, startPoint.X, startPoint.Y, TimeSpan.Zero))
             .AddAction(finger.CreatePointerDown(MouseButton.Left));
             

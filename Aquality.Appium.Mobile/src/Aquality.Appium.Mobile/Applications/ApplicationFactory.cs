@@ -77,7 +77,7 @@ namespace Aquality.Appium.Mobile.Applications
             }
         }
 
-        protected PlatformNotSupportedException GetLoggedWrongPlatformNameException(string actualPlatform)
+        protected static PlatformNotSupportedException GetLoggedWrongPlatformNameException(string actualPlatform)
         {
             var message = AqualityServices.Get<ILocalizationManager>()
                 .GetLocalizedMessage("loc.platform.name.wrong", actualPlatform);
@@ -86,7 +86,7 @@ namespace Aquality.Appium.Mobile.Applications
             return exception;
         }
 
-        protected void LogApplicationIsReady()
+        protected static void LogApplicationIsReady()
         {
             AqualityServices.LocalizedLogger.Info("loc.application.ready", AqualityServices.ApplicationProfile.PlatformName);
         }
