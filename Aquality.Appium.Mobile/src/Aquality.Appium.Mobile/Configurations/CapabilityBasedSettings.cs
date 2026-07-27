@@ -43,7 +43,7 @@ namespace Aquality.Appium.Mobile.Configurations
             }
         }
 
-        private void SetOptionByPropertyName(AppiumOptions options, KeyValuePair<string, object> option, Exception exception)
+        private static void SetOptionByPropertyName(AppiumOptions options, KeyValuePair<string, object> option, Exception exception)
         {
             var optionProperty = options
                             .GetType()

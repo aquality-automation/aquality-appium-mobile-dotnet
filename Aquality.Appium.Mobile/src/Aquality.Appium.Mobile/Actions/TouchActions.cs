@@ -39,7 +39,7 @@ namespace Aquality.Appium.Mobile.Actions
             PerformTouchAction(finger => PressSequence(finger, startPoint).AddAction(finger.CreatePointerMove(CoordinateOrigin.Viewport, startPoint.X, startPoint.Y, SwipeDuration)), endPoint);
         }
 
-        protected void PerformTouchAction(Func<PointerInputDevice, ActionSequence> getActionSequence, Point endPoint)
+        protected static void PerformTouchAction(Func<PointerInputDevice, ActionSequence> getActionSequence, Point endPoint)
         {
             var actionRetrier = AqualityServices.Get<IElementActionRetrier>();
             var finger = new PointerInputDevice(PointerKind.Touch, "finger");
