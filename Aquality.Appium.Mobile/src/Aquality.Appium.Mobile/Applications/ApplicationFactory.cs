@@ -51,6 +51,7 @@ namespace Aquality.Appium.Mobile.Applications
             {
                 "timed out",
                 "session not created",
+                "session could not be created",
                 "appium settings app is not running",
                 "socket hang up",
                 "stream was destroyed",
@@ -70,7 +71,8 @@ namespace Aquality.Appium.Mobile.Applications
                 var exceptions = new List<Type>(handledExceptions ?? new List<Type>())
                 {
                     typeof(WebDriverException),
-                    typeof(UnknownErrorException)
+                    typeof(UnknownErrorException),
+                    typeof(InvalidOperationException)
                 };
                 return base.IsExceptionHandled(exceptions, exception) 
                     && handledErrorMessages.Any(message => exception.Message.ToLower().Contains(message));
