@@ -185,11 +185,10 @@ stages:
     - task: gitversion-setup@4
       displayName: 'Install GitTools'
       inputs:
-        versionSpec: '5.x'
+        versionSpec: '6.x'
         
     - task: gitversion-execute@4
       inputs:
-        useConfigFile: true
         configFilePath: 'GitVersion.yml'
 
     - script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) -p:Version=$(GitVersion.NuGetVersion) -o $(Build.ArtifactStagingDirectory)
