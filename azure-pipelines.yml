@@ -191,7 +191,7 @@ stages:
       inputs:
         configFilePath: 'GitVersion.yml'
 
-    - script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) -p:Version=$(GitVersion.SemVer) -o $(Build.ArtifactStagingDirectory)
+    - script: dotnet pack Aquality.Appium.Mobile/src/Aquality.Appium.Mobile/Aquality.Appium.Mobile.csproj -c $(buildConfiguration) -p:Version=$(GitVersion_SemVer) -o $(Build.ArtifactStagingDirectory)
       displayName: 'Create NuGet package'
       
     - task: GitHubRelease@1
@@ -202,9 +202,9 @@ stages:
         action: 'create'
         target: '$(Build.SourceVersion)'
         tagSource: 'userSpecifiedTag'
-        tag: 'v$(GitVersion.SemVer)'
-        title: 'v$(GitVersion.SemVer)'
-        isPreRelease: contains(variables['GitVersion.SemVer'], '-')
+        tag: 'v$(GitVersion_SemVer)'
+        title: 'v$(GitVersion_SemVer)'
+        isPreRelease: contains(variables['GitVersion_SemVer'], '-')
         changeLogCompareToRelease: 'lastFullRelease'
         changeLogType: 'commitBased'
 
