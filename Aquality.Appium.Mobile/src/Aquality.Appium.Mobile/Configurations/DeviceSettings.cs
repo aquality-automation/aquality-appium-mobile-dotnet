@@ -16,7 +16,7 @@ namespace Aquality.Appium.Mobile.Configurations
             this.deviceKey = deviceKey;
         }
 
-        private ISettingsFile GetDevicesSettings()
+        private static JsonSettingsFile GetDevicesSettings()
         {
             var deviceProfileName = EnvironmentConfiguration.GetVariable("devicesProfile");
             var devicesProfile = deviceProfileName == null 

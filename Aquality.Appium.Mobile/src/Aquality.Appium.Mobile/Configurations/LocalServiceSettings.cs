@@ -16,7 +16,7 @@ namespace Aquality.Appium.Mobile.Configurations
             this.settingsFile = settingsFile;
         }
 
-        private string ServiceSettingsPath => $".localServiceSettings";
+        private static string ServiceSettingsPath => $".localServiceSettings";
 
         protected IDictionary<string, object> Capabilities => settingsFile.GetValueOrNew<Dictionary<string, object>>($"{ServiceSettingsPath}.{nameof(Capabilities).ToLower()}");
 

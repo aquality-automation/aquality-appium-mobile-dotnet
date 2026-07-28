@@ -51,6 +51,7 @@ namespace Aquality.Appium.Mobile.Applications
             {
                 "timed out",
                 "session not created",
+                "session could not be created",
                 "appium settings app is not running",
                 "socket hang up",
                 "stream was destroyed",
@@ -70,14 +71,15 @@ namespace Aquality.Appium.Mobile.Applications
                 var exceptions = new List<Type>(handledExceptions ?? new List<Type>())
                 {
                     typeof(WebDriverException),
-                    typeof(UnknownErrorException)
+                    typeof(UnknownErrorException),
+                    typeof(InvalidOperationException)
                 };
                 return base.IsExceptionHandled(exceptions, exception) 
                     && handledErrorMessages.Any(message => exception.Message.ToLower().Contains(message));
             }
         }
 
-        protected PlatformNotSupportedException GetLoggedWrongPlatformNameException(string actualPlatform)
+        protected static PlatformNotSupportedException GetLoggedWrongPlatformNameException(string actualPlatform)
         {
             var message = AqualityServices.Get<ILocalizationManager>()
                 .GetLocalizedMessage("loc.platform.name.wrong", actualPlatform);
@@ -86,7 +88,7 @@ namespace Aquality.Appium.Mobile.Applications
             return exception;
         }
 
-        protected void LogApplicationIsReady()
+        protected static void LogApplicationIsReady()
         {
             AqualityServices.LocalizedLogger.Info("loc.application.ready", AqualityServices.ApplicationProfile.PlatformName);
         }
