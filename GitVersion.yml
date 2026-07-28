@@ -1,5 +1,4 @@
-mode: Mainline
-increment: Inherit
-branches: {}
+workflow: TrunkBased/preview1
+
 ignore:
   sha: []
